@@ -1,550 +1,354 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Desk Overflow - Missed Call Automation</title>
-  
-  <!-- Tailwind CSS -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  
-  <!-- React & ReactDOM -->
-  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
-  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
-  
-  <!-- Babel Compiler for React/JSX in browser -->
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  
-  <!-- Lucide Icons -->
-  <script src="https://unpkg.com/lucide@latest"></script>
-  
-  <!-- Inter Font -->
-  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-  
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0c1c32">
+  <meta name="description" content="Desk Overflow helps service businesses answer after-hours and overflow calls with a configured AI receptionist, qualify leads, route urgent requests and book appointments.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Desk Overflow | AI Phone Answering & Lead Recovery">
+  <meta property="og:description" content="A better answer to the calls your team can't take. AI phone coverage, lead capture, scheduling and custom call workflows.">
+  <meta property="og:url" content="https://chancm02.github.io/desk-overflow/">
+  <title>Desk Overflow | AI Receptionist, Call Coverage & Scheduling</title>
   <style>
-    body {
-      font-family: 'Inter', sans-serif;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    .animate-fadeIn {
-      animation: fadeIn 0.2s ease-out forwards;
-    }
+    :root{--navy:#0c1c32;--navy2:#122941;--ink:#10223a;--muted:#596f83;--mint:#77e4c9;--mint2:#dffaf2;--blue:#2874ac;--line:#dae6ed;--paper:#f7fafc;--white:#fff;--max:1180px}
+    *,*::before,*::after{box-sizing:border-box}
+    html{scroll-behavior:smooth;scroll-padding-top:92px}
+    body{margin:0;background:var(--white);color:var(--ink);font:16px/1.58 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Arial,sans-serif;-webkit-font-smoothing:antialiased}
+    a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}button{cursor:pointer}
+    a:focus-visible,button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid #20cda7;outline-offset:4px}
+    .wrap{width:min(var(--max),calc(100% - 48px));margin-inline:auto}
+    .eyebrow{font-size:.76rem;letter-spacing:.13em;text-transform:uppercase;font-weight:800;color:#1a8475}
+    .eyebrow.light{color:var(--mint)}
+    h1,h2,h3,p{margin-top:0}h1,h2,h3{letter-spacing:-.035em;line-height:1.13}
+    h1{font-size:clamp(2.9rem,5.15vw,5.3rem);font-weight:850}
+    h2{font-size:clamp(2.1rem,3.6vw,3.4rem);font-weight:810}
+    h3{font-size:1.18rem;font-weight:800}
+    p{color:var(--muted)}
+    .btn{border:0;border-radius:12px;display:inline-flex;align-items:center;justify-content:center;gap:13px;min-height:52px;padding:13px 22px;font-weight:800;font-size:.95rem;transition:transform .2s,background .2s,box-shadow .2s}
+    .btn:hover{transform:translateY(-2px)}
+    .btn-primary{background:var(--mint);color:#092535;box-shadow:0 10px 25px #060c1626}
+    .btn-primary:hover{background:#98f5dd}
+    .btn-dark{background:var(--navy);color:#fff}
+    .btn-dark:hover{background:#21415f}
+    .btn-outline{background:transparent;border:1px solid #70839a;color:#fff}
+    .btn-outline:hover{border-color:var(--mint)}
+    .topbar{position:sticky;top:0;z-index:20;background:#fffefef5;backdrop-filter:blur(15px);border-bottom:1px solid #e1e9ed}
+    .nav{height:76px;display:flex;justify-content:space-between;align-items:center;gap:18px}
+    .brand{display:flex;align-items:center;gap:12px;font-weight:850;color:var(--navy);font-size:1.25rem;letter-spacing:-.04em;line-height:1.07;white-space:nowrap}
+    .brandmark{display:grid;place-items:center;height:41px;width:41px;border-radius:13px;background:var(--navy);color:var(--mint);font-size:1.75rem;font-weight:700}
+    .brand small{display:block;font-size:.63rem;letter-spacing:.145em;text-transform:uppercase;color:#6b7c90;margin-top:5px;font-weight:800}
+    .navlinks{display:flex;align-items:center;gap:27px}
+    .navlinks a:not(.btn){font-size:.9rem;font-weight:700;color:#43586d}
+    .navlinks a:hover{color:#0a8a7b}
+    .nav .btn{min-height:42px;padding:10px 18px;font-size:.84rem}
+    .hero{background:radial-gradient(ellipse at 85% 9%,#22506a88,transparent 40%),linear-gradient(145deg,#0b1c31,#112a44 76%,#153a51);color:white;overflow:hidden}
+    .hero-grid{display:grid;grid-template-columns:1.09fr .91fr;align-items:center;gap:60px;padding-top:105px;padding-bottom:108px}
+    .hero .eyebrow{border:1px solid #4a797f73;background:#1a435256;padding:9px 14px;border-radius:100px;display:inline-block;margin-bottom:22px}
+    .hero h1{max-width:720px;margin-bottom:24px}
+    .hero h1 em{font-style:normal;color:var(--mint)}
+    .hero p{color:#bed0dd;font-size:1.12rem;max-width:550px;line-height:1.73;margin-bottom:30px}
+    .hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+    .hero-foot{display:flex;flex-wrap:wrap;gap:18px;margin-top:27px;color:#b9cfda;font-size:.82rem}
+    .hero-foot span::before{content:"✓";color:var(--mint);margin-right:8px;font-weight:900}
+    .console{background:#f7fafc;border:1px solid #e0edf5;border-radius:23px;color:#172c40;box-shadow:0 35px 90px #030d1b88;overflow:hidden;transform:rotate(-1.15deg);position:relative}
+    .console-top{background:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #e3eaf0}
+    .console-logo{display:flex;align-items:center;gap:9px;font-weight:850;font-size:.85rem}
+    .console-logo i{display:inline-block;width:11px;height:11px;border-radius:50%;background:#2dc9a1;box-shadow:0 0 0 5px #e3fff4}
+    .console-label{font-size:.66rem;font-weight:700;color:#72859a;background:#f0f4f7;padding:5px 10px;border-radius:100px}
+    .call-demo{padding:26px}
+    .incoming{display:flex;align-items:center;gap:12px;background:#e8f5f2;border:1px solid #cce9e0;border-radius:13px;padding:14px;margin-bottom:20px}
+    .incoming .bubble-icon{width:43px;height:43px;background:#126e67;border-radius:11px;color:white;display:grid;place-items:center;font-size:1.2rem}
+    .incoming b{display:block;font-size:.89rem}.incoming small{display:block;font-size:.73rem;color:#4f786f}
+    .call-status{margin-left:auto;color:#196653;background:#d1f2e9;font-size:.69rem;border-radius:100px;padding:5px 8px;font-weight:800}
+    .chat{display:flex;flex-direction:column;gap:13px}
+    .chatline{display:flex;gap:10px;align-items:flex-start;max-width:92%}
+    .chatline.right{margin-left:auto;flex-direction:row-reverse}
+    .avatar{flex:0 0 27px;height:27px;border-radius:9px;background:#dbe5ee;color:#31536a;display:grid;place-items:center;font-weight:800;font-size:.68rem}
+    .chatline.right .avatar{background:#0c4f57;color:#fff}
+    .speech{padding:11px 13px;background:#fff;border:1px solid #e2e9ef;border-radius:12px 12px 12px 4px;font-size:.82rem;line-height:1.5}
+    .chatline.right .speech{background:#16445c;color:#fff;border-color:#16445c;border-radius:12px 12px 4px 12px}
+    .console-bottom{border-top:1px solid #e3eaf0;background:#fff;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:10px}
+    .console-bottom span{color:#638195;font-size:.77rem}
+    .booked{color:#087761!important;font-weight:800}
+    .below-hero{background:#eef5f8;border-bottom:1px solid #e0eaf0}
+    .below-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:22px;padding-block:22px}
+    .below-grid div{display:flex;align-items:center;gap:11px;font-weight:750;font-size:.85rem;color:#334c60}
+    .below-grid b{color:#0b8d7c;font-size:1.25rem}
+    section.section{padding:94px 0}
+    .section-intro{max-width:770px;margin-bottom:40px}
+    .section-intro h2{margin:12px 0 17px}
+    .section-intro p{font-size:1.07rem}
+    .value-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .value{padding:28px;border:1px solid #dee7eb;background:white;border-radius:18px;min-height:222px;box-shadow:0 8px 24px #132a4008}
+    .value .glyph{display:grid;place-items:center;width:44px;height:44px;background:#def8ee;border-radius:12px;color:#087e6a;font-size:1.28rem;font-weight:850;margin-bottom:21px}
+    .value p{font-size:.92rem;line-height:1.65;margin-bottom:0}
+    .value strong{color:#0f6159}
+    .tint{background:var(--paper)}
+    .split{display:grid;grid-template-columns:.9fr 1.1fr;gap:65px;align-items:center}
+    .step{display:flex;gap:19px;margin-bottom:20px;align-items:flex-start}
+    .num{flex:0 0 43px;height:43px;border-radius:13px;background:#dff7f0;color:#087263;display:grid;place-items:center;font-weight:900}
+    .step h3{font-size:1.06rem;margin:2px 0 7px}.step p{font-size:.91rem;margin-bottom:0}
+    .callflow{border-radius:23px;background:var(--navy);padding:33px;color:white;box-shadow:0 25px 50px #12284225}
+    .flow-head{font-weight:850;font-size:1.14rem;margin-bottom:25px}
+    .flow-item{padding:18px;background:#1b3551;border:1px solid #34536b;border-radius:12px;display:flex;align-items:center;gap:15px}
+    .flow-item strong{display:block;font-size:.88rem}
+    .flow-item span{display:block;color:#bbcede;font-size:.77rem;margin-top:3px}
+    .flow-icon{height:38px;width:38px;flex:0 0 38px;border-radius:10px;background:#284c64;display:grid;place-items:center;color:var(--mint);font-size:1.25rem}
+    .flow-arrow{text-align:center;color:#72dec4;font-weight:900;padding:7px}
+    .flow-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+    .flow-pair .flow-item{padding:15px}
+    .flow-note{border-top:1px solid #345069;margin-top:24px;padding-top:17px;color:#c5d8e4;font-size:.77rem;line-height:1.55}
+    .pill{display:inline-flex;border:1px solid #b6e7db;background:#e4fbf5;color:#0d7366;border-radius:100px;padding:6px 12px;font-weight:850;font-size:.7rem;letter-spacing:.04em;text-transform:uppercase}
+    .addon{background:var(--navy);color:white;border-radius:22px;padding:31px;display:flex;gap:30px;align-items:center;justify-content:space-between;margin-top:24px}
+    .addon h3{font-size:1.4rem;margin:13px 0 7px}
+    .addon p{color:#bfd1e0;font-size:.91rem;max-width:720px;margin:0}
+    .industries{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .industries div{border:1px solid #d8e5e9;background:#fff;border-radius:13px;padding:17px 19px;font-size:.94rem;font-weight:760}
+    .industries span{color:#0a9d82;margin-right:9px}
+    .industry-note{margin-top:18px;font-size:.9rem}
+    .calc-grid{display:grid;grid-template-columns:1fr .95fr;gap:65px;align-items:center}
+    .calc{border:1px solid #d9e8e6;background:#fff;border-radius:22px;padding:33px;box-shadow:0 18px 55px #142f3c0e}
+    .field{margin-bottom:19px}
+    .fieldtop{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:12px}
+    .fieldtop label{font-size:.89rem;font-weight:770}
+    .fieldtop output{color:#056e60;font-weight:850}
+    .calc input[type=range]{width:100%;accent-color:#0c9580}
+    .calc-result{background:#e5faf3;border:1px solid #bceadd;border-radius:16px;padding:23px;margin-top:21px}
+    .calc-result b{display:block;font-size:clamp(2rem,4vw,3.2rem);letter-spacing:-.04em;color:#086c5b;line-height:1.3}
+    .calc-result small{display:block;color:#49685f;font-size:.78rem;line-height:1.6}
+    .pricing{display:grid;grid-template-columns:.95fr 1.05fr;gap:60px;align-items:center}
+    .price-card{border:1px solid #dce7e9;background:white;border-radius:22px;padding:36px;box-shadow:0 14px 35px #172a3b0e}
+    .price{font-size:3.3rem;font-weight:850;color:var(--navy);line-height:1;margin:15px 0 5px}
+    .price span{font-size:.96rem;color:var(--muted);font-weight:600}
+    .price-card ul{padding:0;margin:24px 0 26px;list-style:none}
+    .price-card li{padding:9px 0;font-size:.93rem;color:#385065}
+    .price-card li::before{content:"✓";margin-right:11px;color:#0c987e;font-weight:900}
+    .price-card .btn{width:100%}
+    .price-note{font-size:.78rem;margin-top:17px;margin-bottom:0}
+    .faq{max-width:840px}
+    details{border-bottom:1px solid #dce7ed;padding:0}
+    summary{list-style:none;font-weight:800;cursor:pointer;padding:22px 40px 22px 0;position:relative}
+    summary::-webkit-details-marker{display:none}
+    summary::after{content:"+";position:absolute;right:6px;top:15px;font-size:1.7rem;color:#228b7b;font-weight:500}
+    details[open] summary::after{content:"−"}
+    details p{font-size:.93rem;line-height:1.8;padding-right:34px;margin:0 0 20px}
+    .contact-section{background:linear-gradient(145deg,#0d1e33,#193850);color:white}
+    .contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;align-items:start;gap:80px}
+    .contact-section h2{margin:13px 0 24px}
+    .contact-section p{color:#bbcede}
+    .contact-rows{margin-top:30px;display:grid;gap:15px;font-size:.9rem;color:#dae6ed}
+    .contact-rows b{color:#71e6c8;margin-right:9px}
+    .form-card{background:#fff;color:var(--ink);border-radius:20px;padding:35px;box-shadow:0 25px 60px #0002}
+    .form-card h3{font-size:1.37rem;margin-bottom:8px}
+    .form-card>p{color:#62798c;font-size:.85rem;margin-bottom:24px}
+    .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+    .group{margin-bottom:15px}
+    .group label{display:block;font-weight:750;font-size:.78rem;margin-bottom:7px;color:#314c62}
+    .group input,.group select,.group textarea{width:100%;display:block;border:1px solid #cbd9e3;border-radius:10px;background:white;padding:12px 13px;color:#172d41;min-height:46px}
+    .group textarea{min-height:92px;resize:vertical}
+    .group small{font-size:.69rem;color:#6e8191}
+    .check{display:flex;gap:11px;align-items:start;line-height:1.5;color:#50677c;font-size:.77rem;margin:7px 0 17px}
+    .check input{margin-top:4px;flex:0 0 auto;accent-color:#087f6f}
+    .form-card button[type=submit]{width:100%}
+    .fineprint{font-size:.72rem;color:#73869a;margin:12px 0 0}
+    .fineprint a{text-decoration:underline;color:#176e69}
+    .foot{background:#09182b;color:#aebfd1;padding:55px 0 30px}
+    .foot-top{display:flex;justify-content:space-between;align-items:start;gap:30px;padding-bottom:35px;border-bottom:1px solid #27425b}
+    .foot .brand{color:#fff}.foot .brand small{color:#a2b9c9}
+    .foot .brandmark{background:#244761}
+    .foot p{font-size:.88rem;max-width:470px;color:#aebfd1;margin:18px 0 0}
+    .footlinks{display:flex;gap:22px;flex-wrap:wrap;font-size:.84rem;font-weight:650}
+    .footlinks a:hover{color:var(--mint)}
+    .foot-bottom{padding-top:25px;font-size:.76rem;display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+    .foot-bottom p{font-size:.76rem;margin:0}
+    @media(max-width:1050px){.navlinks{gap:15px}.hero-grid{gap:30px}.split,.calc-grid,.pricing{gap:35px}.contact-grid{gap:40px}}
+    @media(max-width:850px){.navlinks a:not(.btn){display:none}.hero-grid,.split,.calc-grid,.pricing,.contact-grid{grid-template-columns:1fr}.hero-grid{padding-top:70px;padding-bottom:76px}.console{max-width:560px;margin-inline:auto;width:100%;transform:none}.below-grid{grid-template-columns:repeat(2,1fr)}.value-grid{grid-template-columns:repeat(2,1fr)}.contact-grid{gap:30px}.contact-section .section-intro{margin-bottom:0}}
+    @media(max-width:600px){.wrap{width:min(var(--max),calc(100% - 32px))}.nav{height:67px}.brand{font-size:1.05rem}.brandmark{width:36px;height:36px;font-size:1.55rem}.nav .btn{min-height:39px;padding:9px 11px;font-size:.75rem}.hero-grid{padding-top:58px;padding-bottom:61px}.hero h1{font-size:clamp(2.65rem,10vw,4rem)}.hero p{font-size:1rem}.hero-actions{display:grid}.hero-actions .btn{width:100%}.hero-foot{gap:10px;flex-direction:column}.call-demo{padding:17px}.console-top{padding:14px}.chatline{max-width:98%}.console-bottom{padding:13px}.below-grid{gap:12px}.below-grid div{font-size:.77rem}.section{padding:72px 0!important}.value-grid,.industries,.flow-pair,.form-grid{grid-template-columns:1fr}.value{min-height:0}.callflow,.calc,.form-card,.price-card{padding:22px}.addon{display:block;padding:25px}.addon .btn{margin-top:22px}.foot-top{flex-direction:column}.footlinks{gap:16px}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn{transition:none}}
   </style>
 </head>
-<body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
-
-  <div id="root"></div>
-
-  <script type="text/babel">
-    const { useState, useEffect } = React;
-
-    // Helper to render Lucide icons in standalone HTML React
-    const Icon = ({ name, className = "w-5 h-5", ...props }) => {
-      useEffect(() => {
-        if (window.lucide) {
-          window.lucide.createIcons();
-        }
-      });
-      return <i data-lucide={name} className={className} {...props}></i>;
-    };
-
-    function App() {
-      const [isModalOpen, setIsModalOpen] = useState(false);
-      const [modalType, setModalType] = useState('demo');
-      const [formSubmitted, setFormSubmitted] = useState(false);
-      const [formData, setFormData] = useState({ name: '', business: '', phone: '', email: '' });
-      const [openFaq, setOpenFaq] = useState(null);
-
-      useEffect(() => {
-        if (window.lucide) {
-          window.lucide.createIcons();
-        }
-      }, [isModalOpen, openFaq, formSubmitted]);
-
-      const handleOpenModal = (type) => {
-        setModalType(type);
-        setFormSubmitted(false);
-        setIsModalOpen(true);
-      };
-
-      const handleFormSubmit = (e) => {
-        e.preventDefault();
-        setFormSubmitted(true);
-      };
-
-      const toggleFaq = (index) => {
-        setOpenFaq(openFaq === index ? null : index);
-      };
-
-      const faqs = [
-        {
-          q: "Will this replace my existing phone number?",
-          a: "No! Desk Overflow connects directly to your current business phone line or mobile number. You don't need to change numbers or buy new hardware."
-        },
-        {
-          q: "What happens when I miss a call?",
-          a: "Within 15 seconds of a missed call, our automation instantly texts the caller from your business number to ask how you can help, initiating a conversation and keeping them from calling a competitor."
-        },
-        {
-          q: "Is it difficult to set up?",
-          a: "Not at all. We handle the technical setup for you within 24 hours. There is zero software to install or learn on your end."
-        },
-        {
-          q: "Can it book appointments automatically?",
-          a: "Yes. Once the lead replies to the text, our conversational system can answer common questions and drop them right onto your calendar based on your availability."
-        }
-      ];
-
-      return (
-        <div className="min-h-screen">
-          
-          {/* Navigation */}
-          <nav className="fixed w-full bg-white/95 backdrop-blur-md z-40 border-b border-slate-200 shadow-sm">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="flex justify-between items-center h-20">
-                <div className="flex items-center gap-3">
-                  <div className="bg-blue-600 p-2.5 rounded-xl shadow-md shadow-blue-600/20">
-                    <Icon name="phone-call" className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <span className="text-2xl font-black text-slate-900 tracking-tight block leading-none">Desk Overflow</span>
-                    <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest mt-1 block">Missed Call Automation</span>
-                  </div>
-                </div>
-                <div className="hidden md:flex items-center gap-8">
-                  <a href="#how-it-works" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">How it Works</a>
-                  <a href="#roi" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">ROI Calculator</a>
-                  <a href="#faq" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">FAQ</a>
-                  <button 
-                    onClick={() => handleOpenModal('demo')}
-                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-2 transform hover:-translate-y-0.5"
-                  >
-                    Get a Free Demo
-                  </button>
-                </div>
-              </div>
-            </div>
-          </nav>
-
-          {/* Hero Section */}
-          <section className="pt-36 pb-20 lg:pt-48 lg:pb-32 px-4 overflow-hidden relative">
-            <div className="absolute top-0 right-0 -z-10 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-60 transform translate-x-1/3 -translate-y-1/4"></div>
-            <div className="max-w-7xl mx-auto">
-              <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
-                
-                <div className="flex-1 text-center lg:text-left">
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-800 font-semibold text-sm mb-6 shadow-sm">
-                    <span className="relative flex h-3 w-3">
-                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                      <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-600"></span>
-                    </span>
-                    Built for Plumbers, HVAC, Roofers & Local Contractors
-                  </div>
-                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 mb-6 leading-[1.1]">
-                    Stop Losing Jobs Every Time You <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Miss a Call.</span>
-                  </h1>
-                  <p className="text-lg sm:text-xl text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
-                    We build automated missed-call systems that instantly text back unanswered leads, answer their questions, and book them on your calendar—even when you're under a sink or on a roof.
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
-                    <button 
-                      onClick={() => handleOpenModal('demo')}
-                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl hover:shadow-blue-600/30 flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
-                    >
-                      Claim Your Setup <Icon name="arrow-right" className="w-5 h-5" />
-                    </button>
-                    <p className="text-sm text-slate-500 font-medium flex items-center gap-1.5 bg-white px-4 py-3 rounded-full border border-slate-200 shadow-sm">
-                      <Icon name="shield-check" className="w-5 h-5 text-emerald-500" /> Keep your current phone number
-                    </p>
-                  </div>
-                </div>
-
-                {/* Interactive Phone Simulation */}
-                <div className="flex-1 w-full max-w-lg lg:max-w-none relative">
-                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-200 to-slate-100 rounded-3xl transform rotate-2 scale-105 -z-10"></div>
-                  <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 sm:p-8 overflow-hidden relative">
-                    <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
-                      <div className="flex items-center gap-3">
-                        <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
-                        <div>
-                          <p className="text-sm font-bold text-slate-800">Missed Call Automation Active</p>
-                          <p className="text-xs text-slate-400">Response time: 14 seconds</p>
-                        </div>
-                      </div>
-                      <span className="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-semibold">Live Simulation</span>
-                    </div>
-                    
-                    <div className="flex flex-col gap-4">
-                      <div className="text-center">
-                        <span className="text-xs font-semibold text-slate-400 bg-slate-50 px-3 py-1 rounded-full">Incoming Customer Call Missed</span>
-                      </div>
-                      
-                      <div className="flex justify-end mt-1">
-                        <div className="bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%] shadow-sm">
-                          <p className="text-sm font-medium">Hi! This is Desk Overflow. Sorry we missed your call. How can we help you today?</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex justify-start mt-1">
-                        <div className="bg-slate-100 text-slate-800 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] shadow-sm">
-                          <p className="text-sm">Hey, my AC unit just stopped working. Can someone come take a look today?</p>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-end mt-1">
-                        <div className="bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%] shadow-sm">
-                          <p className="text-sm font-medium">We have an emergency tech available at 3 PM. Shall I lock in that slot for you?</p>
-                        </div>
-                      </div>
-
-                      <div className="flex justify-start mt-1">
-                        <div className="bg-slate-100 text-slate-800 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] shadow-sm">
-                          <p className="text-sm">Yes please! That would be amazing.</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </section>
-
-          {/* Problem Statement Section */}
-          <section className="py-24 bg-slate-900 text-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-              <div className="flex justify-center mb-6">
-                <Icon name="phone-off" className="w-16 h-16 text-red-500 animate-bounce" />
-              </div>
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6">62% of Inbound Calls Go Unanswered.</h2>
-              <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
-                You spend money on Google Ads, trucks, and marketing to make the phone ring. But when you're busy serving a client and miss a call, <strong className="text-white underline decoration-red-500 decoration-2">they immediately call your competitor.</strong>
-              </p>
-              
-              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
-                <div className="bg-slate-800/80 p-8 rounded-2xl border border-slate-700/80 shadow-lg">
-                  <div className="text-red-400 font-black text-2xl mb-3">01. The Miss</div>
-                  <p className="text-slate-300 text-sm leading-relaxed">You're on a ladder, under a sink, or driving. You physically cannot pick up the phone.</p>
-                </div>
-                <div className="bg-slate-800/80 p-8 rounded-2xl border border-slate-700/80 shadow-lg">
-                  <div className="text-red-400 font-black text-2xl mb-3">02. The Hang-Up</div>
-                  <p className="text-slate-300 text-sm leading-relaxed">Modern customers rarely leave voicemails. They hang up and dial the next contractor on Google.</p>
-                </div>
-                <div className="bg-slate-800/80 p-8 rounded-2xl border border-slate-700/80 shadow-lg">
-                  <div className="text-red-400 font-black text-2xl mb-3">03. The Loss</div>
-                  <p className="text-slate-300 text-sm leading-relaxed">A $500–$5,000 job walks out the door forever, and you never even know who tried to hire you.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* How It Works Section */}
-          <section id="how-it-works" className="py-24 bg-white">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center max-w-3xl mx-auto mb-20">
-                <span className="text-blue-600 font-bold uppercase tracking-wider text-sm bg-blue-50 px-4 py-1.5 rounded-full">Seamless Automation</span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 mb-6">Never Let a Lead Go Cold Again.</h2>
-                <p className="text-lg text-slate-600">
-                  Desk Overflow works silently in the background 24 hours a day, 7 days a week.
-                </p>
-              </div>
-
-              <div className="grid md:grid-cols-3 gap-12 relative">
-                <div className="hidden md:block absolute top-16 left-1/6 right-1/6 h-1 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-100 z-0"></div>
-
-                <div className="relative z-10 flex flex-col items-center text-center bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
-                  <div className="w-20 h-20 bg-red-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                    <Icon name="phone-off" className="w-10 h-10 text-red-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">1. The Missed Call</h3>
-                  <p className="text-slate-600 leading-relaxed">A customer calls your business number while you are busy working or after hours.</p>
-                </div>
-
-                <div className="relative z-10 flex flex-col items-center text-center bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
-                  <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                    <Icon name="message-square" className="w-10 h-10 text-blue-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">2. The Instant Text</h3>
-                  <p className="text-slate-600 leading-relaxed">Within 15 seconds, our system texts them back from your number, keeping them engaged.</p>
-                </div>
-
-                <div className="relative z-10 flex flex-col items-center text-center bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
-                  <div className="w-20 h-20 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
-                    <Icon name="calendar-check" className="w-10 h-10 text-emerald-600" />
-                  </div>
-                  <h3 className="text-2xl font-bold text-slate-900 mb-3">3. The AI Booking</h3>
-                  <p className="text-slate-600 leading-relaxed">Our smart assistant qualifies their request and books them directly onto your calendar.</p>
-                </div>
-              </div>
-            </div>
-          </section>
-
-          {/* ROI Calculator Section */}
-          <section id="roi" className="py-24 bg-blue-50/50">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid lg:grid-cols-2 gap-16 items-center">
-                
-                <div>
-                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-800 font-semibold text-sm mb-6">
-                    <Icon name="trending-up" className="w-4 h-4" /> The Math
-                  </div>
-                  <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6">What is ONE missed call costing your business?</h2>
-                  <p className="text-lg text-slate-600 mb-8 leading-relaxed">
-                    You don't need hundreds of new leads to transform your revenue. You just need to stop letting the hot leads you already generate slip through your fingers.
-                  </p>
-                  
-                  <ul className="space-y-4">
-                    <li className="flex items-center gap-3">
-                      <Icon name="check-circle-2" className="w-6 h-6 text-emerald-500 flex-shrink-0" />
-                      <span className="text-slate-700 text-lg font-medium">No new ad spend required</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Icon name="check-circle-2" className="w-6 h-6 text-emerald-500 flex-shrink-0" />
-                      <span className="text-slate-700 text-lg font-medium">Zero extra work for your staff</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <Icon name="check-circle-2" className="w-6 h-6 text-emerald-500 flex-shrink-0" />
-                      <span className="text-slate-700 text-lg font-medium">Pays for itself on the first recovered job</span>
-                    </li>
-                  </ul>
-                </div>
-
-                <div className="bg-white rounded-3xl shadow-xl border border-slate-200 p-8 sm:p-10">
-                  <h3 className="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-4 mb-6">Monthly Revenue Leak</h3>
-                  
-                  <div className="space-y-6">
-                    <div className="flex justify-between items-center text-lg">
-                      <span className="text-slate-500">Average Job Value</span>
-                      <span className="text-slate-900 font-bold">$500</span>
-                    </div>
-                    <div className="flex justify-between items-center text-lg">
-                      <span className="text-slate-500">Missed Calls / Week</span>
-                      <span className="text-slate-900 font-bold">x 5</span>
-                    </div>
-                    <div className="flex justify-between items-center text-lg">
-                      <span className="text-slate-500">Weeks / Month</span>
-                      <span className="text-slate-900 font-bold">x 4</span>
-                    </div>
-                    
-                    <div className="pt-6 border-t border-slate-200">
-                      <div className="flex justify-between items-center">
-                        <span className="text-slate-900 font-bold text-xl">Lost Revenue / Mo.</span>
-                        <span className="text-red-500 font-black text-3xl">-$10,000</span>
-                      </div>
-                    </div>
-
-                    <div className="bg-emerald-50 text-emerald-800 p-4 rounded-xl mt-6 font-semibold text-center border border-emerald-200/60">
-                      Desk Overflow recaptures this revenue automatically.
-                    </div>
-                  </div>
-                </div>
-
-              </div>
-            </div>
-          </section>
-
-          {/* FAQ Section */}
-          <section id="faq" className="py-24 bg-white">
-            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="text-center mb-16">
-                <span className="text-blue-600 font-bold uppercase tracking-wider text-sm bg-blue-50 px-4 py-1.5 rounded-full">Got Questions?</span>
-                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 mb-4">Frequently Asked Questions</h2>
-                <p className="text-slate-600">Everything you need to know about setting up your missed-call automation.</p>
-              </div>
-
-              <div className="space-y-4">
-                {faqs.map((faq, index) => (
-                  <div key={index} className="border border-slate-200 rounded-2xl overflow-hidden transition-all shadow-sm">
-                    <button
-                      onClick={() => toggleFaq(index)}
-                      className="w-full flex justify-between items-center p-6 text-left font-bold text-lg text-slate-800 hover:text-blue-600 bg-white transition-colors"
-                    >
-                      <span>{faq.q}</span>
-                      <Icon name={openFaq === index ? "chevron-up" : "chevron-down"} className={openFaq === index ? "w-5 h-5 text-blue-600" : "w-5 h-5 text-slate-400"} />
-                    </button>
-                    {openFaq === index && (
-                      <div className="px-6 pb-6 text-slate-600 leading-relaxed bg-slate-50/50 pt-2 border-t border-slate-100">
-                        {faq.a}
-                      </div>
-                    )}
-                  </div>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          {/* CTA Banner */}
-          <section className="py-24 bg-blue-600 relative overflow-hidden text-center">
-            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-50 transform translate-x-1/2 -translate-y-1/2"></div>
-            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-700 rounded-full blur-3xl opacity-50 transform -translate-x-1/2 translate-y-1/2"></div>
-            
-            <div className="max-w-4xl mx-auto px-4 relative z-10">
-              <h2 className="text-3xl sm:text-5xl font-black text-white mb-6">Plug the Leaks in Your Business Today.</h2>
-              <p className="text-lg sm:text-xl text-blue-100 mb-10 max-w-2xl mx-auto leading-relaxed">
-                Setup takes less than 24 hours. Keep your current phone number. No technical skills required.
-              </p>
-              <button 
-                onClick={() => handleOpenModal('demo')}
-                className="bg-white text-blue-600 hover:bg-slate-100 px-10 py-5 rounded-full text-xl font-bold transition-all shadow-2xl hover:shadow-white/30 inline-flex items-center gap-3 transform hover:-translate-y-1"
-              >
-                <Icon name="clock" className="w-6 h-6" /> Claim Your Custom Setup
-              </button>
-            </div>
-          </section>
-
-          {/* Footer */}
-          <footer className="bg-slate-950 text-slate-400 py-16 border-t border-slate-900">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center pb-12 border-b border-slate-900">
-                <div>
-                  <span className="text-2xl font-black text-white tracking-tight block mb-2">Desk Overflow</span>
-                  <p className="text-sm text-slate-400 max-w-md leading-relaxed mb-4">
-                    Automated missed-call text-back and booking systems designed to help local service businesses capture every customer.
-                  </p>
-                  <div className="flex flex-col gap-2 text-xs text-slate-400">
-                    <span className="flex items-center gap-2"><Icon name="map-pin" className="w-4 h-4 text-blue-500" /> 2779 61st Street Lane, Vinton, IA 52349</span>
-                    <span className="flex items-center gap-2"><Icon name="phone" className="w-4 h-4 text-blue-500" /> 319-536-4100</span>
-                  </div>
-                </div>
-
-                <div className="flex flex-wrap md:justify-end gap-6 text-sm font-medium">
-                  <button onClick={() => handleOpenModal('privacy')} className="hover:text-white transition-colors underline underline-offset-4">Privacy Policy</button>
-                  <button onClick={() => handleOpenModal('terms')} className="hover:text-white transition-colors underline underline-offset-4">Terms of Service</button>
-                  <button onClick={() => handleOpenModal('demo')} className="hover:text-white transition-colors underline underline-offset-4">Contact</button>
-                </div>
-              </div>
-
-              <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
-                <p>© 2026 Desk Overflow. Desk Overflow is a trade name of Cory Chandler.</p>
-                <p className="text-slate-500 text-center md:text-right max-w-lg">
-                  This site is not a part of Facebook or Meta Inc. Facebook is a registered trademark of Meta, Inc.
-                </p>
-              </div>
-            </div>
-          </footer>
-
-          {/* Modal Popups */}
-          {isModalOpen && (
-            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm animate-fadeIn">
-              <div className="bg-white rounded-3xl max-w-lg w-full p-8 relative shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
-                
-                <button 
-                  onClick={() => setIsModalOpen(false)}
-                  className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors"
-                >
-                  <Icon name="x" className="w-5 h-5" />
-                </button>
-
-                {modalType === 'demo' && (
-                  <div>
-                    <h3 className="text-2xl font-black text-slate-900 mb-2">Claim Your Setup</h3>
-                    <p className="text-slate-600 text-sm mb-6">Enter your details below and we'll configure your custom missed-call automation within 24 hours.</p>
-                    
-                    {formSubmitted ? (
-                      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center">
-                        <Icon name="check-circle-2" className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
-                        <h4 className="text-lg font-bold text-emerald-900 mb-1">Request Received!</h4>
-                        <p className="text-sm text-emerald-700">Cory Chandler or a team member will reach out to you at {formData.phone} shortly.</p>
-                      </div>
-                    ) : (
-                      <form onSubmit={handleFormSubmit} className="space-y-4">
-                        <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Full Name</label>
-                          <input 
-                            type="text" 
-                            required
-                            placeholder="John Smith"
-                            value={formData.name}
-                            onChange={(e) => setFormData({...formData, name: e.target.value})}
-                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 text-slate-800"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Business Name</label>
-                          <input 
-                            type="text" 
-                            required
-                            placeholder="Smith Plumbing & HVAC"
-                            value={formData.business}
-                            onChange={(e) => setFormData({...formData, business: e.target.value})}
-                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 text-slate-800"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Phone Number</label>
-                          <input 
-                            type="tel" 
-                            required
-                            placeholder="(319) 000-0000"
-                            value={formData.phone}
-                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
-                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 text-slate-800"
-                          />
-                        </div>
-                        <div>
-                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Email Address</label>
-                          <input 
-                            type="email" 
-                            required
-                            placeholder="john@smithplumbing.com"
-                            value={formData.email}
-                            onChange={(e) => setFormData({...formData, email: e.target.value})}
-                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 text-slate-800"
-                          />
-                        </div>
-                        <button 
-                          type="submit"
-                          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all mt-4"
-                        >
-                          Submit Request
-                        </button>
-                      </form>
-                    )}
-                  </div>
-                )}
-
-                {modalType === 'privacy' && (
-                  <div className="space-y-4 text-sm text-slate-600">
-                    <h3 className="text-2xl font-black text-slate-900 mb-4">Privacy Policy</h3>
-                    <p><strong>Effective Date:</strong> October 9, 2026</p>
-                    <p>Desk Overflow, operated by Cory Chandler in Vinton, Iowa, respects your privacy. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website or use our missed-call automation services.</p>
-                    <h4 className="font-bold text-slate-800 mt-4">1. Information We Collect</h4>
-                    <p>We collect contact information such as your name, business name, phone number, and email address when you fill out our demo request or contact forms.</p>
-                    <h4 className="font-bold text-slate-800 mt-4">2. How We Use Information</h4>
-                    <p>We use your information exclusively to provide, maintain, and support our SMS text-back and calendar booking automation services for your business.</p>
-                    <h4 className="font-bold text-slate-800 mt-4">3. Contact Us</h4>
-                    <p>For privacy inquiries, contact us at 2779 61st Street Lane, Vinton, IA 52349 or call 319-536-4100.</p>
-                  </div>
-                )}
-
-                {modalType === 'terms' && (
-                  <div className="space-y-4 text-sm text-slate-600">
-                    <h3 className="text-2xl font-black text-slate-900 mb-4">Terms of Service</h3>
-                    <p><strong>Effective Date:</strong> October 9, 2026</p>
-                    <p>Welcome to Desk Overflow, a trade name of Cory Chandler, located at 2779 61st Street Lane, Vinton, IA 52349. By accessing our website or services, you agree to these Terms of Service.</p>
-                    <h4 className="font-bold text-slate-800 mt-4">1. Services</h4>
-                    <p>Desk Overflow provides automated missed-call text-back and conversational booking software integrations for local contractors and service providers.</p>
-                    <h4 className="font-bold text-slate-800 mt-4">2. Communications</h4>
-                    <p>By submitting your phone number, you consent to receive informational and service-related messages from Desk Overflow.</p>
-                    <h4 className="font-bold text-slate-800 mt-4">3. Governing Law</h4>
-                    <p>These terms are governed by the laws of the State of Iowa.</p>
-                  </div>
-                )}
-
-              </div>
-            </div>
-          )}
-
-        </div>
-      );
-    }
-
-    const root = ReactDOM.createRoot(document.getElementById('root'));
-    root.render(<App />);
-  </script>
-</body>
-</html>
+<body>
+<header class="topbar">
+ <nav class="wrap nav" aria-label="Main navigation">
+  <a class="brand" href="./" aria-label="Desk Overflow home"><span class="brandmark">↗</span><span>Desk Overflow<small>AI CALL COVERAGE</small></span></a>
+  <div class="navlinks"><a href="#services">Services</a><a href="#how-it-works">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQs</a><a class="btn btn-dark" href="#contact">Let's talk <span aria-hidden="true">↗</span></a></div>
+ </nav>
+</header>
+<main>
+ <section class="hero" aria-labelledby="hero-title">
+  <div class="wrap hero-grid">
+   <div>
+    <span class="eyebrow light">AI-powered receptionist & lead recovery</span>
+    <h1 id="hero-title">Your business is closed. <em>Your opportunities aren't.</em></h1>
+    <p>Turn missed and after-hours calls into real conversations. Desk Overflow helps service businesses greet callers, collect the right details, route urgent needs, and schedule appointments with a custom-configured AI phone assistant.</p>
+    <div class="hero-actions"><a class="btn btn-primary" href="#contact">Get my free coverage plan <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="#how-it-works">See how it works <span aria-hidden="true">→</span></a></div>
+    <div class="hero-foot"><span>After-hours & overflow options</span><span>Built around your workflow</span><span>Serving businesses nationwide</span></div>
+   </div>
+   <div class="console" aria-label="Illustrative AI receptionist call scenario">
+    <div class="console-top"><div class="console-logo"><i></i> Desk Overflow · Call Assistant</div><span class="console-label">Example conversation</span></div>
+    <div class="call-demo">
+     <div class="incoming"><span class="bubble-icon">↗</span><div><b>Incoming after-hours call</b><small>Call routing → AI assistant</small></div><span class="call-status">Answered</span></div>
+     <div class="chat">
+      <div class="chatline right"><span class="avatar">AI</span><span class="speech">Thanks for calling! We're closed right now, but I can help. What do you need today?</span></div>
+      <div class="chatline"><span class="avatar">C</span><span class="speech">Our air conditioner stopped working. Can someone take a look tomorrow?</span></div>
+      <div class="chatline right"><span class="avatar">AI</span><span class="speech">I can check available service times. What's your name and the best callback number?</span></div>
+      <div class="chatline"><span class="avatar">C</span><span class="speech">I'm Jordan. Sure — I can give you those details.</span></div>
+     </div>
+    </div>
+    <div class="console-bottom"><span>Collect details → check availability</span><span class="booked">Booking workflow ready ↗</span></div>
+   </div>
+  </div>
+ </section>
+ <div class="below-hero"><div class="wrap below-grid"><div><b>01</b> Answer more calls</div><div><b>02</b> Qualify inquiries</div><div><b>03</b> Coordinate bookings</div><div><b>04</b> Keep your team informed</div></div></div>
+ <section id="services" class="section">
+  <div class="wrap">
+   <div class="section-intro"><span class="eyebrow">What Desk Overflow can build</span><h2>More than an answering service.</h2><p>Choose the capabilities your operation actually needs. We design the call experience around your hours, services, team, calendar and escalation rules. Features are enabled only after setup and testing.</p></div>
+   <div class="value-grid">
+    <article class="value"><div class="glyph">◷</div><h3>After-hours AI answering</h3><p>A conversational assistant can greet callers when your office is closed, on weekends, or whenever you choose.</p></article>
+    <article class="value"><div class="glyph">↪</div><h3>Missed-call & overflow routing</h3><p>Route unanswered or busy calls to your assistant based on what your carrier and phone setup support.</p></article>
+    <article class="value"><div class="glyph">◎</div><h3>Lead intake & qualification</h3><p>Capture caller information, service needs, location, urgency and other details your team needs to follow up.</p></article>
+    <article class="value"><div class="glyph">▦</div><h3>Appointment scheduling</h3><p>Offer real available times and book into a configured calendar, including different services or team calendars where supported.</p></article>
+    <article class="value"><div class="glyph">?</div><h3>Answers to common questions</h3><p>Use your approved business information to answer questions about hours, services, service areas and next steps.</p></article>
+    <article class="value"><div class="glyph">↗</div><h3>Urgent call escalation</h3><p>Set rules for emergency requests, human transfers or callback tasks when AI shouldn't make the decision alone.</p></article>
+    <article class="value"><div class="glyph">≡</div><h3>Call summaries & lead records</h3><p>Keep organized records and call outcomes for your team, with reporting options appropriate to the plan.</p></article>
+    <article class="value"><div class="glyph">⟲</div><h3>Workflow-based follow-up</h3><p>Configure internal alerts, assignments, reminder tasks and other approved post-call workflows.</p></article>
+    <article class="value"><div class="glyph">✳</div><h3>Custom AI call scripts</h3><p>Give callers a tone and intake process that fit your business, rather than an off-the-shelf generic script.</p></article>
+   </div>
+   <div class="addon">
+    <div><span class="pill">Additional options · subject to setup</span><h3>Outbound AI calls, appointment changes & text messaging</h3><p>Potential add-ons include compliant AI-assisted outbound follow-up, rescheduling, confirmations, and missed-call text-back. SMS is <strong>not yet enabled as a standard Desk Overflow offering</strong> and requires phone provisioning, messaging registration, consent procedures and testing. Availability is evaluated per client.</p></div>
+    <a href="#contact" class="btn btn-primary">Ask about options ↗</a>
+   </div>
+  </div>
+ </section>
+ <section id="how-it-works" class="section tint">
+  <div class="wrap split">
+   <div>
+    <span class="eyebrow">A practical call flow</span><h2>We build it around the way you work.</h2>
+    <div class="step"><span class="num">1</span><div><h3>Map your existing calls</h3><p>Tell us when you're busy, when you're closed, what questions matter, and when a person must step in.</p></div></div>
+    <div class="step"><span class="num">2</span><div><h3>Configure the AI receptionist</h3><p>We prepare your business knowledge, call forwarding, calendar rules, and the exact information to collect.</p></div></div>
+    <div class="step"><span class="num">3</span><div><h3>Test before going live</h3><p>We test real scenarios, review handoff behavior, and make adjustments before routing customer calls.</p></div></div>
+    <div class="step"><span class="num">4</span><div><h3>Refine as calls come in</h3><p>Review call outcomes and update instructions when your services, team or schedule change.</p></div></div>
+   </div>
+   <div class="callflow">
+    <div class="flow-head">Example: an after-hours service call</div>
+    <div class="flow-item"><span class="flow-icon">☎</span><div><strong>Customer calls your business</strong><span>Your usual number and existing call routing</span></div></div><div class="flow-arrow">↓</div>
+    <div class="flow-item"><span class="flow-icon">✳</span><div><strong>AI answers & qualifies the request</strong><span>Business-approved questions and service information</span></div></div><div class="flow-arrow">↓</div>
+    <div class="flow-pair">
+     <div class="flow-item"><span class="flow-icon">▦</span><div><strong>Booking</strong><span>Offer available times, if configured</span></div></div>
+     <div class="flow-item"><span class="flow-icon">↗</span><div><strong>Escalation</strong><span>Transfer or flag urgent requests</span></div></div>
+    </div><div class="flow-arrow">↓</div>
+    <div class="flow-item"><span class="flow-icon">✓</span><div><strong>Your team gets the details</strong><span>Call result, contact information and next action</span></div></div>
+    <div class="flow-note">Illustrative workflow, not a live agent or guaranteed outcome. Exact routing, escalation, availability and integration behavior is defined during onboarding.</div>
+   </div>
+  </div>
+ </section>
+ <section class="section">
+  <div class="wrap">
+   <div class="section-intro"><span class="eyebrow">Designed for the real world</span><h2>Built for busy, customer-facing teams.</h2><p>Whether you're serving customers, on a job site, or simply done for the day, Desk Overflow is designed to help incoming inquiries get an organized next step.</p></div>
+   <div class="industries"><div><span>✓</span> HVAC & plumbing</div><div><span>✓</span> Roofing & contractors</div><div><span>✓</span> Electrical & home services</div><div><span>✓</span> Cleaning & maintenance</div><div><span>✓</span> Auto & repair shops</div><div><span>✓</span> Professional service teams</div></div>
+   <p class="industry-note">Other industries may be supported after a compliance and workflow review. Highly regulated or emergency-critical use cases require additional assessment.</p>
+  </div>
+ </section>
+ <section id="opportunity" class="section tint">
+  <div class="wrap calc-grid">
+   <div>
+    <span class="eyebrow">Explore the opportunity</span><h2>What might unanswered calls be worth?</h2>
+    <p>Use your own assumptions to think about the revenue associated with missed opportunities. This is a planning illustration—not a prediction of what AI can recover.</p>
+    <p>Every call is different. Some callers aren't qualified, some won't book, and not every booked appointment becomes a sale. Actual results depend on your business, traffic and implementation.</p>
+   </div>
+   <div class="calc" aria-label="Illustrative revenue opportunity calculator">
+    <div class="field"><div class="fieldtop"><label for="calls">Unanswered business calls per week</label><output id="callsVal" for="calls">8</output></div><input type="range" min="0" max="75" value="8" id="calls"></div>
+    <div class="field"><div class="fieldtop"><label for="job">Average completed job value</label><output id="jobVal" for="job">$400</output></div><input type="range" min="100" max="3000" step="50" value="400" id="job"></div>
+    <div class="field"><div class="fieldtop"><label for="convert">Estimated call-to-sale rate</label><output id="convertVal" for="convert">20%</output></div><input type="range" min="0" max="100" step="5" value="20" id="convert"></div>
+    <div class="calc-result"><small>Illustrative monthly revenue associated with these calls</small><b id="opportunityTotal" aria-live="polite">$2,773</b><small>Unanswered calls × 4.33 weeks × assumed close rate × average job value. This is not recovered revenue or a guarantee.</small></div>
+   </div>
+  </div>
+ </section>
+ <section id="pricing" class="section">
+  <div class="wrap pricing">
+   <div>
+    <span class="eyebrow">Straightforward starting point</span><h2>A managed service, not another tool to babysit.</h2>
+    <p>You tell us how your business handles calls. We scope, configure and test the coverage workflow with you. You'll know what is included and which usage or integrations could add cost before launch.</p>
+    <p>Each business has different call volume, booking rules, and phone arrangements, so your final proposal may differ.</p>
+   </div>
+   <div class="price-card">
+    <span class="pill">Starting package</span><div class="price">$499 <span>/ month</span></div>
+    <p>Plus <strong>$500 one-time setup</strong></p>
+    <ul><li>Custom AI answering workflow</li><li>Business FAQ and lead-intake configuration</li><li>Calendar or follow-up workflow setup as scoped</li><li>Testing and launch support</li><li>Clear review of usage costs and optional add-ons</li></ul>
+    <a class="btn btn-dark" href="#contact">Request a tailored proposal ↗</a>
+    <p class="price-note">Illustrative starting offer, not a checkout or binding quote. AI/phone usage, SMS, extra integrations or other add-ons may cost more. We confirm details in writing first.</p>
+   </div>
+  </div>
+ </section>
+ <section id="faq" class="section tint">
+  <div class="wrap faq">
+   <div class="section-intro"><span class="eyebrow">Common questions</span><h2>Questions worth asking first.</h2></div>
+   <details><summary>Do I have to change my existing business phone number?</summary><p>Often, no. Many phone providers support forwarding calls when you're closed, busy or don't answer. The exact setup depends on your carrier, phone system and routing capabilities, and we verify that before launch.</p></details>
+   <details><summary>Can the AI book directly into my calendar?</summary><p>Yes, with a properly configured supported calendar, availability rules and booking permissions. If you don't already use Google or Outlook, we can assess a dedicated scheduling calendar instead. The AI should never invent appointment availability.</p></details>
+   <details><summary>Will this replace my employees or answer every question?</summary><p>The goal is to handle routine intake and help staff focus on the conversations that need them. We define what the AI can say and when to transfer or request human follow-up. No AI is perfect, so testing and ongoing review matter.</p></details>
+   <details><summary>Can you handle emergencies and high-priority callers?</summary><p>We can configure screening questions and escalation actions based on your business rules. A live human handoff requires a reachable destination. Desk Overflow should not be used as an emergency dispatch or public-safety service.</p></details>
+   <details><summary>Do you offer missed-call text-back and SMS reminders?</summary><p>SMS is a planned optional capability, not included by default today. U.S. business texting can require messaging registration, documented consent, phone provisioning and campaign approval. We'll discuss readiness and costs before offering it.</p></details>
+   <details><summary>Can an AI agent call customers back?</summary><p>Supported AI platforms can make certain outbound calls, but availability depends on your specific plan and configuration. Promotional or automated outreach requires a compliance review and appropriate consent. We do not activate outbound campaigns without those steps.</p></details>
+   <details><summary>How quickly can I get started?</summary><p>Timing depends on phone forwarding, business information, calendar integration, testing and any provider approvals. We will outline the steps and a realistic launch timeline after reviewing your setup—rather than promise a one-day deployment.</p></details>
+  </div>
+ </section>
+ <section id="contact" class="section contact-section">
+  <div class="wrap contact-grid">
+   <div>
+    <span class="eyebrow light">Let's map the missed opportunities</span><h2>Tell us what happens when your phone rings.</h2>
+    <p>Complete this short inquiry and we'll contact you about an AI phone coverage plan for your business. No payment, commitment or software installation required to ask.</p>
+    <div class="contact-rows"><div><b>01</b> We review your business and call flow</div><div><b>02</b> We discuss fit, booking and routing options</div><div><b>03</b> You receive a scoped proposal if it's a match</div><div><b>☎</b> Prefer to call? <a href="tel:+13195364100"><u>(319) 536-4100</u></a></div></div>
+   </div>
+   <div class="form-card">
+    <h3>Request your free call coverage plan</h3><p>Fields marked * are required. This form sends your inquiry to Desk Overflow via a secure external form service.</p>
+    <form method="POST" action="https://formsubmit.co/chancm02@gmail.com" accept-charset="UTF-8">
+      <input type="hidden" name="_subject" value="Desk Overflow — New business inquiry">
+      <input type="hidden" name="_next" value="https://chancm02.github.io/desk-overflow/thanks.html">
+      <input type="hidden" name="_template" value="table">
+      <input type="hidden" name="Source" value="Desk Overflow website - contact form">
+      <div class="group" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden" aria-hidden="true"><label for="websiteField">Website (leave empty)</label><input id="websiteField" type="text" name="_honey" tabindex="-1" autocomplete="off"></div>
+      <div class="form-grid">
+       <div class="group"><label for="fullName">Your name *</label><input id="fullName" type="text" name="name" placeholder="Your full name" autocomplete="name" required maxlength="120"></div>
+       <div class="group"><label for="businessName">Business name *</label><input id="businessName" type="text" name="business" placeholder="Your business" autocomplete="organization" required maxlength="150"></div>
+       <div class="group"><label for="email">Work email *</label><input id="email" type="email" name="email" placeholder="you@company.com" autocomplete="email" required maxlength="150"></div>
+       <div class="group"><label for="phone">Phone number *</label><input id="phone" type="tel" name="phone" placeholder="(555) 555-5555" autocomplete="tel" required minlength="7" maxlength="30"></div>
+       <div class="group"><label for="industry">Business type</label><input id="industry" name="industry" type="text" placeholder="e.g. HVAC, dental, auto" maxlength="100"></div>
+       <div class="group"><label for="volume">Approximate weekly calls</label><select id="volume" name="weekly_call_volume"><option value="Not sure">Not sure</option><option>Under 25</option><option>25–75</option><option>76–150</option><option>Over 150</option></select></div>
+      </div>
+      <div class="group"><label for="interest">What would help most?</label><select name="primary_interest" id="interest"><option>After-hours AI answering</option><option>Overflow and missed calls</option><option>AI booking and scheduling</option><option>Lead qualification and routing</option><option>Outbound AI follow-up (subject to review)</option><option>Text messaging (future availability)</option><option>Help me choose</option></select></div>
+      <div class="group"><label for="details">How does your team handle missed calls today?</label><textarea id="details" name="message" placeholder="Anything useful about your phones, hours, calendar, or biggest challenge" maxlength="2000"></textarea><small>Please don't include sensitive customer or payment information.</small></div>
+      <label class="check"><input type="checkbox" name="permission_to_respond" value="Yes — contact me about my inquiry" required><span>I agree that Desk Overflow may contact me by email or phone about this inquiry. This does <strong>not</strong> authorize marketing texts or automated promotional calls. *</span></label>
+      <button class="btn btn-dark" type="submit">Send my inquiry <span aria-hidden="true">↗</span></button>
+      <p class="fineprint">By submitting, you acknowledge our <a href="./privacy.html">Privacy Policy</a>. Submissions are sent to a third-party form provider. No purchase is made.</p>
+    </form>
+   </div>
+  </div>
+ </section>
+</main>
+<footer class="foot">
+ <div class="wrap">
+  <div class="foot-top"><div><a class="brand" href="./"><span class="brandmark">↗</span><span>Desk Overflow<small>AI CALL COVERAGE</small></span></a><p>Managed AI call coverage, lead intake and scheduling workflows for busy service businesses. Based in Iowa. Serving businesses nationwide.</p></div>
+   <nav class="footlinks" aria-label="Footer navigation"><a href="#services">Capabilities</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a><a href="./privacy.html">Privacy</a><a href="./terms.html">Terms</a></nav>
+  </div>
+  <div class="foot-bottom"><p>© 2026 Desk Overflow. Registered Iowa trade name operated as a sole proprietorship.</p><p>Capabilities depend on configuration and provider availability. No results guaranteed.</p></div>
+ </div>
+</footer>
+<script>
+(function(){
+ var calls=document.getElementById('calls');
+ var job=document.getElementById('job');
+ var convert=document.getElementById('convert');
+ var formatter=new Intl.NumberFormat('en-US',{style:'currency',currency:'USD',maximumFractionDigits:0});
+ function calculate(){
+  var weekly=Number(calls.value),value=Number(job.value),rate=Number(convert.value);
+  document.getElementById('callsVal').textContent=weekly.toString();
+  document.getElementById('jobVal').textContent=formatter.format(value);
+  document.getElementById('convertVal').textContent=rate+'%';
+  document.getElementById('opportunityTotal').textContent=formatter.format(weekly*52/12*value*rate/100);
+ }
+ [calls,job,convert].forEach(function(slider){slider.addEventListener('input',calculate)});
+ calculate();
+})();
+</script>
+</body></html>
