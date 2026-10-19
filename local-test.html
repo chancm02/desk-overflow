@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline'; img-src 'self'; form-action https://*.trycloudflare.com; base-uri 'none'">
+<title>Desk Overflow | Local Backend Connection Test</title>
+<style>
+:root{color-scheme:dark}*{box-sizing:border-box}
+body{margin:0;background:radial-gradient(ellipse at top right,#1d4c58 0,#081824 60%);color:#f4fdfb;font:15px/1.5 ui-sans-serif,-apple-system,BlinkMacSystemFont,'Segoe UI',Arial,sans-serif;min-height:100vh}
+main{width:min(760px,calc(100% - 32px));margin:36px auto 50px}
+header{padding:22px 0;border-bottom:1px solid #326072;margin-bottom:25px}
+header img{width:260px;max-width:90%;height:auto}
+h1{font-size:clamp(30px,4vw,42px);letter-spacing:-.05em;line-height:1.1;margin:8px 0}
+p{color:#cce0e5}
+.eyebrow{color:#80f2c9;font-weight:800;letter-spacing:.12em;font-size:12px}
+.notice{background:#1b3e42;border:1px solid #63e7c0;border-radius:13px;color:#dbfff2;padding:15px 18px;margin:20px 0}
+.notice strong{display:block;color:#aaffda}
+.card{background:#fff;color:#122c3c;border-radius:18px;padding:25px;box-shadow:0 25px 70px #0005}
+.fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+label{font-size:12px;font-weight:750;display:block;color:#38515f}
+input,textarea,select{margin-top:5px;display:block;width:100%;padding:11px 12px;border:1px solid #bdced5;border-radius:9px;font:inherit;color:#122c3c;background:white}
+textarea{resize:vertical;min-height:83px}
+.full{grid-column:1/-1}
+.consent{display:flex;align-items:flex-start;gap:8px;font-size:12px;font-weight:500;margin:15px 0;color:#38515f}
+.consent input{width:auto;margin-top:4px;accent-color:#0d9d7e}
+button{width:100%;padding:14px;background:#61e8b9;color:#07342e;border:0;border-radius:9px;font-weight:850;font-size:15px;cursor:pointer}
+button:disabled{background:#cdd5d7;color:#627782;cursor:not-allowed}
+.back{color:#9affd4;display:inline-block;margin-top:21px}
+.code{overflow-wrap:anywhere;background:#13384a;color:#c7f5ea;padding:7px 10px;border-radius:7px;font:12px monospace}
+.error{color:#ffc3b6}
+@media(max-width:540px){.fields{grid-template-columns:1fr}.card{padding:16px}main{margin-top:10px}}
+</style>
+</head><body><main>
+<header><a href="./" aria-label="Desk Overflow home"><img src="./logo-light.svg" alt="Desk Overflow"></a></header>
+<div class="eyebrow">PRIVATE SETUP TEST PAGE</div>
+<h1>Test your PC-powered form.</h1>
+<p>This checks whether the existing public website can send a sample inquiry through a temporary secure tunnel to the SQLite database running on your computer.</p>
+<div class="notice" role="status" aria-live="polite" id="status"><strong>Checking connection…</strong>This is for fake test information only. The normal public contact form is unchanged.</div>
+<form class="card" id="leadForm" method="POST" action="#" accept-charset="UTF-8">
+ <div class="fields">
+  <label>Full name<input name="name" type="text" required maxlength="120" value="TEST — Website Connection"></label>
+  <label>Business<input name="business" type="text" required maxlength="150" value="TEST ONLY — Desk Overflow"></label>
+  <label>Email<input name="email" type="email" required maxlength="160" value="web-test@example.com"></label>
+  <label>Phone<input name="phone" type="tel" required maxlength="40" value="319-555-0100"></label>
+  <label>Business type<select name="industry"><option selected>Other Service Business</option><option>HVAC / Plumbing</option><option>Cleaning / Maintenance</option></select></label>
+  <label>Average calls per week<select name="weekly_call_volume"><option selected>Not sure</option><option>Under 25</option></select></label>
+  <label class="full">Message<textarea name="message" maxlength="2000">Automated local backend end-to-end test. No real customer data.</textarea></label>
+ </div>
+ <input type="text" name="_honey" value="" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px" aria-hidden="true">
+ <label class="consent"><input name="permission_to_respond" type="checkbox" value="Yes" required checked> This test confirms the contact-permission field reaches the local backend. No real marketing contact is authorized.</label>
+ <button type="submit" id="send" disabled>Send test inquiry to my PC</button>
+</form>
+<p>After submitting, you should see a dark green Desk Overflow confirmation page. On your PC, run <span class="code">py -3 view_leads.py</span> to verify the saved TEST record. Closing the tunnel command ends this public test connection.</p>
+<a class="back" href="./#contact">← Return to public Desk Overflow site</a>
+</main>
+<script>
+(function () {
+ const status=document.getElementById('status');
+ const button=document.getElementById('send');
+ const params=new URLSearchParams(location.search);
+ let u;
+ try {
+   u=new URL(params.get('endpoint')||'');
+   if(u.protocol!=='https:' || !/^[a-z0-9-]+\.trycloudflare\.com$/i.test(u.hostname) ||
+       u.port || u.username || u.password || u.pathname!=='/' || u.search || u.hash) throw new Error('Invalid test tunnel');
+   const target=u.origin+'/submit';
+   document.getElementById('leadForm').action=target;
+   button.disabled=false;
+   status.innerHTML='<strong>Test connection configured</strong>Only sample data is prefilled. Click the button below to send it to your computer. The normal public contact form is unchanged.';
+   const run=(params.get('run')||'').replace(/[^A-Za-z0-9_-]/g,'').slice(0,50);
+   if(run) document.querySelector('textarea[name="message"]').value+=' Run '+run+'.';
+ } catch (e) {
+   status.innerHTML='<strong class="error">No valid test connection</strong>Start the test tunnel on your PC using <code>start-public-test-windows.bat</code>. It will open this page with the correct address.';
+ }
+})();
+</script></body></html>
