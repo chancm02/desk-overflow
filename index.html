@@ -151,11 +151,6 @@
     .check{display:flex;gap:11px;align-items:start;line-height:1.5;color:#50677c;font-size:.77rem;margin:7px 0 17px}
     .check input{margin-top:4px;flex:0 0 auto;accent-color:#087f6f}
     .form-card button[type=submit]{width:100%}
-    .form-card button[type=submit]:disabled{opacity:.6;cursor:wait;transform:none}
-    .form-status{border-radius:10px;padding:13px 15px;font-size:.86rem;font-weight:650;margin-top:13px;line-height:1.5}
-    .form-status.is-success{background:#e5f8ef;color:#12664c;border:1px solid #a6e3ca}
-    .form-status.is-error{background:#fff1ee;color:#92442c;border:1px solid #efc7b8}
-    .form-status[hidden]{display:none}
     .fineprint{font-size:.72rem;color:#73869a;margin:12px 0 0}
     .fineprint a{text-decoration:underline;color:#176e69}
     .foot{background:#09182b;color:#aebfd1;padding:55px 0 30px}
@@ -326,7 +321,6 @@
       <div class="group"><label for="details">How does your team handle missed calls today?</label><textarea id="details" name="message" placeholder="Anything useful about your phones, hours, calendar, or biggest challenge" maxlength="2000"></textarea><small>Please don't include sensitive customer or payment information.</small></div>
       <label class="check"><input type="checkbox" name="permission_to_respond" value="Yes — contact me about my inquiry" required><span>I agree that Desk Overflow may contact me by email or phone about this inquiry. This does <strong>not</strong> authorize marketing texts or automated promotional calls. *</span></label>
       <button class="btn btn-dark" type="submit">Send my inquiry <span aria-hidden="true">↗</span></button>
-      <div id="leadFormStatus" class="form-status" role="status" aria-live="polite" aria-atomic="true" hidden></div>
       <p class="fineprint">By submitting, you acknowledge our <a href="./privacy.html">Privacy Policy</a>. Submissions are sent to a third-party form provider. No purchase is made.</p>
     </form>
    </div>
@@ -356,40 +350,6 @@
  }
  [calls,job,convert].forEach(function(slider){slider.addEventListener('input',calculate)});
  calculate();
- var leadForm=document.getElementById('leadForm');
- var formStatus=document.getElementById('leadFormStatus');
- var submitButton=leadForm.querySelector('button[type="submit"]');
- leadForm.addEventListener('submit',async function(event){
-  event.preventDefault();
-  if(!leadForm.reportValidity()) return;
-  formStatus.hidden=true;
-  formStatus.className='form-status';
-  submitButton.disabled=true;
-  submitButton.textContent='Sending your inquiry…';
-  try{
-   var payload=Object.fromEntries(new FormData(leadForm).entries());
-   var response=await fetch('https://formsubmit.co/ajax/chancm02@gmail.com',{
-    method:'POST',
-    headers:{'Content-Type':'application/json','Accept':'application/json'},
-    body:JSON.stringify(payload)
-   });
-   var result=await response.json();
-   // FormSubmit may return the strings "true" and "false", both truthy in JS.
-   if(!response.ok || String(result.success).toLowerCase()!=='true'){
-    throw new Error('The form service has not confirmed delivery.');
-   }
-   formStatus.className='form-status is-success';
-   formStatus.textContent='Thanks! Your inquiry was submitted. We will follow up using the contact information you provided.';
-   leadForm.reset();
-  }catch(error){
-   formStatus.className='form-status is-error';
-   formStatus.textContent='Your request could not be confirmed. Please try again or call (319) 536-4100 so we do not miss your inquiry.';
-  }finally{
-   formStatus.hidden=false;
-   submitButton.disabled=false;
-   submitButton.textContent='Send my inquiry ↗';
-  }
- });
 })();
 </script>
 </body></html>
