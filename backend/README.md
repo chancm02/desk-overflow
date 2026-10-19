@@ -19,7 +19,7 @@ In the connected Google Drive account:
 
 **Desk Overflow — Website Lead Inbox** (private)
 
-https://docs.google.com/spreadsheets/d/1w3uW5i0jvR-nsUQPxga3ba4QGXji8uHg5AF5iv6MTiQ/edit
+[Open the private sheet in your Google Drive account; URL intentionally omitted from this public repo]
 
 Its \`Leads\` tab has timestamp, contact, business, inquiry, consent and status
 columns. It is NOT shared publicly.
