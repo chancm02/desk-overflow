@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desk Overflow - Missed Call Automation</title>
+  
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- React & ReactDOM -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+  
+  <!-- Babel Compiler for React/JSX in browser -->
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <!-- Inter Font -->
+  <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
+  
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.2s ease-out forwards;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-900 antialiased selection:bg-blue-600 selection:text-white">
+
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // Helper to render Lucide icons in standalone HTML React
+    const Icon = ({ name, className = "w-5 h-5", ...props }) => {
+      useEffect(() => {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      });
+      return <i data-lucide={name} className={className} {...props}></i>;
+    };
+
+    function App() {
+      const [isModalOpen, setIsModalOpen] = useState(false);
+      const [modalType, setModalType] = useState('demo');
+      const [formSubmitted, setFormSubmitted] = useState(false);
+      const [formData, setFormData] = useState({ name: '', business: '', phone: '', email: '' });
+      const [openFaq, setOpenFaq] = useState(null);
+
+      useEffect(() => {
+        if (window.lucide) {
+          window.lucide.createIcons();
+        }
+      }, [isModalOpen, openFaq, formSubmitted]);
+
+      const handleOpenModal = (type) => {
+        setModalType(type);
+        setFormSubmitted(false);
+        setIsModalOpen(true);
+      };
+
+      const handleFormSubmit = (e) => {
+        e.preventDefault();
+        setFormSubmitted(true);
+      };
+
+      const toggleFaq = (index) => {
+        setOpenFaq(openFaq === index ? null : index);
+      };
+
+      const faqs = [
+        {
+          q: "Will this replace my existing phone number?",
+          a: "No! Desk Overflow connects directly to your current business phone line or mobile number. You don't need to change numbers or buy new hardware."
+        },
+        {
+          q: "What happens when I miss a call?",
+          a: "Within 15 seconds of a missed call, our automation instantly texts the caller from your business number to ask how you can help, initiating a conversation and keeping them from calling a competitor."
+        },
+        {
+          q: "Is it difficult to set up?",
+          a: "Not at all. We handle the technical setup for you within 24 hours. There is zero software to install or learn on your end."
+        },
+        {
+          q: "Can it book appointments automatically?",
+          a: "Yes. Once the lead replies to the text, our conversational system can answer common questions and drop them right onto your calendar based on your availability."
+        }
+      ];
+
+      return (
+        <div className="min-h-screen">
+          
+          {/* Navigation */}
+          <nav className="fixed w-full bg-white/95 backdrop-blur-md z-40 border-b border-slate-200 shadow-sm">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="flex justify-between items-center h-20">
+                <div className="flex items-center gap-3">
+                  <div className="bg-blue-600 p-2.5 rounded-xl shadow-md shadow-blue-600/20">
+                    <Icon name="phone-call" className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <span className="text-2xl font-black text-slate-900 tracking-tight block leading-none">Desk Overflow</span>
+                    <span className="text-xs font-semibold text-blue-600 uppercase tracking-widest mt-1 block">Missed Call Automation</span>
+                  </div>
+                </div>
+                <div className="hidden md:flex items-center gap-8">
+                  <a href="#how-it-works" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">How it Works</a>
+                  <a href="#roi" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">ROI Calculator</a>
+                  <a href="#faq" className="text-slate-600 hover:text-blue-600 font-medium transition-colors">FAQ</a>
+                  <button 
+                    onClick={() => handleOpenModal('demo')}
+                    className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-semibold transition-all shadow-md hover:shadow-lg flex items-center gap-2 transform hover:-translate-y-0.5"
+                  >
+                    Get a Free Demo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </nav>
+
+          {/* Hero Section */}
+          <section className="pt-36 pb-20 lg:pt-48 lg:pb-32 px-4 overflow-hidden relative">
+            <div className="absolute top-0 right-0 -z-10 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-60 transform translate-x-1/3 -translate-y-1/4"></div>
+            <div className="max-w-7xl mx-auto">
+              <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+                
+                <div className="flex-1 text-center lg:text-left">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-800 font-semibold text-sm mb-6 shadow-sm">
+                    <span className="relative flex h-3 w-3">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-3 w-3 bg-blue-600"></span>
+                    </span>
+                    Built for Plumbers, HVAC, Roofers & Local Contractors
+                  </div>
+                  <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight text-slate-900 mb-6 leading-[1.1]">
+                    Stop Losing Jobs Every Time You <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-blue-400">Miss a Call.</span>
+                  </h1>
+                  <p className="text-lg sm:text-xl text-slate-600 mb-8 max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                    We build automated missed-call systems that instantly text back unanswered leads, answer their questions, and book them on your calendar—even when you're under a sink or on a roof.
+                  </p>
+                  
+                  <div className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+                    <button 
+                      onClick={() => handleOpenModal('demo')}
+                      className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-full text-lg font-bold transition-all shadow-xl hover:shadow-blue-600/30 flex items-center justify-center gap-2 transform hover:-translate-y-0.5"
+                    >
+                      Claim Your Setup <Icon name="arrow-right" className="w-5 h-5" />
+                    </button>
+                    <p className="text-sm text-slate-500 font-medium flex items-center gap-1.5 bg-white px-4 py-3 rounded-full border border-slate-200 shadow-sm">
+                      <Icon name="shield-check" className="w-5 h-5 text-emerald-500" /> Keep your current phone number
+                    </p>
+                  </div>
+                </div>
+
+                {/* Interactive Phone Simulation */}
+                <div className="flex-1 w-full max-w-lg lg:max-w-none relative">
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-200 to-slate-100 rounded-3xl transform rotate-2 scale-105 -z-10"></div>
+                  <div className="bg-white rounded-3xl shadow-2xl border border-slate-200 p-6 sm:p-8 overflow-hidden relative">
+                    <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+                      <div className="flex items-center gap-3">
+                        <div className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></div>
+                        <div>
+                          <p className="text-sm font-bold text-slate-800">Missed Call Automation Active</p>
+                          <p className="text-xs text-slate-400">Response time: 14 seconds</p>
+                        </div>
+                      </div>
+                      <span className="text-xs bg-slate-100 text-slate-600 px-2.5 py-1 rounded-md font-semibold">Live Simulation</span>
+                    </div>
+                    
+                    <div className="flex flex-col gap-4">
+                      <div className="text-center">
+                        <span className="text-xs font-semibold text-slate-400 bg-slate-50 px-3 py-1 rounded-full">Incoming Customer Call Missed</span>
+                      </div>
+                      
+                      <div className="flex justify-end mt-1">
+                        <div className="bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%] shadow-sm">
+                          <p className="text-sm font-medium">Hi! This is Desk Overflow. Sorry we missed your call. How can we help you today?</p>
+                        </div>
+                      </div>
+                      
+                      <div className="flex justify-start mt-1">
+                        <div className="bg-slate-100 text-slate-800 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] shadow-sm">
+                          <p className="text-sm">Hey, my AC unit just stopped working. Can someone come take a look today?</p>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-end mt-1">
+                        <div className="bg-blue-600 text-white rounded-2xl rounded-tr-sm px-4 py-3 max-w-[85%] shadow-sm">
+                          <p className="text-sm font-medium">We have an emergency tech available at 3 PM. Shall I lock in that slot for you?</p>
+                        </div>
+                      </div>
+
+                      <div className="flex justify-start mt-1">
+                        <div className="bg-slate-100 text-slate-800 rounded-2xl rounded-tl-sm px-4 py-3 max-w-[85%] shadow-sm">
+                          <p className="text-sm">Yes please! That would be amazing.</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          {/* Problem Statement Section */}
+          <section className="py-24 bg-slate-900 text-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+              <div className="flex justify-center mb-6">
+                <Icon name="phone-off" className="w-16 h-16 text-red-500 animate-bounce" />
+              </div>
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold mb-6">62% of Inbound Calls Go Unanswered.</h2>
+              <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed mb-12">
+                You spend money on Google Ads, trucks, and marketing to make the phone ring. But when you're busy serving a client and miss a call, <strong className="text-white underline decoration-red-500 decoration-2">they immediately call your competitor.</strong>
+              </p>
+              
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
+                <div className="bg-slate-800/80 p-8 rounded-2xl border border-slate-700/80 shadow-lg">
+                  <div className="text-red-400 font-black text-2xl mb-3">01. The Miss</div>
+                  <p className="text-slate-300 text-sm leading-relaxed">You're on a ladder, under a sink, or driving. You physically cannot pick up the phone.</p>
+                </div>
+                <div className="bg-slate-800/80 p-8 rounded-2xl border border-slate-700/80 shadow-lg">
+                  <div className="text-red-400 font-black text-2xl mb-3">02. The Hang-Up</div>
+                  <p className="text-slate-300 text-sm leading-relaxed">Modern customers rarely leave voicemails. They hang up and dial the next contractor on Google.</p>
+                </div>
+                <div className="bg-slate-800/80 p-8 rounded-2xl border border-slate-700/80 shadow-lg">
+                  <div className="text-red-400 font-black text-2xl mb-3">03. The Loss</div>
+                  <p className="text-slate-300 text-sm leading-relaxed">A $500–$5,000 job walks out the door forever, and you never even know who tried to hire you.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* How It Works Section */}
+          <section id="how-it-works" className="py-24 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center max-w-3xl mx-auto mb-20">
+                <span className="text-blue-600 font-bold uppercase tracking-wider text-sm bg-blue-50 px-4 py-1.5 rounded-full">Seamless Automation</span>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 mb-6">Never Let a Lead Go Cold Again.</h2>
+                <p className="text-lg text-slate-600">
+                  Desk Overflow works silently in the background 24 hours a day, 7 days a week.
+                </p>
+              </div>
+
+              <div className="grid md:grid-cols-3 gap-12 relative">
+                <div className="hidden md:block absolute top-16 left-1/6 right-1/6 h-1 bg-gradient-to-r from-blue-100 via-blue-300 to-blue-100 z-0"></div>
+
+                <div className="relative z-10 flex flex-col items-center text-center bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
+                  <div className="w-20 h-20 bg-red-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                    <Icon name="phone-off" className="w-10 h-10 text-red-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3">1. The Missed Call</h3>
+                  <p className="text-slate-600 leading-relaxed">A customer calls your business number while you are busy working or after hours.</p>
+                </div>
+
+                <div className="relative z-10 flex flex-col items-center text-center bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
+                  <div className="w-20 h-20 bg-blue-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                    <Icon name="message-square" className="w-10 h-10 text-blue-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3">2. The Instant Text</h3>
+                  <p className="text-slate-600 leading-relaxed">Within 15 seconds, our system texts them back from your number, keeping them engaged.</p>
+                </div>
+
+                <div className="relative z-10 flex flex-col items-center text-center bg-slate-50 p-8 rounded-3xl border border-slate-100 shadow-sm">
+                  <div className="w-20 h-20 bg-emerald-100 rounded-2xl flex items-center justify-center mb-6 shadow-inner">
+                    <Icon name="calendar-check" className="w-10 h-10 text-emerald-600" />
+                  </div>
+                  <h3 className="text-2xl font-bold text-slate-900 mb-3">3. The AI Booking</h3>
+                  <p className="text-slate-600 leading-relaxed">Our smart assistant qualifies their request and books them directly onto your calendar.</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* ROI Calculator Section */}
+          <section id="roi" className="py-24 bg-blue-50/50">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid lg:grid-cols-2 gap-16 items-center">
+                
+                <div>
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100 text-blue-800 font-semibold text-sm mb-6">
+                    <Icon name="trending-up" className="w-4 h-4" /> The Math
+                  </div>
+                  <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mb-6">What is ONE missed call costing your business?</h2>
+                  <p className="text-lg text-slate-600 mb-8 leading-relaxed">
+                    You don't need hundreds of new leads to transform your revenue. You just need to stop letting the hot leads you already generate slip through your fingers.
+                  </p>
+                  
+                  <ul className="space-y-4">
+                    <li className="flex items-center gap-3">
+                      <Icon name="check-circle-2" className="w-6 h-6 text-emerald-500 flex-shrink-0" />
+                      <span className="text-slate-700 text-lg font-medium">No new ad spend required</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <Icon name="check-circle-2" className="w-6 h-6 text-emerald-500 flex-shrink-0" />
+                      <span className="text-slate-700 text-lg font-medium">Zero extra work for your staff</span>
+                    </li>
+                    <li className="flex items-center gap-3">
+                      <Icon name="check-circle-2" className="w-6 h-6 text-emerald-500 flex-shrink-0" />
+                      <span className="text-slate-700 text-lg font-medium">Pays for itself on the first recovered job</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-white rounded-3xl shadow-xl border border-slate-200 p-8 sm:p-10">
+                  <h3 className="text-2xl font-bold text-slate-900 border-b border-slate-100 pb-4 mb-6">Monthly Revenue Leak</h3>
+                  
+                  <div className="space-y-6">
+                    <div className="flex justify-between items-center text-lg">
+                      <span className="text-slate-500">Average Job Value</span>
+                      <span className="text-slate-900 font-bold">$500</span>
+                    </div>
+                    <div className="flex justify-between items-center text-lg">
+                      <span className="text-slate-500">Missed Calls / Week</span>
+                      <span className="text-slate-900 font-bold">x 5</span>
+                    </div>
+                    <div className="flex justify-between items-center text-lg">
+                      <span className="text-slate-500">Weeks / Month</span>
+                      <span className="text-slate-900 font-bold">x 4</span>
+                    </div>
+                    
+                    <div className="pt-6 border-t border-slate-200">
+                      <div className="flex justify-between items-center">
+                        <span className="text-slate-900 font-bold text-xl">Lost Revenue / Mo.</span>
+                        <span className="text-red-500 font-black text-3xl">-$10,000</span>
+                      </div>
+                    </div>
+
+                    <div className="bg-emerald-50 text-emerald-800 p-4 rounded-xl mt-6 font-semibold text-center border border-emerald-200/60">
+                      Desk Overflow recaptures this revenue automatically.
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+          </section>
+
+          {/* FAQ Section */}
+          <section id="faq" className="py-24 bg-white">
+            <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="text-center mb-16">
+                <span className="text-blue-600 font-bold uppercase tracking-wider text-sm bg-blue-50 px-4 py-1.5 rounded-full">Got Questions?</span>
+                <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 mt-4 mb-4">Frequently Asked Questions</h2>
+                <p className="text-slate-600">Everything you need to know about setting up your missed-call automation.</p>
+              </div>
+
+              <div className="space-y-4">
+                {faqs.map((faq, index) => (
+                  <div key={index} className="border border-slate-200 rounded-2xl overflow-hidden transition-all shadow-sm">
+                    <button
+                      onClick={() => toggleFaq(index)}
+                      className="w-full flex justify-between items-center p-6 text-left font-bold text-lg text-slate-800 hover:text-blue-600 bg-white transition-colors"
+                    >
+                      <span>{faq.q}</span>
+                      <Icon name={openFaq === index ? "chevron-up" : "chevron-down"} className={openFaq === index ? "w-5 h-5 text-blue-600" : "w-5 h-5 text-slate-400"} />
+                    </button>
+                    {openFaq === index && (
+                      <div className="px-6 pb-6 text-slate-600 leading-relaxed bg-slate-50/50 pt-2 border-t border-slate-100">
+                        {faq.a}
+                      </div>
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          {/* CTA Banner */}
+          <section className="py-24 bg-blue-600 relative overflow-hidden text-center">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-500 rounded-full blur-3xl opacity-50 transform translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-700 rounded-full blur-3xl opacity-50 transform -translate-x-1/2 translate-y-1/2"></div>
+            
+            <div className="max-w-4xl mx-auto px-4 relative z-10">
+              <h2 className="text-3xl sm:text-5xl font-black text-white mb-6">Plug the Leaks in Your Business Today.</h2>
+              <p className="text-lg sm:text-xl text-blue-100 mb-10 max-w-2xl mx-auto leading-relaxed">
+                Setup takes less than 24 hours. Keep your current phone number. No technical skills required.
+              </p>
+              <button 
+                onClick={() => handleOpenModal('demo')}
+                className="bg-white text-blue-600 hover:bg-slate-100 px-10 py-5 rounded-full text-xl font-bold transition-all shadow-2xl hover:shadow-white/30 inline-flex items-center gap-3 transform hover:-translate-y-1"
+              >
+                <Icon name="clock" className="w-6 h-6" /> Claim Your Custom Setup
+              </button>
+            </div>
+          </section>
+
+          {/* Footer */}
+          <footer className="bg-slate-950 text-slate-400 py-16 border-t border-slate-900">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center pb-12 border-b border-slate-900">
+                <div>
+                  <span className="text-2xl font-black text-white tracking-tight block mb-2">Desk Overflow</span>
+                  <p className="text-sm text-slate-400 max-w-md leading-relaxed mb-4">
+                    Automated missed-call text-back and booking systems designed to help local service businesses capture every customer.
+                  </p>
+                  <div className="flex flex-col gap-2 text-xs text-slate-400">
+                    <span className="flex items-center gap-2"><Icon name="map-pin" className="w-4 h-4 text-blue-500" /> 2779 61st Street Lane, Vinton, IA 52349</span>
+                    <span className="flex items-center gap-2"><Icon name="phone" className="w-4 h-4 text-blue-500" /> 319-536-4100</span>
+                  </div>
+                </div>
+
+                <div className="flex flex-wrap md:justify-end gap-6 text-sm font-medium">
+                  <button onClick={() => handleOpenModal('privacy')} className="hover:text-white transition-colors underline underline-offset-4">Privacy Policy</button>
+                  <button onClick={() => handleOpenModal('terms')} className="hover:text-white transition-colors underline underline-offset-4">Terms of Service</button>
+                  <button onClick={() => handleOpenModal('demo')} className="hover:text-white transition-colors underline underline-offset-4">Contact</button>
+                </div>
+              </div>
+
+              <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
+                <p>© 2026 Desk Overflow. Desk Overflow is a trade name of Cory Chandler.</p>
+                <p className="text-slate-500 text-center md:text-right max-w-lg">
+                  This site is not a part of Facebook or Meta Inc. Facebook is a registered trademark of Meta, Inc.
+                </p>
+              </div>
+            </div>
+          </footer>
+
+          {/* Modal Popups */}
+          {isModalOpen && (
+            <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-900/80 backdrop-blur-sm animate-fadeIn">
+              <div className="bg-white rounded-3xl max-w-lg w-full p-8 relative shadow-2xl border border-slate-100 max-h-[90vh] overflow-y-auto">
+                
+                <button 
+                  onClick={() => setIsModalOpen(false)}
+                  className="absolute top-6 right-6 p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 transition-colors"
+                >
+                  <Icon name="x" className="w-5 h-5" />
+                </button>
+
+                {modalType === 'demo' && (
+                  <div>
+                    <h3 className="text-2xl font-black text-slate-900 mb-2">Claim Your Setup</h3>
+                    <p className="text-slate-600 text-sm mb-6">Enter your details below and we'll configure your custom missed-call automation within 24 hours.</p>
+                    
+                    {formSubmitted ? (
+                      <div className="bg-emerald-50 border border-emerald-200 rounded-2xl p-6 text-center">
+                        <Icon name="check-circle-2" className="w-12 h-12 text-emerald-600 mx-auto mb-3" />
+                        <h4 className="text-lg font-bold text-emerald-900 mb-1">Request Received!</h4>
+                        <p className="text-sm text-emerald-700">Cory Chandler or a team member will reach out to you at {formData.phone} shortly.</p>
+                      </div>
+                    ) : (
+                      <form onSubmit={handleFormSubmit} className="space-y-4">
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Your Full Name</label>
+                          <input 
+                            type="text" 
+                            required
+                            placeholder="John Smith"
+                            value={formData.name}
+                            onChange={(e) => setFormData({...formData, name: e.target.value})}
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 text-slate-800"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Business Name</label>
+                          <input 
+                            type="text" 
+                            required
+                            placeholder="Smith Plumbing & HVAC"
+                            value={formData.business}
+                            onChange={(e) => setFormData({...formData, business: e.target.value})}
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 text-slate-800"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Phone Number</label>
+                          <input 
+                            type="tel" 
+                            required
+                            placeholder="(319) 000-0000"
+                            value={formData.phone}
+                            onChange={(e) => setFormData({...formData, phone: e.target.value})}
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 text-slate-800"
+                          />
+                        </div>
+                        <div>
+                          <label className="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1">Email Address</label>
+                          <input 
+                            type="email" 
+                            required
+                            placeholder="john@smithplumbing.com"
+                            value={formData.email}
+                            onChange={(e) => setFormData({...formData, email: e.target.value})}
+                            className="w-full px-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:border-blue-600 text-slate-800"
+                          />
+                        </div>
+                        <button 
+                          type="submit"
+                          className="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-4 rounded-xl shadow-lg transition-all mt-4"
+                        >
+                          Submit Request
+                        </button>
+                      </form>
+                    )}
+                  </div>
+                )}
+
+                {modalType === 'privacy' && (
+                  <div className="space-y-4 text-sm text-slate-600">
+                    <h3 className="text-2xl font-black text-slate-900 mb-4">Privacy Policy</h3>
+                    <p><strong>Effective Date:</strong> October 9, 2026</p>
+                    <p>Desk Overflow, operated by Cory Chandler in Vinton, Iowa, respects your privacy. This Privacy Policy explains how we collect, use, and protect your personal information when you visit our website or use our missed-call automation services.</p>
+                    <h4 className="font-bold text-slate-800 mt-4">1. Information We Collect</h4>
+                    <p>We collect contact information such as your name, business name, phone number, and email address when you fill out our demo request or contact forms.</p>
+                    <h4 className="font-bold text-slate-800 mt-4">2. How We Use Information</h4>
+                    <p>We use your information exclusively to provide, maintain, and support our SMS text-back and calendar booking automation services for your business.</p>
+                    <h4 className="font-bold text-slate-800 mt-4">3. Contact Us</h4>
+                    <p>For privacy inquiries, contact us at 2779 61st Street Lane, Vinton, IA 52349 or call 319-536-4100.</p>
+                  </div>
+                )}
+
+                {modalType === 'terms' && (
+                  <div className="space-y-4 text-sm text-slate-600">
+                    <h3 className="text-2xl font-black text-slate-900 mb-4">Terms of Service</h3>
+                    <p><strong>Effective Date:</strong> October 9, 2026</p>
+                    <p>Welcome to Desk Overflow, a trade name of Cory Chandler, located at 2779 61st Street Lane, Vinton, IA 52349. By accessing our website or services, you agree to these Terms of Service.</p>
+                    <h4 className="font-bold text-slate-800 mt-4">1. Services</h4>
+                    <p>Desk Overflow provides automated missed-call text-back and conversational booking software integrations for local contractors and service providers.</p>
+                    <h4 className="font-bold text-slate-800 mt-4">2. Communications</h4>
+                    <p>By submitting your phone number, you consent to receive informational and service-related messages from Desk Overflow.</p>
+                    <h4 className="font-bold text-slate-800 mt-4">3. Governing Law</h4>
+                    <p>These terms are governed by the laws of the State of Iowa.</p>
+                  </div>
+                )}
+
+              </div>
+            </div>
+          )}
+
+        </div>
+      );
+    }
+
+    const root = ReactDOM.createRoot(document.getElementById('root'));
+    root.render(<App />);
+  </script>
+</body>
+</html>
