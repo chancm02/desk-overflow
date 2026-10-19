@@ -34,16 +34,17 @@ function doPost(e) {
     const name = clean_(p.name, 120);
     const business = clean_(p.business, 150);
     const email = clean_(p.email, 160);
-    const phone = clean_(p.phone, 40);
+    const rawPhone = String(p.phone == null ? '' : p.phone).trim().slice(0, 40);
+    const phone = safeCell_(rawPhone);
     const industry = clean_(p.industry, 100);
     const volume = clean_(p.weekly_call_volume, 60);
     const inquiry = clean_(p.message, 2000);
     const consent = clean_(p.permission_to_respond, 50);
     const source = 'Desk Overflow website';
 
-    if (!name || !business || !email || !phone ||
+    if (!name || !business || !email || !rawPhone ||
         !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) ||
-        !/^[0-9()+ .-]{7,40}$/.test(phone) || consent !== 'Yes') {
+        !/^[0-9()+ .-]{7,40}$/.test(rawPhone) || consent !== 'Yes') {
       return reply_('Please check your details',
         'We could not accept this request. Please return to the form and provide a name, business, valid email, phone number, and contact permission.',
         false);
@@ -115,6 +116,9 @@ function clean_(v, maxLength) {
   // Prevent CSV/spreadsheet formula injection, including when data is later exported.
   if (/^[=+\-@\t\r]/.test(t)) t = "'" + t;
   return t;
+}
+function safeCell_(s) {
+  return /^[=+\\-@\\t\\r]/.test(s) ? "'" + s : s;
 }
 function hash_(s) {
   const b = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, s);
