@@ -15,4 +15,32 @@ function update(){
  out.textContent=money.format(n*30*v*r/100);
 }
 [calls,job,rate].forEach(el=>el?.addEventListener('input',update));update();
+
+const leadForm=$('leadForm');
+if(leadForm){
+ leadForm.addEventListener('submit',event=>{
+  event.preventDefault();
+  if(!leadForm.reportValidity())return;
+  const data=new FormData(leadForm);
+  const val=k=>String(data.get(k)||'').trim();
+  const subject='Desk Overflow - website inquiry from '+val('business');
+  const body=['New Desk Overflow inquiry','','Name: '+val('name'),'Business: '+val('business'),
+   'Email: '+val('email'),'Phone: '+val('phone'),'Business type: '+val('industry'),
+   'Calls per week: '+val('weekly_call_volume'),'','Current challenge:',val('message')||'(Not provided)',
+   '','Consent to respond: '+val('permission_to_respond')].join('\n');
+  $('emailDraftLink').href='mailto:chancm02@gmail.com?subject='+encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  $('gmailDraftLink').href='https://mail.google.com/mail/?view=cm&fs=1&to=chancm02%40gmail.com&su='+
+   encodeURIComponent(subject)+'&body='+encodeURIComponent(body);
+  $('inquiryText').value='To: chancm02@gmail.com\nSubject: '+subject+'\n\n'+body;
+  $('copyStatus').textContent='';
+  $('emailPreview').hidden=false;
+  $('emailPreview').scrollIntoView({behavior:'smooth',block:'nearest'});
+ });
+ $('copyInquiry')?.addEventListener('click',async()=>{
+  try{await navigator.clipboard.writeText($('inquiryText').value);
+   $('copyStatus').textContent='Copied. Paste into an email and press Send.';
+  }catch(error){$('inquiryText').focus();$('inquiryText').select();
+   $('copyStatus').textContent='Details selected. Copy them into an email and press Send.';}
+ });
+}
 })();
