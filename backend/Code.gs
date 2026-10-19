@@ -118,7 +118,7 @@ function clean_(v, maxLength) {
   return t;
 }
 function safeCell_(s) {
-  return /^[=+\\-@\\t\\r]/.test(s) ? "'" + s : s;
+  return /^[=+\-@\t\r]/.test(s) ? "'" + s : s;
 }
 function hash_(s) {
   const b = Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256, s);
