@@ -24,6 +24,10 @@ In the connected Google Drive account:
 Its \`Leads\` tab has timestamp, contact, business, inquiry, consent and status
 columns. It is NOT shared publicly.
 
+## Deployment status
+
+The owner supplied a deployed Apps Script web app URL and the website is now configured to submit natively to that /exec endpoint. Deployment cannot be validated by repository inspection alone. Run a real live submission, confirm the branded response, verify a new private Sheet row and email notification. If the handler errors, verify `Code.gs` matches this repository and redeploy a new version.
+
 ## One-time owner deployment
 
 1. Open the private Google Sheet above.
@@ -37,7 +41,7 @@ columns. It is NOT shared publicly.
    Google may show an unverified script warning for your own code; inspect
    the scopes and continue only if you recognize this project and code.
 7. Copy the URL ending in \`/exec\`. Never share Apps Script OAuth tokens.
-8. Give that URL to the assistant to update the website's form action.
+8. Use the deployed /exec URL as the website's HTML form action (already configured for the current deployment).
 9. Submit a test inquiry **from the public website**. Verify one new row in
    the private Sheet and an email alert in the owner's inbox. Do not consider
    customer lead capture live until both have been checked.
