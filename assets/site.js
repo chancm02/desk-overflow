@@ -2,7 +2,6 @@
 (()=>{'use strict';
 const $=id=>document.getElementById(id);
 const menu=$('mobileMenu'),nav=$('navlinks');
-document.addEventListener('keydown',event=>{if(event.key==='Escape'&&nav?.classList.contains('is-open')){nav.classList.remove('is-open');menu?.setAttribute('aria-expanded','false');menu?.focus();}});
 menu?.addEventListener('click',()=>{const open=nav.classList.toggle('is-open');menu.setAttribute('aria-expanded',String(open));});
 nav?.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{nav.classList.remove('is-open');menu?.setAttribute('aria-expanded','false');}));
 const calls=$('calls'),job=$('job'),rate=$('rate'),out=$('total');
@@ -15,14 +14,13 @@ function update(){
  // Monthly illustration = approximate 30 days, not a promise of revenue recovered.
  out.textContent=money.format(n*30*v*r/100);
 }
-[calls,job,rate].forEach(el=>el?.addEventListener('input',update));if(calls&&job&&rate&&out)update();
+[calls,job,rate].forEach(el=>el?.addEventListener('input',update));update();
 
 const leadForm=$('leadForm');
 if(leadForm){
  leadForm.addEventListener('submit',event=>{
   event.preventDefault();
   if(!leadForm.reportValidity())return;
-  if(leadForm.elements.namedItem('_honey')?.value)return;
   const data=new FormData(leadForm);
   const val=k=>String(data.get(k)||'').trim();
   const subject='Desk Overflow - website inquiry from '+val('business');
@@ -36,8 +34,7 @@ if(leadForm){
   $('inquiryText').value='To: chancm02@gmail.com\nSubject: '+subject+'\n\n'+body;
   $('copyStatus').textContent='';
   $('emailPreview').hidden=false;
-  $('emailPreview').focus({preventScroll:true});
-  $('emailPreview').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'instant':'smooth',block:'nearest'});
+  $('emailPreview').scrollIntoView({behavior:'smooth',block:'nearest'});
  });
  $('copyInquiry')?.addEventListener('click',async()=>{
   try{await navigator.clipboard.writeText($('inquiryText').value);

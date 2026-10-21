@@ -6,7 +6,7 @@
 | # | Requirement | State / evidence |
 |---|---|---|
 | 1 | Repository and draft PR #1 audit | Completed; static HTML/CSS/JS, no build/dependencies/Actions; PR remains draft. Pages publishes main root, no custom domain. Existing PR changes retained. |
-| 2 | Landing page | Implemented on PR branch: original logos, palette, image, calculator and email workflow retained; fees near CTA, clear exclusions, larger controls, mobile single-column form, contrast/focus, Escape menu close, reduced-motion focus/scroll. Limited browser tests passed; full desktop/320px/zoom/screen-reader review pending. |
+| 2 | Landing page | Existing landing-page HTML, CSS and JavaScript preserved exactly as they were at pre-implementation draft commit aa96323, per owner direction. No redesign or new visual changes retained. Future HighLevel integration must preserve this design. Full desktop/320px/zoom/screen-reader review pending. |
 | 3 | Domain/DNS | Prepared runbook; no domain purchased, availability or DNS edits verified. Current Pages CNAME is empty. |
 | 4 | Native lead capture | Build and migration specification prepared; BLOCKED by account. Current form still requires manual email Send. |
 | 5 | Acquisition pipeline | Ten workflow recipes, field schema and stage gates prepared; NOT configured/tested in HighLevel. |
@@ -21,9 +21,9 @@
 
 ## Audit findings and corrections
 - backend/README.md falsely described a live Apps Script integration. Replaced with archived status; no extra intake platform is recommended. External experimental endpoints cannot be deactivated by repository edit.
-- Outbound AI and planned SMS were advertised as possible features. Replaced feature copy with human callback and inbound launch scope.
+- Existing page still mentions possible outbound AI and planned SMS. These are excluded from launch operationally; narrowly scoped copy corrections should be reviewed with the eventual HighLevel integration, without redesign.
 - thanks.html claimed receipt without evidence. It now explicitly says the page cannot confirm delivery.
-- Form already had required permission, explicit manual-send wording and encoded email drafting. Preserved them; added honeypot check, accessible preview focus and sensitive-data reminder.
+- Original form, required permission, manual-send wording and encoded email drafting are preserved. Visual, copy and JavaScript additions from the implementation pass were removed at owner request.
 - Registered trade-name/sole-proprietor assertions remain existing owner-supplied copy; evidence, legal entity, public business phone ownership and customer policy wording require owner verification.
 - Third-party Unsplash hero image remains an external dependency. No customer records or credential values were added. Existing public business inquiry address/phone were retained.
 - No customer contract/legal draft was in tracked files. Drive discovery found a private legacy lead inbox, which was not read or modified; no private links/IDs or customer content are committed.
@@ -32,10 +32,9 @@
 - `node --check assets/site.js`: PASS.
 - `git diff --check`: PASS.
 - HTML parser audit on index/privacy/terms/thanks: unique IDs, valid label targets, image alt attributes and existing local link targets: PASS. This is not a complete accessibility certification.
-- Local in-app browser at approximately 516px viewport: brand and hero pricing rendered; CTA navigated to contact; single-column form readable; blank submit focused required name field; synthetic valid inquiry generated correct unsent preview and moved focus; menu expanded and Escape closed with focus returned: PASS. No email sent, phone dialed or external lead submission made.
-- Existing calculator initial $13,500 illustration rendered for 3 calls/day * 30 days * $500 * 30%; scenario disclaimer retained. Other slider combinations not browser-tested.
-- [Mobile form evidence](evidence/mobile-form.png) contains empty fields only.
-- Full desktop, narrower devices, keyboard-only journey, assistive technology, external image outages and no-JS email-client behavior: NOT RUN. HighLevel tests F1–R1 in onboarding-acceptance.md: NOT RUN; local form checks cover only part of F1/F4.
+- Earlier local browser checks were run on a modified page that the owner subsequently declined. Their screenshot and added behavior are not acceptance evidence for the restored page. The retained landing-page files match commit aa96323 exactly; JavaScript syntax and whitespace checks passed after restoration.
+- Existing calculator and manual email-compose functionality are preserved from that baseline, without changes in this implementation pass.
+- Full desktop, narrower devices, keyboard-only journey, assistive technology, external image outages and no-JS email-client behavior: NOT RUN. HighLevel tests F1–R1 in onboarding-acceptance.md: NOT RUN; restored page requires fresh browser acceptance before publication.
 
 ## Necessary owner actions, in order
 1. Approve a sustainable platform/usage budget and personally open the selected HighLevel account; provide authenticated access. Starter currently lists $97/month, but feature support/usage/tax must be verified. $250 cannot cover three months of base platform alone. Do not authorize upgrades implicitly.

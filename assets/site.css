@@ -186,12 +186,3 @@ h1{font-size:clamp(38px,10vw,48px)}
 
 .email-help{margin-top:10px;font-size:10px;line-height:1.6;color:#586f7b}.email-help a{color:#086955;text-decoration:underline}
 .email-preview{margin-top:15px;background:#e7faf3;border:1px solid #a0dfca;border-radius:10px;padding:16px;color:#153e3b}.email-preview[hidden]{display:none}.email-preview h3{font-size:17px;margin:0 0 6px}.email-preview p{font-size:12px;line-height:1.5;color:#285951;margin:0 0 12px}.email-links{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:13px}.email-action{border:1px solid #0c7563;background:#1c896f;color:white;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;padding:9px 13px;font-size:12px;font-weight:800;cursor:pointer;text-decoration:none}.email-action.alt{background:#fff;color:#13614c}.email-preview label{display:block;font-size:11px;font-weight:750;margin-bottom:4px}.email-preview textarea{width:100%;background:#fff;border:1px solid #b6d6ca;border-radius:7px;color:#203c35;resize:vertical;padding:8px;font-size:11px;line-height:1.45}.email-preview .copy-status{margin:5px 0 0;font-weight:700;color:#126b55}
-
-/* First-customer clarity and accessible controls; existing palette retained. */
-.launch-price{color:var(--muted);font-size:13px;margin:16px 0}.launch-price a{color:var(--mint);font-weight:800;text-decoration:underline}
-.intake-note{font-size:12px;color:#334e5b;line-height:1.5}
-.form-field label{font-size:12px;color:#405761}.form-field input,.form-field select{min-height:44px}.form-field textarea{min-height:80px}
-.form-actions .submit{min-height:44px}.consent-row,.privacy-note,.email-help{font-size:12px}.consent-row{align-items:flex-start}.consent-row input{width:20px;height:20px}
-.form-card :focus-visible{outline-color:#086955}.mobile-menu{min-width:44px;min-height:44px}
-@media(max-width:560px){.form-grid{grid-template-columns:1fr}.hero,.hero-inner{min-height:900px}.footer-links a{padding:12px 0}.brand img{max-width:calc(100vw - 100px)}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;transition:none!important}}
