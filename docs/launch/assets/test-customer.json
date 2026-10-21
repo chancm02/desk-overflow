@@ -1,0 +1,28 @@
+{
+  "synthetic": true,
+  "business_name": "Example Service Test",
+  "name": "Synthetic Caller",
+  "email": "owner@example.com",
+  "phone": "+12025550147",
+  "timezone": "America/Chicago",
+  "calendar": {
+    "business_days": [
+      "Monday",
+      "Tuesday",
+      "Wednesday",
+      "Thursday",
+      "Friday"
+    ],
+    "start": "09:00",
+    "end": "17:00",
+    "duration_minutes": 30,
+    "buffer_minutes": 15,
+    "minimum_notice_hours": 24
+  },
+  "approved_faq": {
+    "services": "Test inspection only",
+    "service_area": "Test City only",
+    "pricing": "The team provides quotes after reviewing the request"
+  },
+  "do_not_dial_or_send": true
+}

@@ -1,0 +1,239 @@
+{
+  "version": "1.0",
+  "status": "SPECIFICATION_NOT_API_IMPORT",
+  "note": "Bind native HighLevel field IDs/tokens after account creation. Use native contact name, email and phone. Never store credentials or card data.",
+  "fields": [
+    {
+      "key": "business_name",
+      "scope": "contact",
+      "type": "text",
+      "required_at_activation": true,
+      "label": "Business Name",
+      "native_token": null
+    },
+    {
+      "key": "industry",
+      "scope": "contact",
+      "type": "select",
+      "required_at_activation": false,
+      "label": "Industry",
+      "native_token": null
+    },
+    {
+      "key": "weekly_call_volume",
+      "scope": "contact",
+      "type": "select",
+      "required_at_activation": false,
+      "label": "Weekly Call Volume",
+      "native_token": null
+    },
+    {
+      "key": "challenge",
+      "scope": "contact",
+      "type": "long_text",
+      "required_at_activation": false,
+      "label": "Challenge",
+      "native_token": null
+    },
+    {
+      "key": "response_permission",
+      "scope": "contact",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Response Permission",
+      "native_token": null
+    },
+    {
+      "key": "permission_timestamp",
+      "scope": "contact",
+      "type": "datetime",
+      "required_at_activation": true,
+      "label": "Permission Timestamp",
+      "native_token": null
+    },
+    {
+      "key": "privacy_version",
+      "scope": "contact",
+      "type": "text",
+      "required_at_activation": true,
+      "label": "Privacy Version",
+      "native_token": null
+    },
+    {
+      "key": "order_version",
+      "scope": "opportunity",
+      "type": "text",
+      "required_at_activation": true,
+      "label": "Order Version",
+      "native_token": null
+    },
+    {
+      "key": "contract_id",
+      "scope": "opportunity",
+      "type": "text",
+      "required_at_activation": true,
+      "label": "Contract Id",
+      "native_token": null
+    },
+    {
+      "key": "contract_completed",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Contract Completed",
+      "native_token": null
+    },
+    {
+      "key": "legal_approved",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Legal Approved",
+      "native_token": null
+    },
+    {
+      "key": "setup_invoice_id",
+      "scope": "opportunity",
+      "type": "text",
+      "required_at_activation": true,
+      "label": "Setup Invoice Id",
+      "native_token": null
+    },
+    {
+      "key": "setup_payment_settled",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Setup Payment Settled",
+      "native_token": null
+    },
+    {
+      "key": "onboarding_complete",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Onboarding Complete",
+      "native_token": null
+    },
+    {
+      "key": "acceptance_signed",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Acceptance Signed",
+      "native_token": null
+    },
+    {
+      "key": "owner_activation_approved",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Owner Activation Approved",
+      "native_token": null
+    },
+    {
+      "key": "customer_activation_approved",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Customer Activation Approved",
+      "native_token": null
+    },
+    {
+      "key": "fallback_verified",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Fallback Verified",
+      "native_token": null
+    },
+    {
+      "key": "cost_controls_verified",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Cost Controls Verified",
+      "native_token": null
+    },
+    {
+      "key": "recurring_authorization_signed",
+      "scope": "opportunity",
+      "type": "checkbox",
+      "required_at_activation": true,
+      "label": "Recurring Authorization Signed",
+      "native_token": null
+    },
+    {
+      "key": "activation_date",
+      "scope": "opportunity",
+      "type": "datetime",
+      "required_at_activation": true,
+      "label": "Activation Date",
+      "native_token": null
+    },
+    {
+      "key": "minute_allowance",
+      "scope": "opportunity",
+      "type": "number",
+      "required_at_activation": true,
+      "label": "Minute Allowance",
+      "native_token": null
+    },
+    {
+      "key": "ai_spend_limit_usd",
+      "scope": "opportunity",
+      "type": "money",
+      "required_at_activation": true,
+      "label": "Ai Spend Limit Usd",
+      "native_token": null
+    },
+    {
+      "key": "provider_call_id",
+      "scope": "call",
+      "type": "text",
+      "required_at_activation": true,
+      "label": "Provider Call Id",
+      "native_token": null
+    },
+    {
+      "key": "outcome",
+      "scope": "call",
+      "type": "select",
+      "required_at_activation": true,
+      "label": "Outcome",
+      "native_token": null
+    },
+    {
+      "key": "callback_permission",
+      "scope": "call",
+      "type": "checkbox",
+      "required_at_activation": false,
+      "label": "Callback Permission",
+      "native_token": null
+    },
+    {
+      "key": "callback_number_verified",
+      "scope": "call",
+      "type": "checkbox",
+      "required_at_activation": false,
+      "label": "Callback Number Verified",
+      "native_token": null
+    },
+    {
+      "key": "summary",
+      "scope": "call",
+      "type": "long_text",
+      "required_at_activation": false,
+      "label": "Summary",
+      "native_token": null
+    },
+    {
+      "key": "task_due_at",
+      "scope": "call",
+      "type": "datetime",
+      "required_at_activation": false,
+      "label": "Task Due At",
+      "native_token": null
+    }
+  ]
+}

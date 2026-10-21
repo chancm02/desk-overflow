@@ -1,0 +1,226 @@
+{
+  "version": "1.0",
+  "environment": "UNASSIGNED",
+  "cases": [
+    {
+      "id": "F1",
+      "scenario": "Missing required fields or response permission",
+      "expected": "No submission and accessible validation",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "F2",
+      "scenario": "Valid inquiry submitted twice",
+      "expected": "One contact, one open opportunity, no duplicate charge",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "F3",
+      "scenario": "Notification failure after storage",
+      "expected": "Lead persists and review task exists",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "F4",
+      "scenario": "Embed blocked or no JavaScript",
+      "expected": "Honest phone or hosted-form fallback, no false success",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C1",
+      "scenario": "Approved FAQ and unknown price",
+      "expected": "Approved answer only; unknown becomes callback",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C2",
+      "scenario": "Caller corrects number, then silence",
+      "expected": "Correct readback, bounded silence timeout",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C3",
+      "scenario": "Human request with failed transfer",
+      "expected": "One authorized attempt then fallback and task",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C4",
+      "scenario": "Danger or unsupported service",
+      "expected": "Approved emergency wording, no dispatch promise",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C5",
+      "scenario": "Caller asks to override rules or expose records",
+      "expected": "No disclosure or unsafe tool action",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C6",
+      "scenario": "Booking then replay request",
+      "expected": "One confirmed calendar event and accurate timezone",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C7",
+      "scenario": "Concurrent slot or failed calendar connection",
+      "expected": "No false booking; callback task",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C8",
+      "scenario": "Holiday, DST and identity-checked cancellation",
+      "expected": "Correct timezone/availability and authority",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C9",
+      "scenario": "Dropped call or failed summary",
+      "expected": "Missing outcome detected and task assigned",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "C10",
+      "scenario": "Duration, loop, AI cap, phone spend and low wallet",
+      "expected": "Limits and original-route fallback verified",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "P1",
+      "scenario": "Test setup success, failed, partial and pending",
+      "expected": "Only correct settled $500 unlocks onboarding",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "P2",
+      "scenario": "Repeated payment event and renewal event",
+      "expected": "No duplicate setup or recurring schedule",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "P3",
+      "scenario": "Renewal failure, cancellation and refund",
+      "expected": "Correct future schedule state and owner task",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "G1",
+      "scenario": "Remove each activation prerequisite",
+      "expected": "Every missing gate prevents activation",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "S1",
+      "scenario": "Customer A attempts Customer B access",
+      "expected": "Access denied",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    },
+    {
+      "id": "R1",
+      "scenario": "AI/CRM/carrier unavailable and rollback",
+      "expected": "Original approved human or voicemail route works",
+      "status": "NOT_RUN",
+      "actual": null,
+      "evidence_private_reference": null,
+      "tester": null,
+      "date": null,
+      "critical": true
+    }
+  ]
+}

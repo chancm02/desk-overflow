@@ -186,3 +186,6 @@ h1{font-size:clamp(38px,10vw,48px)}
 
 .email-help{margin-top:10px;font-size:10px;line-height:1.6;color:#586f7b}.email-help a{color:#086955;text-decoration:underline}
 .email-preview{margin-top:15px;background:#e7faf3;border:1px solid #a0dfca;border-radius:10px;padding:16px;color:#153e3b}.email-preview[hidden]{display:none}.email-preview h3{font-size:17px;margin:0 0 6px}.email-preview p{font-size:12px;line-height:1.5;color:#285951;margin:0 0 12px}.email-links{display:flex;flex-wrap:wrap;gap:7px;margin-bottom:13px}.email-action{border:1px solid #0c7563;background:#1c896f;color:white;display:inline-flex;align-items:center;justify-content:center;border-radius:8px;padding:9px 13px;font-size:12px;font-weight:800;cursor:pointer;text-decoration:none}.email-action.alt{background:#fff;color:#13614c}.email-preview label{display:block;font-size:11px;font-weight:750;margin-bottom:4px}.email-preview textarea{width:100%;background:#fff;border:1px solid #b6d6ca;border-radius:7px;color:#203c35;resize:vertical;padding:8px;font-size:11px;line-height:1.45}.email-preview .copy-status{margin:5px 0 0;font-weight:700;color:#126b55}
+
+/* Keep the existing mobile hero text clear of its positioned illustration. */
+@media(max-width:800px){.hero{min-height:0}.hero-inner{min-height:0;padding-bottom:378px}}
