@@ -1,5 +1,7 @@
 # Desk Overflow launch readiness
 
+Update October 22: the owner now prioritizes customer acquisition before paid HighLevel setup. See [acquisition-readiness.md](acquisition-readiness.md) and [acquisition-verification.md](acquisition-verification.md) for the current marketing/intake work. This report describes the later customer-service activation phase.
+
 October 21, 2026. **Offline implementation preparation is complete for the current scope; live activation remains NO GO.** HighLevel assets must be created and tested in an authorized account. Legal drafts are now created from scratch following owner clarification. They require owner and professional review. Spending $0; no purchases, charges, merge, publication or real forwarding.
 
 ## Start here

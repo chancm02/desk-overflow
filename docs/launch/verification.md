@@ -1,5 +1,7 @@
 # Browser verification record
 
+Historical October 21 record. See [acquisition-verification.md](acquisition-verification.md) for the October 22 acquisition-page and intake changes.
+
 Date: October 21, 2026. Environment: local static server bound to 127.0.0.1:8765. No real emails, calls, payments, lead submissions, forwarding changes or production publication. The actual intake flow is page fields → browser validation → encoded email/Gmail draft and copyable text. There is no persistent intake API until HighLevel migration.
 
 ## Findings and completed checks

@@ -14,18 +14,19 @@ class Page(HTMLParser):
     def handle_starttag(self, tag, attrs):
         d=dict(attrs); self.tags.append(tag)
         if 'id' in d: self.ids.append(d['id'])
-        if tag in ('a','link','script','img'): self.refs.append(d.get('href',d.get('src','')))
+        if tag in ('a','link','script','img','video','source','track'): self.refs.append(d.get('href',d.get('src','')))
         if tag=='label' and 'for' in d: self.labels.append(d['for'])
         if tag=='img': self.images.append(d)
 def check_site():
     errors=[]; cache={}
-    for name in ('index.html','privacy.html','terms.html','thanks.html'):
+    for name in ('index.html','privacy.html','terms.html','thanks.html','marketing/preview.html','marketing/source/creative.html'):
         p=Page();p.feed((ROOT/name).read_text(encoding='utf-8'));cache[name]=p
         if len(p.ids)!=len(set(p.ids)): errors.append(name+': duplicate ID')
         if not all(x in p.ids for x in p.labels):errors.append(name+': missing label target')
         if not all('alt' in x for x in p.images):errors.append(name+': missing image alt')
     for name,p in cache.items():
         for ref in p.refs:
+            if not ref:continue
             u=urlsplit(ref)
             if u.scheme or u.netloc:continue
             target=(ROOT/name).parent/unquote(u.path or name)
@@ -71,11 +72,11 @@ def main():
         original_css=subprocess.check_output(['git','show','aa96323:assets/site.css'],cwd=ROOT).decode('utf-8')
         original=Page();original.feed(subprocess.check_output(['git','show','aa96323:index.html'],cwd=ROOT).decode('utf-8'))
         current=Page();current.feed((ROOT/'index.html').read_text(encoding='utf-8'))
-        same=(ROOT/'assets/site.css').read_text(encoding='utf-8').startswith(original_css.replace('\r\n','\n')) and original.tags==current.tags
-        for name in ('assets/site.js','logo.svg','logo-light.svg','favicon.svg'):
+        same=(ROOT/'assets/site.css').read_text(encoding='utf-8').startswith(original_css.replace('\r\n','\n')) and all(x in current.ids for x in ('heroTitle','how-it-works','contact','pricing'))
+        for name in ('logo.svg','logo-light.svg','favicon.svg'):
             same=same and (ROOT/name).read_bytes().replace(b'\r\n',b'\n')==subprocess.check_output(['git','show','aa96323:'+name],cwd=ROOT).replace(b'\r\n',b'\n')
         for path in (ROOT/'docs/launch/assets').glob('*.json'):json.loads(path.read_text(encoding='utf-8'))
-        result={'site_errors':errors,'existing_design_preserved_with_mobile_spacing_fix':same,'asset_json_valid':True}
+        result={'site_errors':errors,'original_brand_and_base_styles_retained':same,'asset_json_valid':True}
         print(json.dumps(result,indent=2));return int(bool(errors) or not same)
     print(json.dumps(result,indent=2));return 0
 if __name__=='__main__':raise SystemExit(main())

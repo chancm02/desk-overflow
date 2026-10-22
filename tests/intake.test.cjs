@@ -1,0 +1,24 @@
+const fs=require('node:fs');const vm=require('node:vm');const test=require('node:test');const assert=require('node:assert/strict');
+const source=fs.readFileSync('backend/Code.gs','utf8');
+const valid={submission_id:'synthetic-request-0001',name:'Synthetic Caller',business:'Example Service Test',email:'owner@example.com',phone:'+1 202-555-0147',permission_to_respond:'Yes',industry:'HVAC',weekly_call_volume:'25–75',message:'Test only',utm_source:'facebook',utm_medium:'organic',utm_campaign:'first_customer'};
+function env(options={}){
+ const rows=options.schemaFailure?[['Wrong schema']]:[];let sent=0,released=0;
+ const sheet={getLastRow:()=>rows.length,appendRow:r=>{if(options.appendFailure)throw Error('append');rows.push(r);},setFrozenRows:()=>{},getParent:()=>({getUrl:()=> 'https://example.com/private-test-inbox'}),getRange:(r,c,n=1,m=1)=>({getValues:()=>Array.from({length:n},(_,i)=>Array.from({length:m},(_,j)=>rows[r-1+i]?.[c-1+j]||'')),setValue:v=>{rows[r-1][c-1]=v;},createTextFinder:value=>({matchEntireCell:()=>({findNext:()=>rows.slice(r-1).find(row=>row[c-1]===value)||null})})})};
+ const book={getSheetByName:()=>sheet,insertSheet:()=>sheet};
+ const context={console:{warn:()=>{},error:()=>{}},PropertiesService:{getScriptProperties:()=>({getProperty:k=>options.noConfig?null:k==='LEADS_SHEET_ID'?'test-sheet':'owner@example.com'})},LockService:{getScriptLock:()=>({tryLock:()=>!options.busy,releaseLock:()=>{released++;}})},SpreadsheetApp:{openById:()=>{if(options.storageFailure)throw Error('storage');return book;},flush:()=>{}},MailApp:{getRemainingDailyQuota:()=>options.noQuota?0:100,sendEmail:()=>{if(options.mailFailure)throw Error('mail');sent++;}},Utilities:{getUuid:()=> 'synthetic-generated-0002'},HtmlService:{createHtmlOutput:content=>({content,setTitle(){return this;}})}};
+ vm.createContext(context);vm.runInContext(source,context);
+ return {post:p=>context.doPost({parameter:p}).content,rows,sent:()=>sent,released:()=>released,context};
+}
+test('valid request saves all business fields and attribution before confirmation',()=>{const e=env();assert.match(e.post(valid),/Your inquiry is saved/);assert.equal(e.rows.length,2);assert.equal(e.rows[1][2],valid.name);assert.equal(e.rows[1][4],valid.email);assert.equal(e.rows[1][12],'facebook');assert.equal(e.rows[1][16],'Sent');assert.equal(e.sent(),1);assert.equal(e.released(),1);});
+test('required permission is enforced server side',()=>{const e=env();assert.match(e.post({...valid,permission_to_respond:''}),/not been saved/);assert.equal(e.rows.length,0);});
+test('invalid email and short callback number rejected',()=>{for(const bad of [{email:'broken'},{phone:'123'}]){const e=env();assert.match(e.post({...valid,...bad}),/not been saved/);assert.equal(e.rows.length,0);}});
+test('honeypot never claims receipt',()=>{const e=env();assert.match(e.post({...valid,_honey:'bot'}),/could not verify/);assert.equal(e.rows.length,0);});
+test('storage failure cannot produce saved message',()=>{const e=env({storageFailure:true});const html=e.post(valid);assert.match(html,/could not confirm/);assert.doesNotMatch(html,/Your inquiry is saved/);});
+test('append failure cannot produce saved message',()=>{const e=env({appendFailure:true});assert.match(e.post(valid),/could not confirm/);assert.equal(e.sent(),0);});
+test('email failure preserves successful storage and records failed alert',()=>{const e=env({mailFailure:true});assert.match(e.post(valid),/Your inquiry is saved/);assert.equal(e.rows.length,2);assert.equal(e.rows[1][16],'Not sent');});
+test('quota exhaustion preserves lead',()=>{const e=env({noQuota:true});assert.match(e.post(valid),/Your inquiry is saved/);assert.equal(e.rows[1][16],'Not sent');});
+test('replayed submission ID does not duplicate row or alert',()=>{const e=env();e.post(valid);assert.match(e.post(valid),/already received/);assert.equal(e.rows.length,2);assert.equal(e.sent(),1);});
+test('spreadsheet formula values are stored as text',()=>{const e=env();e.post({...valid,name:'=1+1',message:'@formula'});assert.equal(e.rows[1][2],"'=1+1");assert.equal(e.rows[1][8],"'@formula");assert.ok(e.rows[1][5].startsWith("'"));});
+test('schema mismatch fails closed',()=>{const e=env({schemaFailure:true});assert.match(e.post(valid),/could not confirm/);assert.equal(e.rows.length,1);});
+test('unconfigured and busy handler fail honestly',()=>{for(const options of [{noConfig:true},{busy:true}]){const e=env(options);assert.match(e.post(valid),/could not confirm/);assert.equal(e.rows.length,0);}});
+test('HTML escaping covers caller controlled markup',()=>{const e=env();assert.equal(e.context.esc_('<script>"&'),'&lt;script&gt;&quot;&amp;');});
