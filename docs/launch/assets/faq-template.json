@@ -1,0 +1,83 @@
+{
+  "version": "1.0",
+  "status": "DRAFT_NOT_APPROVED",
+  "business_name": "REQUIRED",
+  "timezone": "REQUIRED",
+  "approved_by": null,
+  "approved_at": null,
+  "answers": [
+    {
+      "topic": "business_identity",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "office_hours",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "holiday_hours",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "service_area",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "services_offered",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "services_not_offered",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "pricing_quote_policy",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "appointment_types",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "booking_cancellation",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "urgent_requests",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "human_callback",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    },
+    {
+      "topic": "privacy_and_recording",
+      "approved_answer": "REQUIRED",
+      "source": "REQUIRED",
+      "last_reviewed": null
+    }
+  ],
+  "unknown_answer": "I do not have an approved answer for that. May I take your details so the team can follow up?"
+}

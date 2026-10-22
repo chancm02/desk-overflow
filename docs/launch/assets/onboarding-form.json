@@ -1,0 +1,199 @@
+{
+  "status": "DRAFT_NATIVE_FORM_SPEC",
+  "version": "1.0",
+  "submit_effect": "Create review task only; no billing or activation",
+  "fields": [
+    {
+      "key": "business_legal_name",
+      "label": "Business Legal Name",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "authorized_signer",
+      "label": "Authorized Signer",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "business_email",
+      "label": "Business Email",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "business_phone",
+      "label": "Business Phone",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "business_timezone",
+      "label": "Business Timezone",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "business_hours",
+      "label": "Business Hours",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "holiday_hours",
+      "label": "Holiday Hours",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "service_area",
+      "label": "Service Area",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "services_offered",
+      "label": "Services Offered",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "services_excluded",
+      "label": "Services Excluded",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "approved_faq_version",
+      "label": "Approved Faq Version",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "allowed_price_answers",
+      "label": "Allowed Price Answers",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "escalation_contacts",
+      "label": "Escalation Contacts",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "escalation_hours",
+      "label": "Escalation Hours",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "transfer_destination",
+      "label": "Transfer Destination",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "fallback_destination",
+      "label": "Fallback Destination",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "callback_target",
+      "label": "Callback Target",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "calendar_services",
+      "label": "Calendar Services",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "calendar_duration_minutes",
+      "label": "Calendar Duration Minutes",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "calendar_buffers_minutes",
+      "label": "Calendar Buffers Minutes",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "minimum_booking_notice",
+      "label": "Minimum Booking Notice",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "calendar_owner",
+      "label": "Calendar Owner",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "recording_choice",
+      "label": "Recording Choice",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "transcription_choice",
+      "label": "Transcription Choice",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "approved_ai_disclosure",
+      "label": "Approved Ai Disclosure",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "approved_recording_disclosure",
+      "label": "Approved Recording Disclosure",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "retention_policy",
+      "label": "Retention Policy",
+      "required": true,
+      "type": "long_text"
+    },
+    {
+      "key": "minute_allowance",
+      "label": "Minute Allowance",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "spend_limit",
+      "label": "Spend Limit",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "billing_start_date",
+      "label": "Billing Start Date",
+      "required": true,
+      "type": "text"
+    },
+    {
+      "key": "forwarding_change_contact",
+      "label": "Forwarding Change Contact",
+      "required": true,
+      "type": "text"
+    }
+  ],
+  "required_acknowledgements": [
+    "I am authorized to approve business information and calendar access.",
+    "I understand no live forwarding occurs until separate acceptance and activation approval.",
+    "I will not submit passwords, payment cards or sensitive customer data."
+  ],
+  "connections": "Calendar and gateway connections are completed through secure native authorization, never this form."
+}

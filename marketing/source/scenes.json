@@ -1,0 +1,58 @@
+{
+  "hook": {
+    "eyebrow": "FOR BUSY SERVICE BUSINESSES",
+    "title": "On the job?<br><em>The phone still rings.</em>",
+    "copy": "A missed call can mean a missed opportunity. Give callers a helpful next step.",
+    "kind": "ring",
+    "label": "MISSED CALLS + AFTER HOURS"
+  },
+  "capture": {
+    "eyebrow": "MANAGED AI RECEPTIONIST",
+    "title": "Capture the request.<br><em>Keep your team focused.</em>",
+    "copy": "Collect the caller’s name, callback details and service need using your approved intake flow.",
+    "kind": "lead",
+    "label": "ILLUSTRATIVE WORKFLOW"
+  },
+  "faq": {
+    "eyebrow": "YOUR BUSINESS ANSWERS",
+    "title": "Your hours.<br>Your service area.<br><em>Your approved FAQs.</em>",
+    "copy": "A receptionist configured around your business, with human follow-up when an answer is uncertain.",
+    "kind": "faq",
+    "label": "CUSTOM SETUP"
+  },
+  "calendar": {
+    "eyebrow": "A CLEAR NEXT STEP",
+    "title": "Book when supported.<br><em>Capture a callback<br>when it isn’t.</em>",
+    "copy": "Scheduling follows your connected calendar and approved rules. Unknown answers go to your team.",
+    "kind": "steps",
+    "label": "ILLUSTRATIVE WORKFLOW"
+  },
+  "price": {
+    "eyebrow": "CLEAR MANAGED SERVICE PRICING",
+    "title": "<em>$499</em><span class=\"unit\"> / month</span>",
+    "copy": "Plus $500 one-time setup.<br>Included call minutes and usage limits are agreed in writing before payment.",
+    "kind": "price",
+    "label": "NO INSTANT CHECKOUT"
+  },
+  "cta": {
+    "eyebrow": "DESK OVERFLOW",
+    "title": "Make more<br><em>calls count.</em>",
+    "copy": "Request your call coverage plan.<br>We review fit, scope and pricing before you sign or pay.",
+    "kind": "cta",
+    "label": "GET A WRITTEN PLAN"
+  },
+  "process": {
+    "eyebrow": "FROM FIRST CALL TO FOLLOW-UP",
+    "title": "A helpful response.<br><em>A useful record.</em>",
+    "copy": "After-hours answering • Lead details • Approved FAQs • Calendar workflows • Call summaries",
+    "kind": "lead",
+    "label": "ILLUSTRATIVE WORKFLOW"
+  },
+  "launch": {
+    "eyebrow": "BUILT FOR YOUR BUSINESS",
+    "title": "Configured.<br>Tested.<br><em>Then activated.</em>",
+    "copy": "Your call flow is reviewed and tested with you before real customer forwarding begins.",
+    "kind": "steps",
+    "label": "OWNER AND CUSTOMER APPROVAL"
+  }
+}

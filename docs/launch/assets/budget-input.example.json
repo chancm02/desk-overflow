@@ -1,0 +1,25 @@
+{
+  "verified_rates": false,
+  "capital_usd": 250,
+  "setup_revenue_usd": 500,
+  "monthly_revenue_usd": 499,
+  "platform_monthly_usd": 97,
+  "ai_fixed_monthly_usd": 0,
+  "number_monthly_usd": null,
+  "combined_ai_and_inbound_per_minute_usd": null,
+  "transfer_per_minute_usd": null,
+  "transfer_fraction": 0.1,
+  "email_and_storage_monthly_usd": null,
+  "gateway_percent": null,
+  "gateway_fixed_usd": null,
+  "tax_monthly_usd": null,
+  "domain_upfront_usd": null,
+  "test_wallet_upfront_usd": 25,
+  "reserve_usd": 100,
+  "scenarios_minutes": [
+    200,
+    400,
+    1000
+  ],
+  "note": "97 platform is vendor listed price checked 2026-10-21, not tax-inclusive. Other rates intentionally unset. Populate verified rates privately; no guessed rate may authorize launch."
+}

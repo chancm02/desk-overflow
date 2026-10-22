@@ -1,0 +1,29 @@
+[
+  {
+    "file": "01-missed-call-coverage.mp4",
+    "seconds": 27,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "audio": "silent AAC; no music or recorded caller audio",
+    "bytes": 5256885
+  },
+  {
+    "file": "02-how-it-works.mp4",
+    "seconds": 28,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "audio": "silent AAC; no music or recorded caller audio",
+    "bytes": 5750368
+  },
+  {
+    "file": "03-pricing-and-setup.mp4",
+    "seconds": 22,
+    "width": 1080,
+    "height": 1920,
+    "fps": 30,
+    "audio": "silent AAC; no music or recorded caller audio",
+    "bytes": 4172871
+  }
+]

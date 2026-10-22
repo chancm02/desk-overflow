@@ -1,0 +1,16 @@
+{
+  "environment": "TEST",
+  "legal_approved": false,
+  "contract_completed": false,
+  "setup_payment_settled": false,
+  "onboarding_complete": false,
+  "acceptance_signed": false,
+  "owner_activation_approved": false,
+  "customer_activation_approved": false,
+  "fallback_verified": false,
+  "cost_controls_verified": false,
+  "recurring_authorization_signed": false,
+  "evidence_references": {},
+  "note": "Copy only into ignored private/. This file never configures a platform or authorizes live changes.",
+  "billing_mode": "UNDECIDED"
+}
