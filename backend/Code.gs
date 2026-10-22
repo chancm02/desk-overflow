@@ -39,8 +39,11 @@ function doPost(e) {
         duplicate=Boolean(found);
       }
       if(!duplicate){
-        sheet.appendRow([new Date().toISOString(),d.id,d.name,d.business,d.email,d.phone,d.industry,d.volume,d.message,d.permission,INTAKE_VERSION,d.source||'Website',d.utm_source,d.utm_medium,d.utm_campaign,'New','Pending'].map(safeCell_));
-        SpreadsheetApp.flush();row=sheet.getLastRow();
+        row=sheet.getLastRow()+1;
+        const target=sheet.getRange(row,1,1,COLUMNS.length);
+        target.setNumberFormat('@');
+        target.setValues([[new Date().toISOString(),d.id,d.name,d.business,d.email,d.phone,d.industry,d.volume,d.message,d.permission,INTAKE_VERSION,d.source||'Website',d.utm_source,d.utm_medium,d.utm_campaign,'New','Pending'].map(safeCell_)]);
+        SpreadsheetApp.flush();
       }
       saved=true;
     } finally {lock.releaseLock();}

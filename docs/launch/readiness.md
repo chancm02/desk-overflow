@@ -2,7 +2,7 @@
 
 Update October 22: the owner now prioritizes customer acquisition before paid HighLevel setup. See [acquisition-readiness.md](acquisition-readiness.md) and [acquisition-verification.md](acquisition-verification.md) for the current marketing/intake work. This report describes the later customer-service activation phase.
 
-October 21, 2026. **Offline implementation preparation is complete for the current scope; live activation remains NO GO.** HighLevel assets must be created and tested in an authorized account. Legal drafts are now created from scratch following owner clarification. They require owner and professional review. Spending $0; no purchases, charges, merge, publication or real forwarding.
+October 21, 2026 service report; acquisition update October 22: Google intake and alerts passed live tests, and the owner approved website publication. See acquisition-readiness.md. **Offline implementation preparation is complete for the current scope; live activation remains NO GO.** HighLevel assets must be created and tested in an authorized account. Legal drafts are now created from scratch following owner clarification. They require owner and professional review. Spending $0; no purchases, charges or real forwarding.
 
 ## Start here
 Use [implementation-checklist.md](implementation-checklist.md) for the account session and [customer-agreement-packet.md](customer-agreement-packet.md) as editable source for five HighLevel documents. JSON files are build specifications and fixtures, not platform import payloads or a prebuilt Snapshot.
@@ -11,7 +11,7 @@ Use [implementation-checklist.md](implementation-checklist.md) for the account s
 | # | Requirement | Completed offline | Remaining dependency |
 |---|---|---|---|
 | 1 | Repository and PR audit | Static site, existing draft, hosting and archived intake audited; changes in draft PR #1 | Owner review before merge |
-| 2 | Existing landing page | Original design retained; mobile overlap repair and launch-scope corrections; dummy inquiry and responsive checks passed | Publication approval; complete assistive-technology/device review |
+| 2 | Existing landing page | Original design retained; mobile overlap repair and launch-scope corrections; dummy inquiry and responsive checks passed | Complete assistive-technology/device review |
 | 3 | Domain/DNS | GitHub Pages record change sheet and rollback sequence ready | Domain choice/purchase approval and registrar access; final DNS/HTTPS validation |
 | 4 | Native lead capture | Field schema, native form recipe, privacy draft and integration plan ready | Generated embed and persistence/delivery tests in HighLevel |
 | 5 | Acquisition pipeline | Pipeline, ten workflow recipes, fields and gate checklist ready | Native account build and execution tests |
@@ -42,7 +42,7 @@ See [verification.md](verification.md). Current-page browser checks confirmed re
 1. Approve a sustainable platform/usage budget and create the HighLevel account personally, then provide authenticated access. Starter is a candidate, not an approved purchase; $250 cannot fund three months of its listed $97 base price alone.
 2. Complete provider identity/contact fields and approve proposed terms after qualified legal/tax review. The drafts are created; no lost source draft needs to be supplied.
 3. Choose/approve a business domain and provide registrar access if a custom domain is desired. Complete gateway verification and approve actual test numbers/recipients/calendars, customer FAQs and fallback details through secure account setup.
-4. After configuration and passing critical tests, approve concrete merge/publication, real billing and customer forwarding separately, with customer acceptance and rollback recorded.
+4. After configuration and passing critical tests, approve real billing and customer forwarding separately, with customer acceptance and rollback recorded.
 
 ## Prepared assets
 - [Implementation checklist](implementation-checklist.md) and [HighLevel build](highlevel-build.md)
