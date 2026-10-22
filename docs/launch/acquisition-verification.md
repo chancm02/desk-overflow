@@ -16,4 +16,4 @@ Apps Script version 4 is deployed. Signed-out HTTP tests and a native browser fo
 Storage failure and alert/quota failure paths pass local mocks; they were not deliberately triggered in the live account. Google quotas and outages remain operational limitations.
 
 ## Production page
-The verified public route is configured. Publication is approved; the final public-page synthetic check will be appended after Pages deployment. Spend $0. No social posts, payments, HighLevel purchase or customer forwarding.
+The site is published at https://chancm02.github.io/desk-overflow/. Final native submission from the production page passed at 15:06 UTC on October 22, 2026. Every business field, permission, privacy version and release_test / production_browser / first_customer campaign tag matched the private record. A matching owner inbox alert arrived one second later. The branded saved page is captured in evidence/production-inquiry-confirmation.jpg. Versioned script URLs ensure returning browsers refresh the inquiry code. Spend $0. No social posts, payments, HighLevel purchase or customer forwarding.
