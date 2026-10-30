@@ -166,5 +166,5 @@
 </footer>
 <script src="./assets/intake-config.js?v=20261022-1" defer></script>
 <script src="./assets/site.js?v=20261022-1" defer></script>
-<script>document.querySelectorAll("[data-plan]").forEach(a=>a.addEventListener("click",()=>{const select=document.getElementById("selectedPlan");if(select)select.value=a.dataset.plan;}));</script></body>
+<script>document.querySelectorAll("[data-plan]").forEach(a=>a.addEventListener("click",()=>{const select=document.getElementById("selectedPlan");if(select)select.value=a.dataset.plan;}));document.getElementById("leadForm")?.addEventListener("submit",()=>{const f=document.getElementById("leadForm");const plan=f.elements.namedItem("selected_plan")?.value||"Not sure";f.elements.namedItem("source").value="Desk Overflow website | Plan: "+plan;},true);</script></body>
 </html>
