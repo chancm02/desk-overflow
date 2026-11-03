@@ -1,0 +1,104 @@
+{
+  "version": "2026-11-03-v5",
+  "livemode": true,
+  "activation": "manual_after_signed_go_live",
+  "payment_links_active": false,
+  "items": [
+    {
+      "addon": "calendar",
+      "kind": "setup",
+      "product": "do_v5_calendar_setup",
+      "price": "price_1UXqnJGzho3dgSTh0EI03phr",
+      "amount": 15000,
+      "livemode": true
+    },
+    {
+      "addon": "calendar",
+      "kind": "monthly",
+      "product": "do_v5_calendar_monthly",
+      "price": "price_1UXqnNGzho3dgSThIOfTyP3P",
+      "amount": 9900,
+      "livemode": true
+    },
+    {
+      "addon": "chat",
+      "kind": "setup",
+      "product": "do_v5_chat_setup",
+      "price": "price_1UXqnQGzho3dgSThZvmwDj9z",
+      "amount": 15000,
+      "livemode": true
+    },
+    {
+      "addon": "chat",
+      "kind": "monthly",
+      "product": "do_v5_chat_monthly",
+      "price": "price_1UXqnTGzho3dgSThCwMLocoH",
+      "amount": 9900,
+      "livemode": true
+    },
+    {
+      "addon": "crm",
+      "kind": "setup",
+      "product": "do_v5_crm_setup",
+      "price": "price_1UXqnWGzho3dgSThpulweg0w",
+      "amount": 19900,
+      "livemode": true
+    },
+    {
+      "addon": "crm",
+      "kind": "monthly",
+      "product": "do_v5_crm_monthly",
+      "price": "price_1UXqnZGzho3dgSThJmR3S8jW",
+      "amount": 9900,
+      "livemode": true
+    },
+    {
+      "addon": "reviews",
+      "kind": "setup",
+      "product": "do_v5_reviews_setup",
+      "price": "price_1UXqndGzho3dgSThuZPUND4b",
+      "amount": 14900,
+      "livemode": true
+    },
+    {
+      "addon": "reviews",
+      "kind": "monthly",
+      "product": "do_v5_reviews_monthly",
+      "price": "price_1UXqngGzho3dgSThSB9zxJau",
+      "amount": 7900,
+      "livemode": true
+    },
+    {
+      "addon": "email",
+      "kind": "setup",
+      "product": "do_v5_email_setup",
+      "price": "price_1UXqnlGzho3dgSThEJnPtw6O",
+      "amount": 14900,
+      "livemode": true
+    },
+    {
+      "addon": "email",
+      "kind": "monthly",
+      "product": "do_v5_email_monthly",
+      "price": "price_1UXqnoGzho3dgSThhGXZZn7C",
+      "amount": 9900,
+      "livemode": true
+    },
+    {
+      "addon": "minutes250",
+      "kind": "setup",
+      "product": "do_v5_minutes250_setup",
+      "price": "price_1UXqnsGzho3dgSThWgECur4N",
+      "amount": 0,
+      "livemode": true
+    },
+    {
+      "addon": "minutes250",
+      "kind": "monthly",
+      "product": "do_v5_minutes250_monthly",
+      "price": "price_1UXqnvGzho3dgSTh3pjXQhwq",
+      "amount": 9900,
+      "livemode": true
+    }
+  ]
+}

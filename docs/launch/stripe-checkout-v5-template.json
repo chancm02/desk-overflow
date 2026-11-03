@@ -1,0 +1,141 @@
+{
+  "status": "CREATED_LIVE_THEN_DEACTIVATED",
+  "payment_link_id": "plink_1UXqsXGzho3dgSThKKLdePlC",
+  "active": false,
+  "livemode": true,
+  "not_publicly_linked": true,
+  "payload": {
+    "line_items": [
+      {
+        "price": "price_1UXq7rGzho3dgSThR9VEs9Ja",
+        "quantity": 1
+      }
+    ],
+    "optional_items": [
+      {
+        "price": "price_1UXqnJGzho3dgSTh0EI03phr",
+        "quantity": 1
+      },
+      {
+        "price": "price_1UXqnQGzho3dgSThZvmwDj9z",
+        "quantity": 1
+      },
+      {
+        "price": "price_1UXqnWGzho3dgSThpulweg0w",
+        "quantity": 1
+      },
+      {
+        "price": "price_1UXqndGzho3dgSThuZPUND4b",
+        "quantity": 1
+      },
+      {
+        "price": "price_1UXqnlGzho3dgSThEJnPtw6O",
+        "quantity": 1
+      },
+      {
+        "price": "price_1UXqnsGzho3dgSThWgECur4N",
+        "quantity": 1
+      }
+    ],
+    "automatic_tax": {
+      "enabled": true
+    },
+    "billing_address_collection": "required",
+    "customer_creation": "always",
+    "name_collection": {
+      "business": {
+        "enabled": true,
+        "optional": false
+      },
+      "individual": {
+        "enabled": true,
+        "optional": false
+      }
+    },
+    "phone_number_collection": {
+      "enabled": true
+    },
+    "tax_id_collection": {
+      "enabled": false
+    },
+    "consent_collection": {
+      "terms_of_service": "required"
+    },
+    "custom_fields": [
+      {
+        "key": "signedorder",
+        "label": {
+          "type": "custom",
+          "custom": "Signed service order reference"
+        },
+        "type": "text",
+        "optional": false,
+        "text": {
+          "minimum_length": 4,
+          "maximum_length": 80
+        }
+      },
+      {
+        "key": "signertitle",
+        "label": {
+          "type": "custom",
+          "custom": "Authorized signer's title"
+        },
+        "type": "text",
+        "optional": false,
+        "text": {
+          "maximum_length": 80
+        }
+      },
+      {
+        "key": "authority",
+        "label": {
+          "type": "custom",
+          "custom": "Authority to pay this business order"
+        },
+        "type": "dropdown",
+        "optional": false,
+        "dropdown": {
+          "options": [
+            {
+              "label": "I am authorized and the signed order matches these selections",
+              "value": "authorized"
+            }
+          ]
+        }
+      }
+    ],
+    "custom_text": {
+      "submit": {
+        "message": "Setup only. Add-on names disclose future monthly prices. Monthly charges begin only after a separate approved go-live and recurring authorization. Use only after your signed order and tax review match this checkout."
+      },
+      "terms_of_service_acceptance": {
+        "message": "I agree to the [service agreement](https://www.deskoverflow.com/legal/service-agreement/), [data terms](https://www.deskoverflow.com/legal/data-processing/) and [billing/refund terms](https://www.deskoverflow.com/legal/billing/), incorporated in my signed service order."
+      }
+    },
+    "after_completion": {
+      "type": "redirect",
+      "redirect": {
+        "url": "https://www.deskoverflow.com/checkout/return/"
+      }
+    },
+    "metadata": {
+      "version": "2026-11-03-v5",
+      "purpose": "setup_only_with_optional_setup_addons",
+      "release_state": "staged_pending_tax_and_agreement_verification",
+      "monthly_activation": "manual_separate_go_live"
+    },
+    "payment_method_types": [
+      "card"
+    ],
+    "invoice_creation": {
+      "enabled": true,
+      "invoice_data": {
+        "description": "Desk Overflow approved-order setup. Monthly services do not start from this payment.",
+        "footer": "Support/cancellation: desktopoverflow@gmail.com. Monthly billing requires separate approved go-live."
+      }
+    },
+    "submit_type": "pay",
+    "inactive_message": "Please request a reviewed Desk Overflow order. Checkout is not publicly enabled yet."
+  }
+}
