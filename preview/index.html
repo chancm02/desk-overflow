@@ -1,0 +1,207 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#07141b">
+<meta name="description" content="Desk Overflow helps service businesses answer more inbound calls with tailored AI reception, lead capture, appointment coordination, and human fallback. Request a custom plan.">
+<meta property="og:title" content="Desk Overflow | An AI receptionist built around your business">
+<meta property="og:description" content="Your next customer shouldn't reach an unanswered phone. Managed AI call coverage, designed for service businesses.">
+<meta property="og:type" content="website">
+<title>Desk Overflow | AI Receptionists for Service Businesses</title>
+<link rel="icon" type="image/svg+xml" href="../favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#07141b;--panel:#0d222d;--panel2:#112d36;--line:#27404a;--ink:#edf5f4;--muted:#abc0c3;--teal:#77e4c7;--teal2:#b0ffe6;--light:#f2f6f3;--navy:#11252d;--radius:22px;--max:1160px}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 "DM Sans",Arial,sans-serif}
+h1,h2,h3,h4,p{margin-top:0}h1,h2,h3,.price{font-family:Manrope,"DM Sans",sans-serif;letter-spacing:-.045em}
+h1{font-size:clamp(2.9rem,5.5vw,5.1rem);line-height:1.1;font-weight:800}
+h2{font-size:clamp(2rem,3.4vw,3.25rem);line-height:1.14;font-weight:800}
+h3{font-size:1.13rem;line-height:1.35;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}button,input,textarea,select{font:inherit}
+button{cursor:pointer}button:disabled{cursor:wait;opacity:.7}
+:focus-visible{outline:3px solid var(--teal);outline-offset:4px}
+.container{width:min(var(--max),calc(100% - 48px));margin:auto}
+.skip{position:absolute;left:16px;top:-100px;background:white;color:#081a22;padding:10px;z-index:99}.skip:focus{top:8px}
+.topbar{position:sticky;top:0;z-index:50;border-bottom:1px solid #ffffff1c;background:#07141bef;backdrop-filter:blur(16px)}
+.navrow{height:82px;display:flex;align-items:center;justify-content:space-between;gap:24px}
+.brand img{width:202px;height:auto;display:block}
+.navlinks{display:flex;align-items:center;gap:27px;font-size:.9rem;font-weight:700}
+.navlinks a:not(.navcta){color:#cad9db}.navlinks a:hover{color:var(--teal)}
+.btn,.navcta{display:inline-flex;align-items:center;justify-content:center;gap:11px;border-radius:11px;font-weight:800;min-height:49px;padding:12px 21px;border:1px solid transparent;line-height:1.25;transition:transform .2s,background .2s}
+.btn:hover,.navcta:hover{transform:translateY(-2px)}.btn-primary,.navcta{background:var(--teal);color:#092321}.btn-primary:hover,.navcta:hover{background:var(--teal2)}
+.btn-outline{border-color:#60808a;background:#ffffff08;color:white}.btn-outline:hover{background:#ffffff14}
+.menu{display:none;border:1px solid #3b5c65;color:white;background:transparent;padding:9px;border-radius:10px}
+.eyebrow{font-weight:800;letter-spacing:.16em;text-transform:uppercase;font-size:.72rem;color:var(--teal);margin-bottom:20px}
+.hero{padding:88px 0 110px;position:relative;overflow:hidden;background:radial-gradient(ellipse 580px 390px at 76% 40%,#174b4a86,transparent 80%),linear-gradient(160deg,#091a23,#07141b 72%)}
+.hero::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.12;background-image:radial-gradient(#b9e4e0 0.7px,transparent .7px);background-size:24px 24px;mask-image:linear-gradient(90deg,transparent 25%,black)}
+.hero-grid{position:relative;display:grid;grid-template-columns:1.04fr .96fr;align-items:center;gap:46px}
+.hero h1{margin:0 0 24px}.hero h1 span{color:var(--teal)}
+.hero .sub{font-size:1.12rem;max-width:550px;color:#bfd0d1;line-height:1.78}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin:30px 0 22px}.micro{font-size:.83rem;color:#9db7ba;display:flex;align-items:center;gap:8px}.dot{display:inline-block;width:7px;height:7px;background:var(--teal);border-radius:50%}
+.demo{border:1px solid #4c7777;background:linear-gradient(140deg,#183842,#0b202a);padding:18px;border-radius:26px;box-shadow:0 32px 100px #0008;transform:rotate(1.5deg);position:relative}
+.demo-top{display:flex;align-items:center;justify-content:space-between;padding:9px 9px 18px;border-bottom:1px solid #ffffff20}
+.demo-top strong{font-size:.86rem}.demo-pill{font-size:.72rem;border:1px solid #447a70;border-radius:100px;color:#a1f7d7;padding:5px 10px}
+.demo-body{padding:23px 9px 8px}.demo-title{display:flex;align-items:center;gap:13px;margin-bottom:20px}
+.demo-icon{background:#76e4c71e;border:1px solid #478b7f;color:#a7fce0;padding:11px;border-radius:13px;font-size:24px}
+.demo-title h3{margin:0;font-size:1rem}.demo-title p{margin:0;color:#aac4c5;font-size:.82rem}
+.wave{height:88px;border-radius:13px;background:#08222b;display:flex;align-items:center;justify-content:center;gap:4px;padding:10px;margin-bottom:17px}
+.wave i{display:block;width:4px;background:linear-gradient(var(--teal),#3c958d);border-radius:9px;height:var(--h)}
+.chat{background:#ffffff0c;border:1px solid #ffffff1a;border-radius:12px;padding:13px 16px;margin:11px 0}.chat small{display:block;text-transform:uppercase;color:#8ae4c9;letter-spacing:.07em;font-size:.65rem;font-weight:800}.chat p{font-size:.85rem;line-height:1.6;margin:5px 0 0;color:#e0e9e8}
+.demo-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:17px}.stat{border-radius:12px;background:#0c2931;border:1px solid #ffffff16;padding:13px}.stat b{display:block;font-size:.81rem}.stat span{color:#a7bbbe;font-size:.72rem}
+.demo-note{position:absolute;right:18px;bottom:-28px;background:#dffbf1;color:#12392e;padding:11px 18px;box-shadow:0 15px 40px #0005;border-radius:10px;font-size:.8rem;font-weight:800;transform:rotate(-1.5deg)}
+.trust{padding:25px 0;background:#0b2229;border-block:1px solid #2c494c}.trust-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:25px}.trust-item{display:flex;align-items:center;gap:13px;font-size:.84rem;color:#d5e5e3;font-weight:700}.trust-icon{display:grid;place-items:center;background:#77e4c71a;border:1px solid #3d716b;color:var(--teal);width:38px;height:38px;border-radius:11px;font-size:1.15rem;flex:none}
+.section{padding:102px 0}.section-intro{max-width:660px;margin-bottom:40px}.section-intro p{color:var(--muted);font-size:1.02rem}.section-intro .eyebrow{margin-bottom:14px}
+.light{background:var(--light);color:var(--navy)}.light .section-intro p{color:#577078}.light .eyebrow{color:#157966}
+.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.feature{background:white;border:1px solid #dbe5e3;padding:28px;border-radius:18px;box-shadow:0 14px 30px #1b39400a}.feature .symbol{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;background:#e0f4ed;color:#1a7266;font-size:23px;margin-bottom:20px}.feature p{color:#526e72;font-size:.91rem;line-height:1.7;margin:8px 0 0}
+.process{display:grid;grid-template-columns:repeat(4,1fr);gap:15px;margin-top:42px}.step{position:relative;padding:26px;border:1px solid var(--line);border-radius:17px;background:#0e242d}.step .num{color:var(--teal);font-size:.75rem;font-weight:800;letter-spacing:.12em;margin-bottom:20px}.step p{color:#aabfc2;font-size:.89rem;margin-bottom:0}
+.scenario{display:grid;grid-template-columns:.9fr 1.1fr;align-items:center;gap:80px}.scenario p{color:var(--muted)}.example{border:1px solid #38605e;border-radius:22px;padding:25px;background:linear-gradient(150deg,#183d3e,#0f2830)}.example article{border-left:3px solid var(--teal);padding:7px 0 7px 18px;margin:18px 0}.example article b{display:block;font-size:.86rem}.example article p{font-size:.88rem;color:#d3e3e1;margin:4px 0}.example small{color:#a4c2bd}
+.pricing{background:#0b2029}.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:17px;align-items:stretch}.plan{padding:30px 25px;background:#102a34;border:1px solid #35535b;border-radius:19px;display:flex;flex-direction:column}.plan.featured{border:2px solid var(--teal);background:linear-gradient(175deg,#17413f,#102d35);position:relative}.plan-badge{position:absolute;top:-17px;left:20px;background:var(--teal);color:#12322e;padding:6px 13px;border-radius:100px;font-weight:800;font-size:.72rem}.plan .price{font-size:2.8rem;font-weight:800;line-height:1.25;margin:16px 0 0}.plan .price span{font:500 .88rem "DM Sans";letter-spacing:0;color:#b4c8c9}.plan .setup{color:#b2c7c7;font-size:.85rem}.plan p{color:#b9cbca;font-size:.91rem}.plan ul{list-style:none;padding:0;margin:16px 0 27px}.plan li{padding:8px 0 8px 24px;position:relative;font-size:.88rem;color:#d7e6e3}.plan li:before{content:"✓";position:absolute;left:0;color:var(--teal);font-weight:900}.plan .btn{margin-top:auto}.fineprint{color:#a9bfc2;font-size:.8rem;margin-top:22px}
+.addons{margin-top:35px;border-radius:17px;border:1px solid #355159;padding:24px;display:flex;justify-content:space-between;gap:24px;align-items:center}.addons p{color:#b4c8c8;margin:6px 0 0;font-size:.9rem}
+.faq-list{max-width:860px;margin:auto}details{border-bottom:1px solid #315058;padding:20px 0}summary{font-weight:700;cursor:pointer;list-style:none;position:relative;padding-right:30px}summary::-webkit-details-marker{display:none}summary:after{content:"+";position:absolute;right:3px;font-size:1.6rem;top:-8px;color:var(--teal)}details[open] summary:after{content:"−"}details p{color:#b5c7ca;margin:12px 0 0;max-width:750px;font-size:.92rem}
+.contact{background:var(--light);color:var(--navy)}.contact-grid{display:grid;grid-template-columns:.83fr 1.17fr;gap:75px;align-items:start}.contact-copy p{color:#546d72}.promise{margin-top:32px;border:1px solid #c9ddda;border-radius:16px;padding:18px;color:#325e5a;font-size:.89rem}
+.form-card{background:white;border:1px solid #d7e4e0;box-shadow:0 24px 55px #15373918;border-radius:20px;padding:30px}.form-heading{font:800 1.36rem/1.2 Manrope;margin:0 0 8px}.form-intro{color:#6a8081;font-size:.85rem;margin-bottom:25px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}.form-field{display:flex;flex-direction:column;gap:6px}.form-field label{font-size:.79rem;font-weight:800;color:#35535b}.span2{grid-column:1/-1}
+input[type=text],input[type=tel],input[type=email],select,textarea{background:#f7faf9;border:1px solid #cbdad7;border-radius:9px;color:#16343d;width:100%;padding:11px 12px;min-height:44px}textarea{resize:vertical;min-height:88px}.consent-row{display:flex;gap:10px;align-items:flex-start;margin:20px 0;color:#49656a;font-size:.78rem}.consent-row input{margin-top:4px;flex:none}.submit{border:0;background:#13584d;color:white;font-weight:800;border-radius:10px;padding:14px 19px;width:100%;margin:8px 0}.submit:hover{background:#0e453d}
+.privacy-note,.email-help{color:#6b7d7d;font-size:.77rem}.privacy-note a,.email-help a{color:#0d7561;text-decoration:underline}.honey{position:absolute;left:-99999px}.intake-status{font-size:.85rem;color:#315c57}
+.email-preview{border:1px solid #c9dfd7;background:#f4fbf7;border-radius:12px;padding:17px;margin-top:15px}.email-preview h3{font-size:1rem}.email-preview p{font-size:.82rem}.email-links{display:flex;flex-wrap:wrap;gap:8px;margin:12px 0}.email-action{border:1px solid #b0cac3;background:#e5f5ed;color:#134e43;padding:7px 10px;border-radius:8px;font-weight:700;font-size:.8rem}.email-preview textarea{font-size:.78rem}.copy-status{font-size:.8rem}
+.footer{padding:48px 0 24px;border-top:1px solid #2b464e;background:#08171f}.footer-top{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:30px}.footer .logo{width:220px;display:block}.footer p{font-size:.85rem;color:#a2b9bb}.footer h4{font-size:.9rem;letter-spacing:0;margin-bottom:14px}.footer nav{display:flex;flex-direction:column;gap:9px;font-size:.83rem;color:#b6c8cb}.footer nav a:hover{color:var(--teal)}.footer-bottom{border-top:1px solid #30464f;padding-top:20px;margin-top:38px;font-size:.76rem;color:#819fa5}
+@media(max-width:1020px){.hero-grid{grid-template-columns:1fr 1fr;gap:24px}.contact-grid{gap:30px}.scenario{gap:30px}}
+@media(max-width:820px){.menu{display:block}.navlinks{display:none;position:absolute;top:82px;left:0;right:0;background:#091b24;padding:23px 25px;border-bottom:1px solid #31505b;flex-direction:column;align-items:stretch;gap:13px}.navlinks.is-open{display:flex}.navrow{height:74px}.navlinks{top:74px}.hero{padding:65px 0 78px}.hero-grid,.scenario,.contact-grid{grid-template-columns:1fr}.hero-grid{gap:54px}.demo{max-width:550px;transform:none}.demo-note{transform:none}.trust-grid{grid-template-columns:repeat(2,1fr)}.feature-grid,.pricing-grid{grid-template-columns:repeat(2,1fr)}.process{grid-template-columns:repeat(2,1fr)}.footer-top{grid-template-columns:1fr 1fr}.footer-brand{grid-column:1/-1}}
+@media(max-width:570px){.container{width:min(100% - 32px,var(--max))}.hero h1{font-size:clamp(2.4rem,11vw,3.6rem)}.section{padding:72px 0}.hero-actions .btn{width:100%}.trust-grid{gap:14px}.trust-item{font-size:.75rem}.feature-grid,.pricing-grid,.process,.form-grid{grid-template-columns:1fr}.span2{grid-column:auto}.demo{padding:10px}.demo-note{font-size:.7rem;right:5px}.addons{flex-direction:column;align-items:flex-start}.form-card{padding:22px}.footer-top{grid-template-columns:1fr}.footer-brand{grid-column:auto}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.btn,.navcta{transition:none}}
+</style>
+</head>
+<body><div style="background:#b0ffe6;color:#082721;padding:11px 20px;text-align:center;font:700 14px/1.5 Arial,sans-serif;position:relative;z-index:60">DESIGN PREVIEW — inquiry form and payments are disabled. <a href="../" style="text-decoration:underline;color:#123a33">Current live website</a></div>
+<a class="skip" href="#main">Skip to main content</a>
+<header class="topbar">
+ <div class="container navrow">
+  <a class="brand" href="../" aria-label="Desk Overflow home"><img src="../logo-light.svg" width="338" height="80" alt="Desk Overflow"></a>
+  <button type="button" class="menu" id="mobileMenu" aria-controls="navlinks" aria-expanded="false" aria-label="Toggle navigation">☰ Menu</button>
+  <nav class="navlinks" id="navlinks" aria-label="Main navigation"><a href="#features">Solutions</a><a href="#how-it-works">How it works</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a class="navcta" href="#contact">Request a consultation ↗</a></nav>
+ </div>
+</header>
+<main id="main">
+<section class="hero">
+<div class="container hero-grid">
+ <div>
+  <p class="eyebrow">Your business doesn't stop at 5 PM</p>
+  <h1>Never let a good call <span>go unanswered.</span></h1>
+  <p class="sub">Meet the AI receptionist built around your business. Answer routine calls, capture new opportunities, and coordinate appointments—even when your team is busy or off the clock.</p>
+  <div class="hero-actions"><a class="btn btn-primary" href="#contact">Get a custom call plan <span aria-hidden="true">↗</span></a><a class="btn btn-outline" href="#how-it-works">See how it works <span aria-hidden="true">↓</span></a></div>
+  <p class="micro"><span class="dot"></span> Tailored setup • Tested before launch • Month-to-month plans</p>
+ </div>
+ <div class="demo" role="img" aria-label="Illustrative AI receptionist interface showing a simulated caller asking about service availability, the AI capturing details, and a team follow-up request. Not a live customer dashboard.">
+  <div class="demo-top"><strong>DESK OVERFLOW <span style="color:var(--teal)">/ AI CALL DESK</span></strong><span class="demo-pill">● Example workflow</span></div>
+  <div class="demo-body">
+   <div class="demo-title"><div class="demo-icon">◉</div><div><h3>Incoming service inquiry</h3><p>Illustrative conversation, not a real call</p></div></div>
+   <div class="wave" aria-hidden="true">
+    <i style="--h:21px"></i><i style="--h:40px"></i><i style="--h:26px"></i><i style="--h:60px"></i><i style="--h:36px"></i><i style="--h:66px"></i><i style="--h:44px"></i><i style="--h:23px"></i><i style="--h:53px"></i><i style="--h:73px"></i><i style="--h:33px"></i><i style="--h:48px"></i><i style="--h:27px"></i><i style="--h:63px"></i><i style="--h:37px"></i><i style="--h:25px"></i><i style="--h:59px"></i><i style="--h:33px"></i><i style="--h:18px"></i>
+   </div>
+   <div class="chat"><small>Caller</small><p>“Can someone come take a look at my AC this week?”</p></div>
+   <div class="chat"><small>AI receptionist</small><p>“I can collect a few details and help coordinate next steps. What ZIP code are you in?”</p></div>
+   <div class="demo-stats"><div class="stat"><b>Lead details captured</b><span>Contact and service request</span></div><div class="stat"><b>Next step organized</b><span>Appointment request or follow-up</span></div></div>
+  </div>
+  <div class="demo-note">✓ Your team stays in the loop</div>
+ </div>
+</div>
+</section>
+<section class="trust"><div class="container trust-grid">
+<div class="trust-item"><span class="trust-icon">◷</span><span>After-hours coverage</span></div>
+<div class="trust-item"><span class="trust-icon">✦</span><span>Human handoff options</span></div>
+<div class="trust-item"><span class="trust-icon">▣</span><span>Lead & call summaries</span></div>
+<div class="trust-item"><span class="trust-icon">◇</span><span>Built for service teams</span></div>
+</div></section>
+<section class="section light" id="features">
+<div class="container"><div class="section-intro"><p class="eyebrow">More than a voicemail</p><h2>A better first impression, even when you're unavailable.</h2><p>Desk Overflow configures an AI-assisted call flow for the way your business actually works—without asking you to piece together a pile of apps.</p></div>
+<div class="feature-grid">
+<article class="feature"><div class="symbol">◷</div><h3>Calls answered after hours</h3><p>Offer helpful coverage outside business hours or when your team can't pick up, subject to your phone provider's forwarding options.</p></article>
+<article class="feature"><div class="symbol">▤</div><h3>Capture every useful detail</h3><p>Collect caller names, contact information, service needs and notes so your team can follow up with context.</p></article>
+<article class="feature"><div class="symbol">▦</div><h3>Appointment coordination</h3><p>Help callers request or book appointments against an approved calendar after integrations and rules are tested.</p></article>
+<article class="feature"><div class="symbol">◎</div><h3>Business-aware answers</h3><p>Use your approved FAQs, service area, hours and operating policies instead of generic AI guesses.</p></article>
+<article class="feature"><div class="symbol">↗</div><h3>Escalation when needed</h3><p>Set boundaries for urgent situations and hand off to a person or record a callback request when appropriate.</p></article>
+<article class="feature"><div class="symbol">≋</div><h3>Managed setup and changes</h3><p>We help configure and refine the system. You're buying a service, not a complicated software project.</p></article>
+</div></div>
+</section>
+<section class="section" id="how-it-works"><div class="container">
+<div class="section-intro"><p class="eyebrow">A straightforward rollout</p><h2>From missed calls to a call flow that fits.</h2><p>Every business handles callers differently. Our process starts by understanding yours.</p></div>
+<div class="process">
+<div class="step"><div class="num">01 / DISCOVER</div><h3>Tell us what you need</h3><p>Share your call volume, service hours, common questions and handoff preferences.</p></div>
+<div class="step"><div class="num">02 / DESIGN</div><h3>Approve the scope</h3><p>Review your plan, price, integrations and service agreement before configuration.</p></div>
+<div class="step"><div class="num">03 / TEST</div><h3>Hear it in action</h3><p>Test your script, transfer logic and supported booking workflows before activation.</p></div>
+<div class="step"><div class="num">04 / GO LIVE</div><h3>Authorize launch</h3><p>After your approval, begin routing the agreed calls and review performance together.</p></div>
+</div></div></section>
+<section class="section" style="padding-top:0"><div class="container scenario">
+<div><p class="eyebrow">An example of a better outcome</p><h2>Your team is on a job. The phone rings.</h2><p>Instead of leaving the caller guessing, an AI receptionist can explain your next steps, collect the request and help organize a follow-up. The exact workflow is determined by your setup and approved business rules.</p><a class="btn btn-outline" href="#contact">Discuss your call flow ↗</a></div>
+<div class="example"><small>ILLUSTRATIVE WORKFLOW</small>
+<article><b>1. Incoming call</b><p>A potential customer calls while the office is closed.</p></article>
+<article><b>2. Helpful response</b><p>Your AI receptionist uses approved business information and gathers relevant details.</p></article>
+<article><b>3. Clear next step</b><p>A permitted calendar action or callback request is recorded for your team.</p></article>
+<article><b>4. Human oversight</b><p>Complex, emergency or unsupported requests follow your configured fallback policy.</p></article>
+</div></div></section>
+<section class="section pricing" id="pricing"><div class="container">
+<div class="section-intro"><p class="eyebrow">Simple, managed plans</p><h2>Clear pricing. Room to grow.</h2><p>Choose a starting point. We finalize the exact usage allowance, implementation scope and any applicable taxes in your written order before payment.</p></div>
+<div class="pricing-grid">
+<article class="plan"><h3>Essential</h3><p>For teams that need reliable lead capture and an after-hours presence.</p><div class="price">$349 <span>/ month</span></div><div class="setup">$399 one-time setup · proposed 250 AI minutes</div><ul><li>Inbound AI answering</li><li>Approved business FAQs</li><li>Caller and lead details</li><li>Call summaries</li></ul><a class="btn btn-outline" href="#contact" data-plan="Essential">Choose Essential ↗</a></article>
+<article class="plan featured"><span class="plan-badge">POPULAR STARTING POINT</span><h3>Growth</h3><p>For businesses wanting more coordination and follow-up support.</p><div class="price">$599 <span>/ month</span></div><div class="setup">$599 one-time setup · proposed 750 AI minutes</div><ul><li>Everything in Essential</li><li>Supported calendar booking</li><li>Approved follow-up workflows</li><li>Basic website chat</li></ul><a class="btn btn-primary" href="#contact" data-plan="Growth">Choose Growth ↗</a></article>
+<article class="plan"><h3>Premium</h3><p>For higher-volume teams with more complex lead handling.</p><div class="price">$899 <span>/ month</span></div><div class="setup">$999 one-time setup · proposed 1,500 AI minutes</div><ul><li>Everything in Growth</li><li>Expanded approved workflows</li><li>Review request automation</li><li>Enhanced reporting</li></ul><a class="btn btn-outline" href="#contact" data-plan="Premium">Choose Premium ↗</a></article>
+</div>
+<div class="addons"><div><h3 style="margin:0">Need something different?</h3><p>Optional scheduling, lead follow-up, review automation, additional locations and integrations can be scoped separately. SMS features require additional compliance approval.</p></div><a href="#contact" class="btn btn-outline">Talk through add-ons ↗</a></div>
+<p class="fineprint">Listed plans are proposed offers, not an instant checkout or a service guarantee. Phone usage, third-party costs, overages, setup and optional services require a customer-approved scope and pricing. Services are subject to onboarding and operational verification. Marketing texts and outbound AI promotional calls are not enabled by default.</p>
+</div></section>
+<section class="section" id="faq"><div class="container">
+<div class="section-intro" style="margin-inline:auto;text-align:center"><p class="eyebrow">Common questions</p><h2>Know what you're getting.</h2></div>
+<div class="faq-list">
+<details><summary>Can I keep my current business phone number?</summary><p>Often. We first assess whether your phone carrier supports conditional forwarding for unanswered, busy or after-hours calls. Your existing number and routing are reviewed before launch.</p></details>
+<details><summary>Can the AI schedule directly into my calendar?</summary><p>Calendar integration is available where the calendar provider and permissions are supported. We test the agreed booking rules before you authorize live booking.</p></details>
+<details><summary>Does the AI replace my employees?</summary><p>No. It's designed for routine caller assistance and lead collection. You define which situations need staff follow-up, human transfer or alternative routing.</p></details>
+<details><summary>What if the AI gets something wrong?</summary><p>AI can make mistakes. We set approved answers and fallback rules, test the system before launch, and provide a process for updating the configuration. Results and uninterrupted availability are not guaranteed.</p></details>
+<details><summary>Do you support text messaging?</summary><p>SMS may be considered separately, but it is not activated until applicable consent, carrier registration, and required approvals are complete.</p></details>
+<details><summary>Am I signing a long-term contract?</summary><p>Our proposed plans are month-to-month, with cancellation terms described in the signed service agreement. The implementation scope and terms are reviewed before payment.</p></details>
+</div></div></section>
+<section class="section contact" id="contact"><div class="container contact-grid">
+<div class="contact-copy"><p class="eyebrow">Let's talk about your calls</p><h2>A better call experience starts here.</h2><p>Tell us about your business and the calls you want covered. We'll review whether Desk Overflow is a good fit and outline a tailored plan. Your inquiry is free; it doesn't activate a subscription or authorize a charge.</p><div class="promise"><strong>What happens after you reach out?</strong><p style="margin:8px 0 0">We'll review your request, confirm your state-specific requirements, and discuss a scope before contracts or payments. No need to start with a technical demo.</p></div></div>
+<div class="form-card"><h3 class="form-heading">Request your call coverage plan</h3><p class="form-intro">Business contact details only. Please don't enter passwords, payment information, or sensitive customer data.</p>
+<form id="leadForm" action="mailto:chancm02@gmail.com" method="POST" enctype="text/plain" accept-charset="UTF-8">
+<input type="hidden" name="source" value="Desk Overflow website"><input type="hidden" name="submission_id"><input type="hidden" name="utm_source"><input type="hidden" name="utm_medium"><input type="hidden" name="utm_campaign">
+<div class="honey" aria-hidden="true"><label for="siteField">Leave this field empty</label><input type="text" name="_honey" id="siteField" tabindex="-1" autocomplete="off"></div>
+<div class="form-grid">
+<div class="form-field span2"><label for="selectedPlan">Plan you're interested in</label><select id="selectedPlan" name="selected_plan"><option value="Not sure">Help me choose</option><option value="Essential">Essential — $349/month</option><option value="Growth">Growth — $599/month</option><option value="Premium">Premium — $899/month</option></select></div>
+<div class="form-field"><label for="fullName">Your name *</label><input id="fullName" type="text" name="name" maxlength="120" placeholder="Full name" autocomplete="name" required></div>
+<div class="form-field"><label for="business">Business name *</label><input id="business" type="text" name="business" maxlength="150" placeholder="Company or trade name" autocomplete="organization" required></div>
+<div class="form-field"><label for="email">Email address *</label><input id="email" type="email" name="email" maxlength="150" placeholder="you@company.com" autocomplete="email" required></div>
+<div class="form-field"><label for="phone">Phone number *</label><input id="phone" type="tel" name="phone" minlength="7" maxlength="30" placeholder="(555) 555-0123" autocomplete="tel" required></div>
+<div class="form-field"><label for="industry">Business type</label><select id="industry" name="industry"><option value="">Choose your business type</option><option>HVAC / Plumbing</option><option>Roofing / Contracting</option><option>Electrical / Home Services</option><option>Auto / Repair</option><option>Cleaning / Maintenance</option><option>Other Service Business</option></select></div>
+<div class="form-field"><label for="volume">Calls each week</label><select id="volume" name="weekly_call_volume"><option value="Not sure">Not sure yet</option><option>Under 25</option><option>25–75</option><option>76–150</option><option>Over 150</option></select></div>
+<div class="form-field span2"><label for="message">Where are calls getting missed?</label><textarea id="message" name="message" maxlength="2000" placeholder="A few details about your current call handling..."></textarea></div>
+</div>
+<label class="consent-row"><input type="checkbox" name="permission_to_respond" value="Yes" required><span>I authorize Desk Overflow to contact me by phone or email about this inquiry. This is not consent to marketing texts or automated promotional calls. See our <a href="../privacy.html" style="color:#0d7561;text-decoration:underline">Privacy Policy</a>.</span></label>
+<div id="intakeStatus" class="intake-status" role="status" aria-live="polite"></div>
+<button type="submit" class="submit">Prepare Inquiry Email</button><p class="privacy-note">You will review and send the email yourself. <a href="../privacy.html">Privacy</a></p>
+</form>
+<div id="intakeHelp" class="email-help"><strong>Inquiry submission:</strong> If online processing is unavailable, the form prepares an email for you to send yourself. You may also call <a href="tel:+13195364100">(319) 536-4100</a>.</div>
+<div id="emailPreview" class="email-preview" hidden aria-live="polite"><h3>Your inquiry is ready to send</h3><p><strong>Your request has not yet been sent.</strong> Open your email app and press Send.</p><div class="email-links"><a id="emailDraftLink" class="email-action" href="mailto:chancm02@gmail.com">Open email app</a><a id="gmailDraftLink" class="email-action" href="https://mail.google.com/" target="_blank" rel="noopener noreferrer">Open Gmail</a><button id="copyInquiry" class="email-action" type="button">Copy details</button></div><label for="inquiryText">Prepared inquiry</label><textarea id="inquiryText" rows="6" readonly></textarea><p id="copyStatus" class="copy-status"></p></div>
+</div>
+</div></section>
+</main>
+<footer class="footer"><div class="container"><div class="footer-top">
+<div class="footer-brand"><a href="../"><img src="../logo-light.svg" class="logo" alt="Desk Overflow" width="338" height="80"></a><p>Managed AI call coverage and lead recovery for service businesses. Built around your workflow, not the other way around.</p></div>
+<div><h4>Explore</h4><nav aria-label="Explore"><a href="#features">Solutions</a><a href="#how-it-works">How it works</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></nav></div>
+<div><h4>Company & legal</h4><nav aria-label="Legal"><a href="../privacy.html">Privacy Policy</a><a href="../terms.html">Website Terms</a><a href="../sms-terms.html">SMS Terms</a><a href="tel:+13195364100">Call (319) 536-4100</a></nav></div>
+</div><div class="footer-bottom">© 2026 Desk Overflow. Iowa-based AI call coverage for service businesses. Services, pricing and availability subject to written agreement.</div></div></footer>
+<script>
+const menu=document.getElementById("mobileMenu"),nav=document.getElementById("navlinks");
+menu?.addEventListener("click",()=>{const open=nav.classList.toggle("is-open");menu.setAttribute("aria-expanded",String(open))});
+nav?.querySelectorAll("a").forEach(a=>a.addEventListener("click",()=>{nav.classList.remove("is-open");menu?.setAttribute("aria-expanded","false")}));
+document.querySelectorAll("[data-plan]").forEach(a=>a.addEventListener("click",()=>{document.getElementById("selectedPlan").value=a.dataset.plan;}));
+const form=document.getElementById("leadForm");
+form?.addEventListener("submit",e=>{e.preventDefault();document.getElementById("intakeStatus").textContent="Preview only: no inquiry was sent. The actual website form will be tested separately.";});
+document.querySelectorAll(".form-card .submit").forEach(b=>b.textContent="Preview form (not active)");
+document.getElementById("intakeHelp").textContent="Design preview: no information entered here is transmitted or saved.";
+</script>
+</body>
+</html>
