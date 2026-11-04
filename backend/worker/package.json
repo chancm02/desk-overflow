@@ -1,0 +1,11 @@
+{
+  "name": "desk-overflow-checkout-worker",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "check": "node --check index.mjs",
+    "build": "wrangler deploy --dry-run",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": { "wrangler": "4.157.0" }
+}
