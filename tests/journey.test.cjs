@@ -1,0 +1,5 @@
+const test=require('node:test'),assert=require('node:assert/strict'),j=require('../assets/journey.js');
+test('checklist storage accepts only known flags and drops duplicates or customer data',()=>{assert.deepEqual(j.normalizeChecks(['order','order','password=secret','launch']),['order','launch']);assert.deepEqual(j.normalizeChecks({email:'private'}),[])});
+test('approval records preserve reference, declaration, document version and pending verification',()=>{const r=j.record('Routing authorization',[['Order','DO-123'],['Destination','Business fallback']],'I control this number.','2026-11-03T12:00:00Z');assert.match(r,/DO-123/);assert.match(r,/I control this number/);assert.match(r,/2026-11-03-v6/);assert.match(r,/REQUIRES PROVIDER VERIFICATION/);assert.match(r,/not payment/)});
+test('an overlength declaration is rejected instead of being silently truncated by legacy intake',()=>{assert.throws(()=>j.record('Exit request',[],'X'.repeat(2100),'now'),/Nothing has been sent/)});
+test('unrecognized approval kinds cannot be serialized as supported records',()=>{assert.throws(()=>j.record('Charge card',[],'Yes','now'),/Unknown/)});

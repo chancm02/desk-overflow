@@ -1,0 +1,20 @@
+Billing cancellation and refunds
+Version 2026-11-03-v6
+Before payment
+Plan selection is an order request. We confirm phone compatibility, selected scope, customer identity and signer authority, tax treatment and a feasible implementation target. Both parties complete the customer-specific agreement/order before payment. There is no service activation from submitting a request.
+Setup and monthly charges
+Basic guided self-setup has no base implementation fee; base service is $499 per calendar month. Optional done-for-you base implementation is $500 once. Selected add-ons retain their separately disclosed setup fees, including for self-setup customers. Selected add-ons have separate setup and monthly amounts shown on the plan page and signed order. Applicable taxes are itemized before payment. Extra usage or new paid work requires written approval; there are no automatic paid overages. Quote-only services are not included until accepted in writing.
+Recurring billing starts at approved go live
+Setup payment does not create an automatically renewing subscription. The first monthly charge is due at written approved Go-Live after testing. Later periods use the agreed calendar-month anniversary or the last day of a shorter month. We obtain separate processor-supported recurring-payment authorization, or use customer-paid invoices. Saving a payment method alone is not recurring consent.
+Setup cancellation and refunds
+Before Go-Live, refund unearned prepaid service and the setup portion not attributable to reasonable documented work actually performed. If Provider primarily fails to achieve Go-Live within 45 days after complete prerequisites, the signed agreement’s cancellation and refund remedies apply. We do not label the entire setup fee automatically nonrefundable. Provide a breakdown on request; mandatory rights remain.
+Cancel anytime before another renewal
+Use the secure Stripe billing portal from the Customer Center or email desktopoverflow@gmail.com with your business name and order/invoice reference. No exit questionnaire is required to cancel. We acknowledge cancellation and its effective date. After Go-Live, service ordinarily ends at the current paid-period end and no further renewal occurs after receipt of cancellation. Convenience cancellation does not ordinarily refund an already-started period; provider breach, prolonged material service failure and mandatory law may require a credit or refund. Revoking autopay does not erase properly owed amounts.
+Payment problems and billing errors
+Contact us promptly about errors. Dispute review does not waive non-waivable rights. We provide written overdue notice before nonpayment suspension and follow the signed agreement’s 10-calendar-day notice period. No undisclosed late fee applies. We coordinate approved fallback where technically available.
+Stripe and tax information
+Enter payment details only on the Stripe-hosted page identified in your approved payment instructions. We do not collect card numbers in website forms. An invoice/receipt is the payment record; a return-page visit is not proof of payment. Provide valid billing and service locations. A tax ID does not automatically exempt a sale; claimed exemptions require appropriate evidence.
+No premature activation
+Phone forwarding, calendar access, SMS and other permissions are separate from payment. Customer and Provider must approve the tested Go-Live configuration. The signed Order and DPA control customer-specific scope and processing; publishing this page does not amend existing signed contracts.
+Contact billing or cancel service · View package and add-ons
+Self-setup customers pay no base implementation fee; add-on configuration charges are still separate. Billing-account changes do not update service recipients. See setup scope, secure billing access and data exit.

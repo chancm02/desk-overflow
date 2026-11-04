@@ -1,0 +1,32 @@
+{
+  "version": "2026-11-03-v6",
+  "account": "acct_1UXkOuGzho3dgSTh",
+  "livemode": true,
+  "basic": {
+    "product": "do_basic_self_usd499_v6",
+    "price": "price_1UXrg4Gzho3dgSThQIZZ4lr0",
+    "monthly": 49900
+  },
+  "optionalBaseSetup": {
+    "product": "do_optional_setup_usd500_v6",
+    "price": "price_1UXrgIGzho3dgSThfh5yrxfG",
+    "oneTime": 50000
+  },
+  "billingPortal": {
+    "id": "bpc_1UXrfyGzho3dgSThrMSmAcYY",
+    "url": "https://billing.stripe.com/p/login/6oU7sL2OJ5CGg4DbfKbo400",
+    "invoiceHistory": true,
+    "paymentMethodUpdate": true,
+    "cancel": "at_period_end",
+    "subscriptionUpdates": false
+  },
+  "publicPaymentEnabled": false,
+  "unresolved": [
+    "Tax registrations absent",
+    "Product tax classification unconfirmed",
+    "Owner identity live capture due",
+    "HighLevel service platform not connected",
+    "Live agent, actual metering and no-overage fallback unverified",
+    "Automated webhook/provisioning backend not deployed"
+  ]
+}
