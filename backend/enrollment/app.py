@@ -2,12 +2,14 @@
 import json,os,smtplib
 from email.message import EmailMessage
 from pathlib import Path
-from .core import Enrollment,Rejected,CATALOG
+from .core import Enrollment,Rejected,CATALOG,VERSION
 ORIGIN='https://www.deskoverflow.com'
 
 def enabled(name):return os.getenv(name)=='1'
+def runtime_configured():
+    return all(os.getenv(k) for k in ['ENROLLMENT_DB','ENROLLMENT_ENCRYPTION_KEY','STRIPE_RESTRICTED_KEY','STRIPE_WEBHOOK_SECRET','SMTP_HOST','SMTP_USER','SMTP_PASSWORD','SMTP_FROM','DATA_SCHEDULE_PATH','PROVISIONING_ENDPOINT','PROVISIONING_SECRET','SELLING_STATES'])
 def configured():
-    return all(os.getenv(k) for k in ['ENROLLMENT_DB','ENROLLMENT_ENCRYPTION_KEY','STRIPE_RESTRICTED_KEY','STRIPE_WEBHOOK_SECRET','SMTP_HOST','SMTP_USER','SMTP_PASSWORD','SMTP_FROM','DATA_SCHEDULE_PATH','PROVISIONING_ENDPOINT','PROVISIONING_SECRET','SELLING_STATES']) and all(enabled(k) for k in ['ENROLLMENT_ENABLED','TAX_APPROVED','IDENTITY_VERIFIED','PROVIDER_READY','AUTOMATION_TESTED','CONTRACT_OFFER_APPROVED'])
+    return runtime_configured() and all(enabled(k) for k in ['ENROLLMENT_ENABLED','TAX_APPROVED','IDENTITY_VERIFIED','PROVIDER_READY','AUTOMATION_TESTED','CONTRACT_OFFER_APPROVED'])
 class StripeGateway:
     def __init__(self):
         from stripe import StripeClient
@@ -23,7 +25,7 @@ class StripeGateway:
         # Verify both setup and future recurring catalog items before accepting details.
         for item in q['setup_items']+q['monthly_items']:
             p=self.client.v1.prices.retrieve(item['price'],{'expand':['product']})
-            if not p.active or not p.livemode or p.currency!='usd' or p.unit_amount!=item['amount'] or not p.product.tax_code:raise Rejected('A selected service needs billing configuration.')
+            if not p.active or not p.livemode or p.currency!='usd' or p.unit_amount!=item['amount'] or not p.product.active or not p.product.tax_code:raise Rejected('A selected service needs billing configuration.')
         if q['setup']:
             args.update(line_items=[{'price':x['price'],'quantity':1} for x in q['setup_items']],automatic_tax={'enabled':True},payment_intent_data={'setup_future_usage':'off_session'})
         else:args['currency']='usd'
@@ -32,7 +34,7 @@ class StripeGateway:
         s=self.client.v1.checkout.sessions.retrieve(sid)
         if s.status!='open' or not s.url:raise Rejected('This checkout is no longer open. Check your Stripe receipt or contact support; do not pay twice.')
         return s.url
-    def retrieve_session(self,sid):return self.client.v1.checkout.sessions.retrieve(sid)
+    def retrieve_session(self,sid):return self.client.v1.checkout.sessions.retrieve(sid).to_dict()
     def setup_succeeded(self,sid):return self.client.v1.setup_intents.retrieve(sid).status=='succeeded'
     def risk_customer(self,kind,obj):
         charge=obj.get('charge')
@@ -48,7 +50,7 @@ _service=None
 def service():
     global _service
     if _service is None:
-        if not configured():raise Rejected('Online enrollment is not available yet. No payment was created.')
+        if not runtime_configured():raise Rejected('Online enrollment is not available yet. No payment was created.')
         schedule=json.loads(Path(os.environ['DATA_SCHEDULE_PATH']).read_text())
         for key in ['processors','retention','notices','security','exit','version']:
             if not schedule.get(key):raise Rejected('The service data schedule is not ready.')
@@ -65,26 +67,28 @@ def application(env,start_response):
         if method=='OPTIONS':
             if origin!=ORIGIN:raise Rejected('Origin not allowed.')
             code=204
+        elif path=='/healthz' and method=='GET':
+            out={'status':'ok','version':VERSION}
         elif path=='/v1/readiness' and method=='GET':
             ready=False
             if configured():
                 try:service().gateway.guard();ready=True
                 except Exception:pass
-            out={'ready':ready,'version':'2026-11-03-v8'}
+            out={'ready':ready,'version':VERSION}
         elif path=='/v1/stripe-webhook' and method=='POST':
-            if not configured():raise Rejected('Service unavailable.')
+            if not runtime_configured():raise Rejected('Service unavailable.')
             import stripe
             size=int(env.get('CONTENT_LENGTH') or 0)
-            if size>1000000:raise Rejected('Request too large.')
+            if size<=0 or size>1000000:raise Rejected('Request too large.')
             raw=env['wsgi.input'].read(size)
-            event=stripe.Webhook.construct_event(raw,env.get('HTTP_STRIPE_SIGNATURE',''),os.environ['STRIPE_WEBHOOK_SECRET'])
+            event=stripe.Webhook.construct_event(raw,env.get('HTTP_STRIPE_SIGNATURE',''),os.environ['STRIPE_WEBHOOK_SECRET']).to_dict()
             if event.get('livemode') is not True:raise Rejected('Unexpected Stripe environment.')
             service().event(event);out={'received':True}
         elif method=='POST' and path in ['/v1/enrollments','/v1/verify','/v1/checkout']:
             if origin!=ORIGIN:raise Rejected('Origin not allowed.')
             if not configured():raise Rejected('Online enrollment is not available yet. No payment was created.')
             size=int(env.get('CONTENT_LENGTH') or 0)
-            if size>32768:raise Rejected('Request too large.')
+            if size<=0 or size>32768:raise Rejected('Request too large.')
             data=json.loads(env['wsgi.input'].read(size));s=service();token=env.get('HTTP_AUTHORIZATION','').removeprefix('Bearer ')
             if path.endswith('/enrollments'):out=s.create(data,env.get('REMOTE_ADDR',''))
             elif path.endswith('/verify'):out=s.verify(data['id'],token,data['code'])
