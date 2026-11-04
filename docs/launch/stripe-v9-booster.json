@@ -1,0 +1,21 @@
+{
+  "version": "2026-11-03-v9",
+  "product": "do_v9_minutes250_once",
+  "price": "price_1UXwdhGzho3dgSThTTRnXAaG",
+  "currency": "usd",
+  "amount": 9900,
+  "type": "one_time",
+  "minutes": 250,
+  "product_active": false,
+  "public_checkout_enabled": false,
+  "expires": "identified active service period end",
+  "rollover": false,
+  "automatic_renewal": false,
+  "release_gates": [
+    "approved tax code",
+    "authenticated usage account",
+    "verified paid webhook",
+    "idempotent period credit",
+    "refund reconciliation"
+  ]
+}
