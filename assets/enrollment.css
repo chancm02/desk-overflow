@@ -2,3 +2,5 @@
 #verifiedOrder{white-space:normal;overflow-wrap:anywhere;background:white;border:1px solid #cadfd9;margin:25px 0;padding:22px;border-radius:15px}#verifiedOrder dl{display:grid;grid-template-columns:1fr 1fr;gap:12px;font-size:14px}#verifiedOrder dd{margin:0}#verifiedOrder dt{color:#617588}#verifiedOrder details{font-size:12px;margin-top:20px}#verifiedOrder summary{cursor:pointer;font-weight:700}#verifiedOrder strong{display:block;margin-top:12px}
 
 .enroll-sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+
+.enroll-panel>h2[tabindex="-1"]:focus{outline:none}

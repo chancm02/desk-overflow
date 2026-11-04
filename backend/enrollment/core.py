@@ -49,6 +49,8 @@ class Enrollment:
             value=data.get(k,'')
             if not isinstance(value,str) or not value.strip() or len(value)>n:raise Rejected('Please check '+k+'.')
             clean[k]=value.strip()
+        clean['faqSource']=str(data.get('faqSource','')).strip()
+        if len(clean['faqSource'])>150 or (clean['faqSource'] and not clean['faqSource'].startswith(('https://','http://'))):raise Rejected('Please check the public FAQ URL.')
         import re
         from zoneinfo import ZoneInfo,ZoneInfoNotFoundError
         for field in ['email','recipient']:

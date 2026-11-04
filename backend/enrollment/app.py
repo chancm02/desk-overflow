@@ -82,6 +82,7 @@ def application(env,start_response):
             service().event(event);out={'received':True}
         elif method=='POST' and path in ['/v1/enrollments','/v1/verify','/v1/checkout']:
             if origin!=ORIGIN:raise Rejected('Origin not allowed.')
+            if not configured():raise Rejected('Online enrollment is not available yet. No payment was created.')
             size=int(env.get('CONTENT_LENGTH') or 0)
             if size>32768:raise Rejected('Request too large.')
             data=json.loads(env['wsgi.input'].read(size));s=service();token=env.get('HTTP_AUTHORIZATION','').removeprefix('Bearer ')
