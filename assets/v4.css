@@ -37,3 +37,5 @@
 .hero .float-card{color:#17294a}
 
 .starter-plan{display:grid;grid-template-columns:1fr 1fr;gap:65px;max-width:1030px;margin:auto;align-items:center}.starter-plan .pricing-card{transform:none;min-height:0}.starter-details h3{font-size:30px;margin:15px 0}.starter-details>p{font-size:15px}.starter-details dl{margin-top:25px}.starter-details dt{font-weight:800;color:#17294a;font-size:15px;margin-top:19px}.starter-details dd{margin:5px 0 0;color:#52657e;font-size:14px}@media(max-width:760px){.starter-plan{grid-template-columns:1fr;gap:30px}.starter-details h3{font-size:26px}}
+
+@media(min-width:901px) and (max-width:1130px){#navlinks>a[href$="customer/"]{display:none}}
