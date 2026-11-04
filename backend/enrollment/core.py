@@ -5,7 +5,7 @@ import hashlib,hmac,json,secrets,sqlite3,time,uuid
 from pathlib import Path
 from cryptography.fernet import Fernet
 CATALOG=json.loads(Path(__file__).with_name('catalog.json').read_text())
-VERSION='2026-11-03-v8'
+VERSION='2026-11-03-v9'
 class Rejected(Exception):pass
 
 def quote(data):
@@ -19,7 +19,7 @@ def quote(data):
         addon=CATALOG['addons'][key]
         if addon['setup']['amount']:setup.append(addon['setup'])
         monthly.append(addon['monthly'])
-    return dict(plan=plan_id,plan_name=plan['name'],included=plan['included'],setup=sum(x['amount'] for x in setup),monthly=sum(x['amount'] for x in monthly),minutes=plan['minutes']+(250 if 'minutes250' in ids else 0),setup_items=setup,monthly_items=monthly,addons=ids)
+    return dict(plan=plan_id,plan_name=plan['name'],included=plan['included'],setup=sum(x['amount'] for x in setup),monthly=sum(x['amount'] for x in monthly),minutes=plan['minutes'],setup_items=setup,monthly_items=monthly,addons=ids)
 
 class Enrollment:
     def __init__(self,path,key,gateway,mailer,ready=False,states=(),schedule=None):
@@ -64,7 +64,7 @@ class Enrollment:
         if not all(data.get(k) is True for k in ['authority','documentsRead','responsePermission']):raise Rejected('Confirm the information and required acknowledgments.')
         totals=quote(data);clean.update(plan=data.get('plan','basic'),addons=totals['addons'])
         ident=uuid.uuid4().hex;token=secrets.token_urlsafe(32);code=str(secrets.randbelow(1000000)).zfill(6)
-        document={'id':ident,'integration_tag':''.join(secrets.choice('abcdefghijklmnopqrstuvwxyz') for _ in range(8)),'version':VERSION,'business':clean,'quote':totals,'data_schedule':self.schedule,'terms_hashes':json.loads((Path(__file__).resolve().parents[2]/'legal/versions/2026-11-03-v8/sha256.json').read_text()),'created_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime(self.clock())),'billing':'Monthly service begins only after successful tests and separate customer Go-Live approval. Setup fees are charged now only if selected. No automatic paid overages. Cancel before another renewal through billing or email.','acceptance':None}
+        document={'id':ident,'integration_tag':''.join(secrets.choice('abcdefghijklmnopqrstuvwxyz') for _ in range(8)),'version':VERSION,'business':clean,'quote':totals,'data_schedule':self.schedule,'terms_hashes':json.loads((Path(__file__).resolve().parents[2]/'legal/versions/2026-11-03-v9/sha256.json').read_text()),'created_utc':time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime(self.clock())),'billing':'Monthly service begins only after successful tests and separate customer Go-Live approval. Setup fees are charged now only if selected. No automatic paid overages. Cancel before another renewal through billing or email.','acceptance':None}
         digest=hashlib.sha256(json.dumps(document,sort_keys=True).encode()).hexdigest()
         with self.db() as d:d.execute('INSERT INTO orders(id,token,created,code,body,digest)VALUES(?,?,?,?,?,?)',(ident,hashlib.sha256(token.encode()).hexdigest(),self.clock(),hashlib.sha256((ident+code).encode()).hexdigest(),self.seal(document),digest))
         try:self.mailer(clean['email'],code)

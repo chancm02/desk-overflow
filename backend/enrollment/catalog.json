@@ -49,16 +49,6 @@
         "price": "price_1UXqnoGzho3dgSThhGXZZn7C",
         "amount": 9900
       }
-    },
-    "minutes250": {
-      "setup": {
-        "price": "price_1UXqnsGzho3dgSThWgECur4N",
-        "amount": 0
-      },
-      "monthly": {
-        "price": "price_1UXqnvGzho3dgSTh3pjXQhwq",
-        "amount": 9900
-      }
     }
   },
   "plans": {

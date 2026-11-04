@@ -1,0 +1,63 @@
+
+
+
+
+Billing cancellation and refunds
+
+
+Version 2026-11-03-v9
+
+
+Before payment
+
+Plan selection is an order request. We confirm phone compatibility, selected scope, customer identity and signer authority, tax treatment and a feasible implementation target. Both parties complete the customer-specific agreement/order before payment. There is no service activation from submitting a request.
+
+Implementation and monthly charges
+
+Basic is $299/month with $500 one-time managed implementation; Premium is $499/month with $1,000 implementation; Advanced is $799/month with $1,500 implementation. Selected extras carry the separately disclosed setup and monthly fees. Features included in the chosen tier are not charged again as add-ons.
+
+All plans are managed by Desk Overflow. Implementation covers the included scope for the selected tier. Applicable taxes are separately itemized before payment. No new work or automatic paid overage is charged without the required approval. Quote-only services are excluded until accepted in writing.
+
+Recurring billing starts at approved go live
+
+Setup payment does not create an automatically renewing subscription. The first monthly charge is due at written approved Go-Live after testing. Later periods use the agreed calendar-month anniversary or the last day of a shorter month. We obtain separate processor-supported recurring-payment authorization, or use customer-paid invoices. Saving a payment method alone is not recurring consent.
+
+Setup cancellation and refunds
+
+Before Go-Live, refund unearned prepaid service and the setup portion not attributable to reasonable documented work actually performed. If Provider primarily fails to achieve Go-Live within 45 days after complete prerequisites, the signed agreement’s cancellation and refund remedies apply. We do not label the entire setup fee automatically nonrefundable. Provide a breakdown on request; mandatory rights remain.
+
+Cancel anytime before another renewal
+
+Use the secure Stripe billing portal from the Customer Center or email desktopoverflow@gmail.com with your business name and order/invoice reference. No exit questionnaire is required to cancel. We acknowledge cancellation and its effective date. After Go-Live, service ordinarily ends at the current paid-period end and no further renewal occurs after receipt of cancellation. Convenience cancellation does not ordinarily refund an already-started period; provider breach, prolonged material service failure and mandatory law may require a credit or refund. Revoking autopay does not erase properly owed amounts.
+
+Payment problems and billing errors
+
+Contact us promptly about errors. Dispute review does not waive non-waivable rights. We provide written overdue notice before nonpayment suspension and follow the signed agreement’s 10-calendar-day notice period. No undisclosed late fee applies. We coordinate approved fallback where technically available.
+
+Stripe and tax information
+
+Enter payment details only on the Stripe-hosted page identified in your approved payment instructions. We do not collect card numbers in website forms. An invoice/receipt is the payment record; a return-page visit is not proof of payment. Provide valid billing and service locations. A tax ID does not automatically exempt a sale; claimed exemptions require appropriate evidence.
+
+Boosters and upgrades for new orders
+
+A 250-minute booster is $99 once, plus applicable tax, for one identified active service period. It expires at period end without rollover or renewal. Purchase is unavailable until metering and payment-to-credit reconciliation are connected and tested. Recurring upgrades require separate approval of price, effective date and any proration. Automatic top-ups are not enabled.
+
+No premature activation
+
+Phone forwarding, calendar access, SMS and other permissions are separate from payment. Customer and Provider must approve the tested Go-Live configuration. The signed Order and DPA control customer-specific scope and processing; publishing this page does not amend existing signed contracts.
+
+
+Contact billing or cancel service
+ · 
+View package and add-ons
+
+
+Billing-account changes do not update service recipients. See 
+managed implementation
+, 
+secure billing access
+ and 
+data exit
+.
+
+
