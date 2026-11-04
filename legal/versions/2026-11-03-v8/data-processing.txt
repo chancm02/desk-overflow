@@ -1,0 +1,22 @@
+Data processing terms
+Version 2026-11-03-v8
+These terms describe the standard service processing framework. Complete the customer-specific data schedule and obtain both parties’ acceptance before processing real callers. They do not assert universal privacy compliance.
+Instructions and purpose
+The customer supplies approved business information, lead fields, recipients and lawful instructions. Desk Overflow processes caller information to configure, provide, support, secure and terminate the purchased service. Unsupported or apparently unlawful instructions are paused for review.
+Data and excluded information
+Authorized records may include caller name, callback details, service request, appointment preferences, call metadata, approved summaries and permission records. Do not intentionally collect payment-card numbers, passwords, government identifiers, medical information, sensitive children’s information or other regulated data under the standard scope.
+Speech processing and notices
+AI reception processes speech even when saved audio recording is disabled. Optional retained audio and transcripts are not enabled without a customer-specific review, approved notices and technically verified settings. The schedule must document actual speech/model providers, processing, retention and refusal/fallback behavior. No zero-retention or no-training guarantee is made without verified vendor terms.
+Providers and access
+Expected service platforms include HighLevel and its configured telephone, AI, speech and email providers, plus any explicitly approved calendar or website integration. List actual entities, purposes, data categories and locations in the customer schedule. Google Apps Script and Google Sheets handle current website inquiry/order-request records; Stripe handles hosted payment and billing information. Do not activate an integration merely because it is listed here.
+Security and confidentiality
+Use named accounts, multifactor authentication where available, least privilege, separated customer locations and access revocation. Restrict exports and records to authorized staff with confidentiality duties. Do not share another customer’s information or use caller content for unrelated marketing.
+Retention and requests
+Agree and verify retention by record type before activation. We coordinate authenticated access, correction, export and deletion requests to the extent legally required and technically supported. On termination, use the agreed export window and deletion instructions, subject to lawful retention and platform backups; inaccessible backups are not represented as immediately erased.
+Incidents
+Investigate suspected compromise, preserve appropriate evidence and notify the customer without undue delay after confirming a breach affecting its data, with an initial notice target within 48 hours where reasonably feasible. Mandatory legal deadlines still apply. Provide available scope, mitigation and updates.
+Conditional features
+SMS, outbound AI, marketing campaigns, recording, sensitive-data workflows and international processing require separate applicable approvals. The standard package does not authorize HIPAA or other special-category processing. Material new processors require notice and customer review as set out in the signed schedule.
+Required customer data schedule
+Record services and purposes; business and caller jurisdictions; data fields and subjects; actual vendors and permissions; recording/transcript settings and notices; retention by type; authorized recipients; incident contact; export/deletion process; and signer/version/date. An unresolved critical privacy setting blocks activation.
+Personal-data terms take priority for data conflicts; the signed agreement controls other remedies and obligations, subject to mandatory law.

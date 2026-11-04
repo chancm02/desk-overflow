@@ -1,0 +1,93 @@
+{
+  "version": "2026-11-03-v8",
+  "tiers": [
+    {
+      "id": "basic",
+      "name": "Basic",
+      "setup": 50000,
+      "monthly": 29900,
+      "minutes": 150,
+      "included": [],
+      "summary": "One managed inbound English AI agent, one location, approved FAQs, lead capture and email notifications. 150 AI-connected minutes per service period."
+    },
+    {
+      "id": "premium",
+      "name": "Premium",
+      "setup": 100000,
+      "monthly": 49900,
+      "minutes": 250,
+      "included": [
+        "calendar",
+        "crm"
+      ],
+      "summary": "Basic managed scope plus one supported calendar/appointment type and one CRM pipeline with up to 5 stages. 250 AI-connected minutes per service period."
+    },
+    {
+      "id": "advanced",
+      "name": "Advanced",
+      "setup": 150000,
+      "monthly": 79900,
+      "minutes": 500,
+      "included": [
+        "calendar",
+        "crm",
+        "chat",
+        "email",
+        "reviews"
+      ],
+      "summary": "Premium scope plus one website chat widget (250 AI replies/month), one email sequence (up to 3 messages, 250 contacts/month), and one email review-request workflow (250 recipients/month). 500 AI-connected minutes per service period."
+    }
+  ],
+  "items": [
+    {
+      "tier": "basic",
+      "kind": "setup",
+      "product": "do_v8_basic_setup",
+      "price": "price_1UXvQEGzho3dgSThheLjH8Bo",
+      "amount": 50000,
+      "livemode": true
+    },
+    {
+      "tier": "basic",
+      "kind": "monthly",
+      "product": "do_v8_basic_monthly",
+      "price": "price_1UXvQIGzho3dgSThwAkmVVh2",
+      "amount": 29900,
+      "livemode": true
+    },
+    {
+      "tier": "premium",
+      "kind": "setup",
+      "product": "do_v8_premium_setup",
+      "price": "price_1UXvQMGzho3dgSThhzMHzZeV",
+      "amount": 100000,
+      "livemode": true
+    },
+    {
+      "tier": "premium",
+      "kind": "monthly",
+      "product": "do_v8_premium_monthly",
+      "price": "price_1UXvQRGzho3dgSThpZ5TS7oD",
+      "amount": 49900,
+      "livemode": true
+    },
+    {
+      "tier": "advanced",
+      "kind": "setup",
+      "product": "do_v8_advanced_setup",
+      "price": "price_1UXvQVGzho3dgSThtKUD2rO8",
+      "amount": 150000,
+      "livemode": true
+    },
+    {
+      "tier": "advanced",
+      "kind": "monthly",
+      "product": "do_v8_advanced_monthly",
+      "price": "price_1UXvQZGzho3dgSThlrcN4q49",
+      "amount": 79900,
+      "livemode": true
+    }
+  ],
+  "publicPaymentEnabled": false,
+  "mode": "managed_setup_by_desk_overflow"
+}

@@ -1,12 +1,4 @@
 {
-  "basic": {
-    "price": "price_1UXrg4Gzho3dgSThQIZZ4lr0",
-    "amount": 49900
-  },
-  "assisted": {
-    "price": "price_1UXrgIGzho3dgSThfh5yrxfG",
-    "amount": 50000
-  },
   "addons": {
     "calendar": {
       "setup": {
@@ -67,6 +59,56 @@
         "price": "price_1UXqnvGzho3dgSTh3pjXQhwq",
         "amount": 9900
       }
+    }
+  },
+  "plans": {
+    "basic": {
+      "setup": {
+        "price": "price_1UXvQEGzho3dgSThheLjH8Bo",
+        "amount": 50000
+      },
+      "monthly": {
+        "price": "price_1UXvQIGzho3dgSThwAkmVVh2",
+        "amount": 29900
+      },
+      "name": "Basic",
+      "included": [],
+      "minutes": 150
+    },
+    "premium": {
+      "setup": {
+        "price": "price_1UXvQMGzho3dgSThhzMHzZeV",
+        "amount": 100000
+      },
+      "monthly": {
+        "price": "price_1UXvQRGzho3dgSThpZ5TS7oD",
+        "amount": 49900
+      },
+      "name": "Premium",
+      "included": [
+        "calendar",
+        "crm"
+      ],
+      "minutes": 250
+    },
+    "advanced": {
+      "setup": {
+        "price": "price_1UXvQVGzho3dgSThtKUD2rO8",
+        "amount": 150000
+      },
+      "monthly": {
+        "price": "price_1UXvQZGzho3dgSThlrcN4q49",
+        "amount": 79900
+      },
+      "name": "Advanced",
+      "included": [
+        "calendar",
+        "crm",
+        "chat",
+        "email",
+        "reviews"
+      ],
+      "minutes": 500
     }
   }
 }

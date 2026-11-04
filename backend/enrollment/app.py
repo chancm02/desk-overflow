@@ -70,7 +70,7 @@ def application(env,start_response):
             if configured():
                 try:service().gateway.guard();ready=True
                 except Exception:pass
-            out={'ready':ready,'version':'2026-11-03-v7'}
+            out={'ready':ready,'version':'2026-11-03-v8'}
         elif path=='/v1/stripe-webhook' and method=='POST':
             if not configured():raise Rejected('Service unavailable.')
             import stripe

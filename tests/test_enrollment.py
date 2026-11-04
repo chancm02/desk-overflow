@@ -14,7 +14,7 @@ class Gateway:
  def setup_succeeded(self,sid):return sid=='seti_good'
  def risk_customer(self,kind,obj):return obj.get('customer')
 def business(**extra):
- d=dict(name='Test Owner',title='Owner',business='Synthetic QA',entity='LLC',email='test@example.com',phone='3195550100',billing='123 Test Street',city='Vinton',state='IA',postalCode='52349',service='123 Test Street, Vinton IA 52349',timezone='America/Chicago',businessNumber='3195550101',carrier='Test carrier',coverage='After-hours',calls='Under 25',hours='Mon-Fri 9-5',serviceArea='Test service in test area',recipient='leads@example.com',fallback='Test contact 3195550102',calendar='Not selected',exemption='No',authority=True,documentsRead=True,responsePermission=True,setupMode='self',addons=[],quotes=[]);d.update(extra);return d
+ d=dict(name='Test Owner',title='Owner',business='Synthetic QA',entity='LLC',email='test@example.com',phone='3195550100',billing='123 Test Street',city='Vinton',state='IA',postalCode='52349',service='123 Test Street, Vinton IA 52349',timezone='America/Chicago',businessNumber='3195550101',carrier='Test carrier',coverage='After-hours',calls='Under 25',hours='Mon-Fri 9-5',serviceArea='Test service in test area',recipient='leads@example.com',fallback='Test contact 3195550102',calendar='Not selected',exemption='No',authority=True,documentsRead=True,responsePermission=True,plan='basic',addons=[],quotes=[]);d.update(extra);return d
 class EnrollmentTests(unittest.TestCase):
  def setUp(self):
   self.temp=tempfile.TemporaryDirectory();self.g=Gateway();self.sent=[];self.e=Enrollment(Path(self.temp.name)/'private.sqlite3',Fernet.generate_key(),self.g,lambda email,code:self.sent.append((email,code)),True,['IA'],{'version':'approved-test-only'})
@@ -25,7 +25,7 @@ class EnrollmentTests(unittest.TestCase):
  def event(self,sid,kind='checkout.session.completed',ident='evt_1'):
   self.e.event({'id':ident,'type':kind,'data':{'object':{'id':sid}}})
  def test_server_price_ignores_client_amount_and_deduplicates(self):
-  q=quote(business(addons=['calendar','calendar'],amount=1));self.assertEqual((q['setup'],q['monthly']),(15000,59800));self.assertEqual(quote(business(setupMode='assisted'))['setup'],50000)
+  q=quote(business(addons=['calendar','calendar'],amount=1));self.assertEqual((q['setup'],q['monthly']),(65000,39800));self.assertEqual(quote(business(plan='basic'))['setup'],50000)
  def test_unknown_addon_is_rejected(self):
   with self.assertRaises(Rejected):quote(business(addons=['free-everything']))
  def test_disabled_service_never_accepts_or_charges(self):
@@ -60,20 +60,21 @@ class EnrollmentTests(unittest.TestCase):
  def test_repeated_checkout_reuses_session(self):
   d,r=self.verified();a=self.e.checkout(d['id'],d['token'],r['orderHash'],True);b=self.e.checkout(d['id'],d['token'],r['orderHash'],True);self.assertEqual(a,b);self.assertEqual(len(self.g.created),1)
  def test_unpaid_session_never_provisions_then_paid_event_enqueues_once(self):
-  d,r=self.verified(setupMode='assisted');self.e.checkout(d['id'],d['token'],r['orderHash'],True);sid='cs_'+d['id'];self.event(sid)
+  d,r=self.verified(plan='basic');self.e.checkout(d['id'],d['token'],r['orderHash'],True);sid='cs_'+d['id'];self.event(sid)
   with self.e.db() as db:self.assertEqual(db.execute('SELECT count(*) FROM jobs').fetchone()[0],0)
   self.g.sessions[sid]['payment_status']='paid';self.event(sid,'checkout.session.async_payment_succeeded','evt_paid');self.event(sid,'checkout.session.async_payment_succeeded','evt_paid')
   with self.e.db() as db:self.assertEqual(db.execute('SELECT count(*) FROM jobs').fetchone()[0],1)
  def test_incorrect_amount_cannot_provision(self):
-  d,r=self.verified(setupMode='assisted');self.e.checkout(d['id'],d['token'],r['orderHash'],True);sid='cs_'+d['id'];self.g.sessions[sid].update(payment_status='paid',amount_subtotal=1)
+  d,r=self.verified(plan='basic');self.e.checkout(d['id'],d['token'],r['orderHash'],True);sid='cs_'+d['id'];self.g.sessions[sid].update(payment_status='paid',amount_subtotal=1)
   with self.assertRaisesRegex(Rejected,'amount mismatch'):self.event(sid)
- def test_zero_setup_requires_successful_setup_intent(self):
-  d,r=self.verified();self.e.checkout(d['id'],d['token'],r['orderHash'],True);sid='cs_'+d['id'];self.event(sid)
-  with self.e.db() as db:self.assertEqual(db.execute('SELECT count(*) FROM jobs').fetchone()[0],0)
-  self.g.sessions[sid]['setup_intent']='seti_good';self.event(sid,ident='evt_method')
-  with self.e.db() as db:self.assertEqual(db.execute('SELECT checkout_state FROM orders').fetchone()[0],'method_saved')
+ def test_every_managed_tier_has_its_approved_implementation_charge(self):
+  self.assertEqual([quote(business(plan=p))['setup'] for p in ['basic','premium','advanced']],[50000,100000,150000])
+ def test_premium_bundles_are_removed_from_extra_invoice_items(self):
+  q=quote(business(plan='premium',addons=['calendar','crm','chat']));self.assertEqual((q['setup'],q['monthly']),(115000,59800));self.assertEqual(q['addons'],['chat'])
+ def test_advanced_bundle_is_not_double_charged(self):
+  q=quote(business(plan='advanced',addons=['calendar','crm','chat','reviews','email']));self.assertEqual((q['setup'],q['monthly']),(150000,79900));self.assertEqual(q['addons'],[])
  def test_risk_hold_survives_late_success(self):
-  d,r=self.verified(setupMode='assisted');self.e.checkout(d['id'],d['token'],r['orderHash'],True);sid='cs_'+d['id'];cus=self.g.sessions[sid]['customer'];self.e.event({'id':'evt_risk','type':'charge.refunded','data':{'object':{'id':'ch_test','customer':cus}}});self.g.sessions[sid]['payment_status']='paid';self.event(sid)
+  d,r=self.verified(plan='basic');self.e.checkout(d['id'],d['token'],r['orderHash'],True);sid='cs_'+d['id'];cus=self.g.sessions[sid]['customer'];self.e.event({'id':'evt_risk','type':'charge.refunded','data':{'object':{'id':'ch_test','customer':cus}}});self.g.sessions[sid]['payment_status']='paid';self.event(sid)
   with self.e.db() as db:self.assertEqual(db.execute('SELECT checkout_state FROM orders').fetchone()[0],'risk_review');self.assertEqual(db.execute("SELECT count(*) FROM jobs WHERE kind='provision'").fetchone()[0],0)
  def test_each_billing_change_keeps_its_own_durable_job(self):
   d,r=self.verified();self.e.checkout(d['id'],d['token'],r['orderHash'],True);cus='cus_'+d['id']
