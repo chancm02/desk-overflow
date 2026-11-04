@@ -1,0 +1,11 @@
+# Unified enrollment v7 release
+
+Public site change: one five-step signup with an itemized sticky summary, separate setup choice/add-on fees, business and answering details entered once, editable review cards, validated step navigation, keyboard support, responsive layouts, and a truthful finish screen. No PII is stored in browser storage. Existing UTMs and verified Apps Script delivery are preserved; the complete compact message is blocked rather than truncated at 2000 characters. It remains a configuration request until the automated service is connected. No payment, identity verification or active account is implied.
+
+Normal-path scattered operating/privacy/approval forms now direct to this signup, preventing duplicate submissions. Existing signed contracts, frozen legal versions, customer billing portal, support and cancellation paths are preserved. Authenticated post-setup testing/routing/Go-Live still belongs in the future service account, not repeated unauthenticated public forms.
+
+Prepared backend: backend/enrollment/ contains encrypted order persistence, email OTP, immutable server quotes/order hashes, exact review acceptance, Stripe Checkout/SetupIntent integration and verified-event durable jobs, plus signed provisioning-adapter delivery. 50 automated checks passed at release. These use test doubles for Stripe/mail; no real customer record, email, checkout, subscription, trial, hosting subscription or HighLevel account was created.
+
+This is NOT a claim that the automated production backend is deployed or complete. See backend/enrollment/README.md for missing provider adapter, authenticated status/resume and Go-Live integration, deployment/credentials, live tax/identity prerequisites, contract acceptance release checks, retention handling, and required sandbox end-to-end validation. Public apiBase remains null; online charging remains off. Do not turn flags on to conceal missing dependencies.
+
+HighLevel's current Create Location API documentation explicitly requires Agency Pro ($497/month). This is a new material platform-cost decision, not an automatic upgrade or an expense incurred by this work. Exact owner-authorized platform/account access is needed before that path can be completed.

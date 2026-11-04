@@ -7,3 +7,11 @@ test-results/
 private/
 __pycache__/
 *.pyc
+
+# Enrollment secrets and private runtime state
+.env
+.env.*
+!.env.example
+*.sqlite3
+*.sqlite3-*
+__pycache__/

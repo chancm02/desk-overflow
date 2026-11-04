@@ -1,0 +1,72 @@
+{
+  "basic": {
+    "price": "price_1UXrg4Gzho3dgSThQIZZ4lr0",
+    "amount": 49900
+  },
+  "assisted": {
+    "price": "price_1UXrgIGzho3dgSThfh5yrxfG",
+    "amount": 50000
+  },
+  "addons": {
+    "calendar": {
+      "setup": {
+        "price": "price_1UXqnJGzho3dgSTh0EI03phr",
+        "amount": 15000
+      },
+      "monthly": {
+        "price": "price_1UXqnNGzho3dgSThIOfTyP3P",
+        "amount": 9900
+      }
+    },
+    "chat": {
+      "setup": {
+        "price": "price_1UXqnQGzho3dgSThZvmwDj9z",
+        "amount": 15000
+      },
+      "monthly": {
+        "price": "price_1UXqnTGzho3dgSThCwMLocoH",
+        "amount": 9900
+      }
+    },
+    "crm": {
+      "setup": {
+        "price": "price_1UXqnWGzho3dgSThpulweg0w",
+        "amount": 19900
+      },
+      "monthly": {
+        "price": "price_1UXqnZGzho3dgSThJmR3S8jW",
+        "amount": 9900
+      }
+    },
+    "reviews": {
+      "setup": {
+        "price": "price_1UXqndGzho3dgSThuZPUND4b",
+        "amount": 14900
+      },
+      "monthly": {
+        "price": "price_1UXqngGzho3dgSThSB9zxJau",
+        "amount": 7900
+      }
+    },
+    "email": {
+      "setup": {
+        "price": "price_1UXqnlGzho3dgSThEJnPtw6O",
+        "amount": 14900
+      },
+      "monthly": {
+        "price": "price_1UXqnoGzho3dgSThhGXZZn7C",
+        "amount": 9900
+      }
+    },
+    "minutes250": {
+      "setup": {
+        "price": "price_1UXqnsGzho3dgSThWgECur4N",
+        "amount": 0
+      },
+      "monthly": {
+        "price": "price_1UXqnvGzho3dgSTh3pjXQhwq",
+        "amount": 9900
+      }
+    }
+  }
+}
